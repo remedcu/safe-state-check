@@ -1,0 +1,8 @@
+# Compiled by test/anvil/setup.ts into node_modules/.cache, never into the repo.
+[profile.default]
+src = "."
+out = "../../../node_modules/.cache/anvil-suite/out"
+cache_path = "../../../node_modules/.cache/anvil-suite/cache"
+libs = []
+solc_version = "0.8.30"
+evm_version = "cancun"

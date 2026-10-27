@@ -1,0 +1,8 @@
+{
+  "extends": "../../tsconfig.app.json",
+  "compilerOptions": {
+    "tsBuildInfoFile": "../../node_modules/.tmp/tsconfig.anvil.tsbuildinfo",
+    "types": ["node", "vite/client"]
+  },
+  "include": [".", "../../vitest.anvil.config.ts", "../../e2e/anvil.spec.ts"]
+}

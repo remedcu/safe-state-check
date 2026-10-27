@@ -1,0 +1,82 @@
+@import "tailwindcss";
+
+/* Semantic color tokens, so components never pick raw palette colors or `dark:` variants themselves. Each token
+   becomes a Tailwind color (e.g. `--color-muted-foreground` becomes `text-muted-foreground`). */
+@theme {
+  --color-background: var(--color-white);
+  --color-foreground: var(--color-gray-900);
+  --color-muted-foreground: var(--color-gray-600);
+  /* Cards, banners and panels. */
+  --color-surface: var(--color-white);
+  /* Hovered and expanded elements, table headers, skeletons. */
+  --color-subtle: var(--color-gray-100);
+  /* Buttons and inputs. */
+  --color-border: var(--color-gray-300);
+  /* Containers and table row separators. */
+  --color-border-subtle: var(--color-gray-200);
+  --color-focus: var(--color-blue-600);
+  --color-primary: var(--color-gray-900);
+  --color-primary-hover: var(--color-gray-700);
+  --color-primary-foreground: var(--color-white);
+
+  /* Tones: verdicts, card states and severities. Each has text, surface and border. */
+  --color-ok: var(--color-green-800);
+  --color-ok-surface: var(--color-green-50);
+  --color-ok-border: var(--color-green-600);
+  --color-warn: var(--color-amber-800);
+  --color-warn-surface: var(--color-amber-50);
+  --color-warn-border: var(--color-amber-500);
+  --color-bad: var(--color-red-700);
+  --color-bad-surface: var(--color-red-50);
+  --color-bad-border: var(--color-red-600);
+  --color-info: var(--color-sky-800);
+  --color-info-surface: var(--color-sky-50);
+  --color-info-border: var(--color-sky-500);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: var(--color-gray-950);
+    --color-foreground: var(--color-gray-100);
+    --color-muted-foreground: var(--color-gray-400);
+    --color-surface: var(--color-gray-900);
+    --color-subtle: var(--color-gray-800);
+    --color-border: var(--color-gray-600);
+    --color-border-subtle: var(--color-gray-700);
+    --color-focus: var(--color-blue-400);
+    --color-primary: var(--color-gray-100);
+    --color-primary-hover: var(--color-gray-300);
+    --color-primary-foreground: var(--color-gray-900);
+
+    --color-ok: var(--color-green-300);
+    --color-ok-surface: var(--color-green-950);
+    --color-ok-border: var(--color-green-600);
+    --color-warn: var(--color-amber-300);
+    --color-warn-surface: var(--color-amber-950);
+    --color-warn-border: var(--color-amber-500);
+    --color-bad: var(--color-red-300);
+    --color-bad-surface: var(--color-red-950);
+    --color-bad-border: var(--color-red-500);
+    --color-info: var(--color-sky-300);
+    --color-info-surface: var(--color-sky-950);
+    --color-info-border: var(--color-sky-500);
+  }
+}
+
+@layer base {
+  :root {
+    color-scheme: light dark;
+    /* The page grows while results stream in; a scrollbar appearing must not narrow and reflow it. */
+    scrollbar-gutter: stable;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  /* Tailwind v4's preflight resets buttons to the default cursor. */
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}

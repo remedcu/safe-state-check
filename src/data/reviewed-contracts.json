@@ -1,0 +1,26 @@
+[
+  {
+    "name": "RealityVetoModule",
+    "version": null,
+    "kind": "module",
+    "chainId": 1,
+    "address": "0x4210382652A5e3C9aF7e1D3c88085818A465449b",
+    "codeHash": "0xc1ea22a6e60824589438b7e058bc8e6129ef5cd2105282d29249f3e3a77bd789",
+    "sourceUrl": "https://repo.sourcify.dev/1/0x4210382652A5e3C9aF7e1D3c88085818A465449b",
+    "reviewedOn": "",
+    "reviewedBy": "",
+    "note": "Module of the Reward Distribution Safe 0xAd219b3c26fe42BF5FC66F67490745a4fa5dff59. Sourcify exact match (runtime and creation, verified 2026-10-09). Byte-identical rebuild of safenet-utils 030bb80 per the Reward Distribution Safe review. Immutables SAFE, REALITY_MODULE and VETOER, so the code hash is specific to this deployment."
+  },
+  {
+    "name": "RealityVetoModule",
+    "version": null,
+    "kind": "module",
+    "chainId": 100,
+    "address": "0xE62320C8F29CEa47587b2239476841430E17AF75",
+    "codeHash": "0xc87c3783f2fc95e4fecbbbbfaee5bf2518396797cd076f83897dd242981342e8",
+    "sourceUrl": "https://repo.sourcify.dev/100/0xE62320C8F29CEa47587b2239476841430E17AF75",
+    "reviewedOn": "",
+    "reviewedBy": "",
+    "note": "Module of the SafeDAO Safe 0x9D02bed59170cdE96782Ea9a9b17F9bCF4916127 on Gnosis. Sourcify exact match (runtime and creation, verified 2026-10-02). Byte-identical rebuild of safenet-utils 030bb80 per the SafeDAO Safe review. Immutables SAFE, REALITY_MODULE and VETOER, so the code hash is specific to this deployment."
+  }
+]

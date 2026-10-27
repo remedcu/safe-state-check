@@ -1,0 +1,1001 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`reportToMarkdown > matches the snapshot for the amberSingle report 1`] = `
+"# Safe State Check: Could not verify
+
+Could not verify: only one RPC operator confirmed the block.
+
+- Safe: \`0xAd219b3c26fe42BF5FC66F67490745a4fa5dff59\` on Ethereum Mainnet (chain 1)
+- Block: 26176126, 2026-10-12 11:34:47 UTC, hash \`0xbca7f5c0cd31c75f3e3221c076713002cf9952022b18060c16f4eeedf35ea119\`
+- Findings: 0 critical, 0 high, 1 medium, 1 info
+- Root matched with: configuration slots
+
+Reasons:
+- Only one RPC operator confirmed the block. Add a cross-check RPC run by someone else.
+- The storage root matches the configuration on that one RPC.
+
+Why it could not be verified:
+- Only one RPC operator confirmed the block. Add a cross-check RPC run by someone else.
+
+## Summary
+
+| Item | Value | Detail |
+|---|---|---|
+| Version | 1.4.1 | Canonical Safe 1.4.1 (not L2) |
+| Owners | 1 of 1 | 1 owner with an EIP-7702 delegation |
+| Modules | 2 | 1 known, 1 on the reviewed list |
+| Guard | None |  |
+| Module guard | Not in 1.4.1 |  |
+| Fallback handler | CompatibilityFallbackHandler 1.4.1 | Known |
+| Nonce | 3 |  |
+| Storage | Root matches | Expected non-zero slots: 10 = 1 singleton + 1 owner count + 1 threshold + 1 nonce + 2 owner entries + 3 module entries + 1 fallback handler. |
+
+## Findings
+
+- **Medium:** Owner is an EIP-7702 delegated account (\`0x802cbafa6133c493A7c67f685f97AdA5918d1dF9\`). code 0xef0100 + 0x5A7FC11397E9a8AD41BF10bf13F22B0a63f96f6d
+- **Info:** Newer Safe version available. Safe 1.5.0 is deployed on chain 1
+
+## Safe contract
+
+- Version 1.4.1 (not L2); VERSION() returns \`1.4.1\`; latest supported 1.5.0
+- Logic contract (singleton, slot 0): \`0x41675C099F32341bf84BFc5382aF534df5C7461a\` (Safe 1.4.1)
+- Proxy code hash: \`0xd7d408ebcd99b2b70be43e20253d6d92a8ea8fab29bd3be7f55b10032331fb4c\` (SafeProxy 1.4.1)
+
+## Owners
+
+Threshold 1 of 1.
+
+| Owner | Type | Flags |
+|---|---|---|
+| \`0x802cbafa6133c493A7c67f685f97AdA5918d1dF9\` | Plain account with EIP-7702 delegation, delegates to \`0x5A7FC11397E9a8AD41BF10bf13F22B0a63f96f6d\` | Owner is an EIP-7702 delegated account |
+
+## Modules
+
+| Module | Identified as | Flags |
+|---|---|---|
+| \`0x4210382652A5e3C9aF7e1D3c88085818A465449b\` | RealityVetoModule (reviewed list) |  |
+| \`0x8DFc5Db2C83200Cf0cC84d7e3C441d7721ef83dC\` | RealityModuleERC20 2.0.0 (minimal proxy) |  |
+
+Zodiac details:
+- \`0x8DFc5Db2C83200Cf0cC84d7e3C441d7721ef83dC\`: owner \`0xAd219b3c26fe42BF5FC66F67490745a4fa5dff59\` (this Safe); avatar \`0xAd219b3c26fe42BF5FC66F67490745a4fa5dff59\` (this Safe); target \`0xAd219b3c26fe42BF5FC66F67490745a4fa5dff59\` (this Safe); guard none; oracle \`0xdd34D37ABD603658b039BB46f25769E21e252A43\`, template 5, timeout 259200 s, cooldown 432000 s, expiration 604800 s, minimum bond 10000000000000000000000, arbitrator none; cross-check match
+
+## Guard and fallback handler
+
+| Role | Address | Identified as | Set by an event |
+|---|---|---|---|
+| Guard | not set |  |  |
+| Fallback handler | \`0xfd0732Dc9E303f09fCEf3a7388Ad10A83459Ec99\` | CompatibilityFallbackHandler 1.4.1 | unknown |
+
+## Storage
+
+Expected non-zero slots: 10 = 1 singleton + 1 owner count + 1 threshold + 1 nonce + 2 owner entries + 3 module entries + 1 fallback handler.
+
+- Pass with configuration slots: 10 slots, rebuilt root \`0x4321ab747900a628bc24642a1cff166280215c287be657997cff8468934b693e\`, match
+- Actual root: \`0x4321ab747900a628bc24642a1cff166280215c287be657997cff8468934b693e\`
+
+| Key | Meaning | Value | Source | Status |
+|---|---|---|---|---|
+| \`0x0000000000000000000000000000000000000000000000000000000000000000\` | Safe logic contract (singleton) (slot 0) | \`0x00000000000000000000000041675c099f32341bf84bfc5382af534df5c7461a\` | configuration | expected |
+| \`0x0000000000000000000000000000000000000000000000000000000000000003\` | Number of owners (slot 3, ownerCount) | \`0x0000000000000000000000000000000000000000000000000000000000000001\` | configuration | expected |
+| \`0x0000000000000000000000000000000000000000000000000000000000000004\` | Signatures required (slot 4, threshold) | \`0x0000000000000000000000000000000000000000000000000000000000000001\` | configuration | expected |
+| \`0x0000000000000000000000000000000000000000000000000000000000000005\` | Transactions executed (nonce) (slot 5, nonce) | \`0x0000000000000000000000000000000000000000000000000000000000000003\` | configuration | expected |
+| \`0x6c9a6c4a39284e37ed1cf53d337577d14212a4870fb976a4366c693b939918d5\` | Fallback handler (keccak256(fallback\\_manager.handler.address)) | \`0x000000000000000000000000fd0732dc9e303f09fcef3a7388ad10a83459ec99\` | configuration | expected |
+| \`0xe90b7bceb6e7df5418fb78d8ee546e97c83a08bbccc01a0644d599ccd2a7c2e0\` | Start of the owner list (owners\\[0x…01\\]) | \`0x000000000000000000000000802cbafa6133c493a7c67f685f97ada5918d1df9\` | configuration | expected |
+| \`0x987836d13f39f6cc07c34830a39d9f3a4645b530338199ebb6048d69d0146f2b\` | Owner list entry for 0x802c…1dF9 (owners\\[0x802c…1dF9\\]) | \`0x0000000000000000000000000000000000000000000000000000000000000001\` | configuration | expected |
+| \`0xcc69885fda6bcc1a4ace058b4a62bf5e179ea78fd58a1ccd71c22cc9b688792f\` | Start of the module list (modules\\[0x…01\\]) | \`0x0000000000000000000000004210382652a5e3c9af7e1d3c88085818a465449b\` | configuration | expected |
+| \`0xe3ebe3cb924116f2e42323265a69b434816a67760d5bb395a26b66f97c0cded5\` | Module list entry for 0x4210…449b (modules\\[0x4210…449b\\]) | \`0x0000000000000000000000008dfc5db2c83200cf0cc84d7e3c441d7721ef83dc\` | configuration | expected |
+| \`0x3c87853bd1943cff64926293357392dc9e0942fc33fa81a241c22b70a47343e2\` | Module list entry for 0x8DFc…83dC (modules\\[0x8DFc…83dC\\]) | \`0x0000000000000000000000000000000000000000000000000000000000000001\` | configuration | expected |
+
+## Creation
+
+- Transaction \`0xf422629777a4982cd7805e1d215cf3e481a1ff853d4f5303fd140971c2087cf0\` in block 25952825, found through Blockscout API eth.blockscout.com
+- Factory \`0x4e1DCf7AD4e460CfD30791CCC4F9c8a4f820ec67\` (SafeProxyFactory 1.4.1), \`createProxyWithNonce\`
+- Setup: threshold 1 of 1, owners \`0x802cbafa6133c493A7c67f685f97AdA5918d1dF9\`
+- Setup call to \`0xBD89A1CE4DDe368FFAB0eC35506eEcE0b1fFdc54\` (SafeToL2Setup 1.4.1)
+- Fallback handler at setup: \`0xfd0732Dc9E303f09fCEf3a7388Ad10A83459Ec99\`
+- Payment: none
+
+## History
+
+- Events from Blockscout API eth.blockscout.com, blocks 25952825 to 26176126
+- 3 configuration events; executions: 3 succeeded, 0 failed, 0 by modules
+
+## Pending actions
+
+- None found.
+
+## Verification
+
+- Block 26176126, 2026-10-12 11:34:47 UTC, hash \`0xbca7f5c0cd31c75f3e3221c076713002cf9952022b18060c16f4eeedf35ea119\`, state root \`0x076e2e1a0629ea82b1069570b7426e70d1d2e9011c1674b882b4c02c10c40fe7\`
+- Pinned to a recent block (latest minus 3).
+- Primary RPC: eth.drpc.org (dRPC, default)
+- Cross-check RPC: none. No default RPC of another operator answered for this block.
+- Agreement: Only one RPC operator confirmed this block.
+- Cross-check: header not compared, storage root not compared, slot values not compared, calls not compared
+- Proofs: 6 accounts and 10 slots, all verified
+- Reorg check: unchanged
+
+## Problems during the run
+
+- Cross-check RPC eth-mainnet.public.blastapi.io could not read block 26176126: Could not reach the RPC. No answer came from eth-mainnet.public.blastapi.io. Most often the RPC does not accept requests from web pages (CORS), or it is down or misspelled.
+
+## What this does not check
+
+- The code of the singleton, modules, guard, fallback handler and owner contracts is identified by its hash, not reviewed.
+- Who holds the owner keys and how they are kept.
+- Signatures held offchain that were never shared with any service.
+- Offchain governance and the processes around this Safe.
+- Token balances.
+
+Generated by safe-state-check 0.0.0 at 2026-10-12 11:35:10 UTC.
+"
+`;
+
+exports[`reportToMarkdown > matches the snapshot for the amberUnsupported report 1`] = `
+"# Safe State Check: Could not verify
+
+Could not verify: this chain does not serve standard storage proofs.
+
+- Safe: \`0x5Afe5aFe5afe5AFE5AFE5aFE5aFE5AFE5AFe0324\` on zkSync Mainnet (chain 324)
+- Block: 26176126, 2026-10-12 11:34:47 UTC, hash \`0xbca7f5c0cd31c75f3e3221c076713002cf9952022b18060c16f4eeedf35ea119\`
+- Findings: 0 critical, 0 high, 0 medium, 0 info
+
+Reasons:
+- This chain's storage proofs are not standard Ethereum proofs, so the storage root cannot be rebuilt.
+
+Why it could not be verified:
+- This chain's storage proofs are not standard Ethereum proofs, so the storage root cannot be rebuilt.
+
+## Summary
+
+| Item | Value | Detail |
+|---|---|---|
+| Version | 1.4.1 | Canonical Safe 1.4.1 (not L2) |
+| Owners | 1 of 1 |  |
+| Modules | 2 | 1 known, 1 on the reviewed list |
+| Guard | None |  |
+| Module guard | Not in 1.4.1 |  |
+| Fallback handler | CompatibilityFallbackHandler 1.4.1 | Known |
+| Nonce | 3 |  |
+| Storage | Not checked | zkSync does not serve eth\\_getProof |
+
+## Safe contract
+
+- Version 1.4.1 (not L2); VERSION() returns \`1.4.1\`; latest supported 1.5.0
+- Logic contract (singleton, slot 0): \`0x41675C099F32341bf84BFc5382aF534df5C7461a\` (Safe 1.4.1)
+- Proxy code hash: \`0xd7d408ebcd99b2b70be43e20253d6d92a8ea8fab29bd3be7f55b10032331fb4c\` (SafeProxy 1.4.1)
+
+## Owners
+
+Threshold 1 of 1.
+
+| Owner | Type | Flags |
+|---|---|---|
+| \`0x802cbafa6133c493A7c67f685f97AdA5918d1dF9\` | Plain account (EOA) |  |
+
+## Modules
+
+| Module | Identified as | Flags |
+|---|---|---|
+| \`0x4210382652A5e3C9aF7e1D3c88085818A465449b\` | RealityVetoModule (reviewed list) |  |
+| \`0x8DFc5Db2C83200Cf0cC84d7e3C441d7721ef83dC\` | RealityModuleERC20 2.0.0 (minimal proxy) |  |
+
+Zodiac details:
+- \`0x8DFc5Db2C83200Cf0cC84d7e3C441d7721ef83dC\`: owner \`0xAd219b3c26fe42BF5FC66F67490745a4fa5dff59\` (this Safe); avatar \`0xAd219b3c26fe42BF5FC66F67490745a4fa5dff59\` (this Safe); target \`0xAd219b3c26fe42BF5FC66F67490745a4fa5dff59\` (this Safe); guard none; oracle \`0xdd34D37ABD603658b039BB46f25769E21e252A43\`, template 5, timeout 259200 s, cooldown 432000 s, expiration 604800 s, minimum bond 10000000000000000000000, arbitrator none; cross-check match
+
+## Guard and fallback handler
+
+| Role | Address | Identified as | Set by an event |
+|---|---|---|---|
+| Guard | not set |  |  |
+| Fallback handler | \`0xfd0732Dc9E303f09fCEf3a7388Ad10A83459Ec99\` | CompatibilityFallbackHandler 1.4.1 | unknown |
+
+## Storage
+
+Expected non-zero slots: 10 = 1 singleton + 1 owner count + 1 threshold + 1 nonce + 2 owner entries + 3 module entries + 1 fallback handler.
+
+- Actual root: not read
+- Root check not run: ZK Stack (EraVM) keeps state in a different tree and does not serve eth\\_getProof.
+
+| Key | Meaning | Value | Source | Status |
+|---|---|---|---|---|
+| \`0x0000000000000000000000000000000000000000000000000000000000000000\` | Safe logic contract (singleton) (slot 0) | \`0x00000000000000000000000041675c099f32341bf84bfc5382af534df5c7461a\` | configuration | expected, not proven |
+| \`0x0000000000000000000000000000000000000000000000000000000000000003\` | Number of owners (slot 3, ownerCount) | \`0x0000000000000000000000000000000000000000000000000000000000000001\` | configuration | expected, not proven |
+| \`0x0000000000000000000000000000000000000000000000000000000000000004\` | Signatures required (slot 4, threshold) | \`0x0000000000000000000000000000000000000000000000000000000000000001\` | configuration | expected, not proven |
+| \`0x0000000000000000000000000000000000000000000000000000000000000005\` | Transactions executed (nonce) (slot 5, nonce) | \`0x0000000000000000000000000000000000000000000000000000000000000003\` | configuration | expected, not proven |
+| \`0x6c9a6c4a39284e37ed1cf53d337577d14212a4870fb976a4366c693b939918d5\` | Fallback handler (keccak256(fallback\\_manager.handler.address)) | \`0x000000000000000000000000fd0732dc9e303f09fcef3a7388ad10a83459ec99\` | configuration | expected, not proven |
+| \`0xe90b7bceb6e7df5418fb78d8ee546e97c83a08bbccc01a0644d599ccd2a7c2e0\` | Start of the owner list (owners\\[0x…01\\]) | \`0x000000000000000000000000802cbafa6133c493a7c67f685f97ada5918d1df9\` | configuration | expected, not proven |
+| \`0x987836d13f39f6cc07c34830a39d9f3a4645b530338199ebb6048d69d0146f2b\` | Owner list entry for 0x802c…1dF9 (owners\\[0x802c…1dF9\\]) | \`0x0000000000000000000000000000000000000000000000000000000000000001\` | configuration | expected, not proven |
+| \`0xcc69885fda6bcc1a4ace058b4a62bf5e179ea78fd58a1ccd71c22cc9b688792f\` | Start of the module list (modules\\[0x…01\\]) | \`0x0000000000000000000000004210382652a5e3c9af7e1d3c88085818a465449b\` | configuration | expected, not proven |
+| \`0xe3ebe3cb924116f2e42323265a69b434816a67760d5bb395a26b66f97c0cded5\` | Module list entry for 0x4210…449b (modules\\[0x4210…449b\\]) | \`0x0000000000000000000000008dfc5db2c83200cf0cc84d7e3c441d7721ef83dc\` | configuration | expected, not proven |
+| \`0x3c87853bd1943cff64926293357392dc9e0942fc33fa81a241c22b70a47343e2\` | Module list entry for 0x8DFc…83dC (modules\\[0x8DFc…83dC\\]) | \`0x0000000000000000000000000000000000000000000000000000000000000001\` | configuration | expected, not proven |
+
+## Creation
+
+Not available: No source found the creation transaction (tried Blockscout and the RPC).
+
+## History
+
+- Events from Blockscout API zksync.blockscout.com, blocks 25952825 to 26176126 (incomplete)
+- 3 configuration events; executions: 3 succeeded, 0 failed, 0 by modules
+
+Incomplete: Blocks before 51000000 were not read.
+
+## Pending actions
+
+Skipped: The Safe Transaction Service is off in settings.
+
+## Verification
+
+- Block 26176126, 2026-10-12 11:34:47 UTC, hash \`0xbca7f5c0cd31c75f3e3221c076713002cf9952022b18060c16f4eeedf35ea119\`, state root \`0x076e2e1a0629ea82b1069570b7426e70d1d2e9011c1674b882b4c02c10c40fe7\`
+- Pinned to a recent block (latest minus 3).
+- Primary RPC: mainnet.era.zksync.io (zkSync, default)
+- Cross-check RPC: zksync.drpc.org (dRPC, default)
+- Agreement: Two independent RPC operators returned the same block hash and state root.
+- Cross-check: header match, storage root not served by the cross-check RPC, slot values match, calls match
+- Proofs: 0 accounts and 0 slots, not all verified
+- Reorg check: unchanged
+
+## Problems during the run
+
+- Primary RPC mainnet.era.zksync.io could not read the storage proof of the Safe: Not supported by this RPC. mainnet.era.zksync.io does not support eth\\_getProof, needed to read the storage proof of the Safe.
+
+## What this does not check
+
+- The code of the singleton, modules, guard, fallback handler and owner contracts is identified by its hash, not reviewed.
+- Who holds the owner keys and how they are kept.
+- Signatures held offchain that were never shared with any service.
+- Offchain governance and the processes around this Safe.
+- Token balances.
+
+Generated by safe-state-check 0.0.0 at 2026-10-12 11:35:10 UTC.
+"
+`;
+
+exports[`reportToMarkdown > matches the snapshot for the green report 1`] = `
+"# Safe State Check: Storage fully explained
+
+Every storage slot of this Safe is explained by its configuration.
+
+- Safe: \`0xAd219b3c26fe42BF5FC66F67490745a4fa5dff59\` on Ethereum Mainnet (chain 1)
+- Block: 26176126, 2026-10-12 11:34:47 UTC, hash \`0xbca7f5c0cd31c75f3e3221c076713002cf9952022b18060c16f4eeedf35ea119\`
+- Findings: 0 critical, 0 high, 1 medium, 1 info
+- Root matched with: configuration slots
+
+Reasons:
+- The storage root matches the 10 slots the owners, modules and settings explain.
+- Owner 0x802c…1dF9 is an EIP-7702 delegated account.
+
+## Summary
+
+| Item | Value | Detail |
+|---|---|---|
+| Version | 1.4.1 | Canonical Safe 1.4.1 (not L2) |
+| Owners | 1 of 1 | 1 owner with an EIP-7702 delegation |
+| Modules | 2 | 1 known, 1 on the reviewed list |
+| Guard | None |  |
+| Module guard | Not in 1.4.1 |  |
+| Fallback handler | CompatibilityFallbackHandler 1.4.1 | Known |
+| Nonce | 3 |  |
+| Storage | Root matches | Expected non-zero slots: 10 = 1 singleton + 1 owner count + 1 threshold + 1 nonce + 2 owner entries + 3 module entries + 1 fallback handler. |
+
+## Findings
+
+- **Medium:** Owner is an EIP-7702 delegated account (\`0x802cbafa6133c493A7c67f685f97AdA5918d1dF9\`). code 0xef0100 + 0x5A7FC11397E9a8AD41BF10bf13F22B0a63f96f6d
+- **Info:** Newer Safe version available. Safe 1.5.0 is deployed on chain 1
+
+## Safe contract
+
+- Version 1.4.1 (not L2); VERSION() returns \`1.4.1\`; latest supported 1.5.0
+- Logic contract (singleton, slot 0): \`0x41675C099F32341bf84BFc5382aF534df5C7461a\` (Safe 1.4.1)
+- Proxy code hash: \`0xd7d408ebcd99b2b70be43e20253d6d92a8ea8fab29bd3be7f55b10032331fb4c\` (SafeProxy 1.4.1)
+
+## Owners
+
+Threshold 1 of 1.
+
+| Owner | Type | Flags |
+|---|---|---|
+| \`0x802cbafa6133c493A7c67f685f97AdA5918d1dF9\` | Plain account with EIP-7702 delegation, delegates to \`0x5A7FC11397E9a8AD41BF10bf13F22B0a63f96f6d\` | Owner is an EIP-7702 delegated account |
+
+## Modules
+
+| Module | Identified as | Flags |
+|---|---|---|
+| \`0x4210382652A5e3C9aF7e1D3c88085818A465449b\` | RealityVetoModule (reviewed list) |  |
+| \`0x8DFc5Db2C83200Cf0cC84d7e3C441d7721ef83dC\` | RealityModuleERC20 2.0.0 (minimal proxy) |  |
+
+Zodiac details:
+- \`0x8DFc5Db2C83200Cf0cC84d7e3C441d7721ef83dC\`: owner \`0xAd219b3c26fe42BF5FC66F67490745a4fa5dff59\` (this Safe); avatar \`0xAd219b3c26fe42BF5FC66F67490745a4fa5dff59\` (this Safe); target \`0xAd219b3c26fe42BF5FC66F67490745a4fa5dff59\` (this Safe); guard none; oracle \`0xdd34D37ABD603658b039BB46f25769E21e252A43\`, template 5, timeout 259200 s, cooldown 432000 s, expiration 604800 s, minimum bond 10000000000000000000000, arbitrator none; cross-check match
+
+## Guard and fallback handler
+
+| Role | Address | Identified as | Set by an event |
+|---|---|---|---|
+| Guard | not set |  |  |
+| Fallback handler | \`0xfd0732Dc9E303f09fCEf3a7388Ad10A83459Ec99\` | CompatibilityFallbackHandler 1.4.1 | unknown |
+
+## Storage
+
+Expected non-zero slots: 10 = 1 singleton + 1 owner count + 1 threshold + 1 nonce + 2 owner entries + 3 module entries + 1 fallback handler.
+
+- Pass with configuration slots: 10 slots, rebuilt root \`0x4321ab747900a628bc24642a1cff166280215c287be657997cff8468934b693e\`, match
+- Actual root: \`0x4321ab747900a628bc24642a1cff166280215c287be657997cff8468934b693e\`
+
+| Key | Meaning | Value | Source | Status |
+|---|---|---|---|---|
+| \`0x0000000000000000000000000000000000000000000000000000000000000000\` | Safe logic contract (singleton) (slot 0) | \`0x00000000000000000000000041675c099f32341bf84bfc5382af534df5c7461a\` | configuration | expected |
+| \`0x0000000000000000000000000000000000000000000000000000000000000003\` | Number of owners (slot 3, ownerCount) | \`0x0000000000000000000000000000000000000000000000000000000000000001\` | configuration | expected |
+| \`0x0000000000000000000000000000000000000000000000000000000000000004\` | Signatures required (slot 4, threshold) | \`0x0000000000000000000000000000000000000000000000000000000000000001\` | configuration | expected |
+| \`0x0000000000000000000000000000000000000000000000000000000000000005\` | Transactions executed (nonce) (slot 5, nonce) | \`0x0000000000000000000000000000000000000000000000000000000000000003\` | configuration | expected |
+| \`0x6c9a6c4a39284e37ed1cf53d337577d14212a4870fb976a4366c693b939918d5\` | Fallback handler (keccak256(fallback\\_manager.handler.address)) | \`0x000000000000000000000000fd0732dc9e303f09fcef3a7388ad10a83459ec99\` | configuration | expected |
+| \`0xe90b7bceb6e7df5418fb78d8ee546e97c83a08bbccc01a0644d599ccd2a7c2e0\` | Start of the owner list (owners\\[0x…01\\]) | \`0x000000000000000000000000802cbafa6133c493a7c67f685f97ada5918d1df9\` | configuration | expected |
+| \`0x987836d13f39f6cc07c34830a39d9f3a4645b530338199ebb6048d69d0146f2b\` | Owner list entry for 0x802c…1dF9 (owners\\[0x802c…1dF9\\]) | \`0x0000000000000000000000000000000000000000000000000000000000000001\` | configuration | expected |
+| \`0xcc69885fda6bcc1a4ace058b4a62bf5e179ea78fd58a1ccd71c22cc9b688792f\` | Start of the module list (modules\\[0x…01\\]) | \`0x0000000000000000000000004210382652a5e3c9af7e1d3c88085818a465449b\` | configuration | expected |
+| \`0xe3ebe3cb924116f2e42323265a69b434816a67760d5bb395a26b66f97c0cded5\` | Module list entry for 0x4210…449b (modules\\[0x4210…449b\\]) | \`0x0000000000000000000000008dfc5db2c83200cf0cc84d7e3c441d7721ef83dc\` | configuration | expected |
+| \`0x3c87853bd1943cff64926293357392dc9e0942fc33fa81a241c22b70a47343e2\` | Module list entry for 0x8DFc…83dC (modules\\[0x8DFc…83dC\\]) | \`0x0000000000000000000000000000000000000000000000000000000000000001\` | configuration | expected |
+
+## Creation
+
+- Transaction \`0xf422629777a4982cd7805e1d215cf3e481a1ff853d4f5303fd140971c2087cf0\` in block 25952825, found through Blockscout API eth.blockscout.com
+- Factory \`0x4e1DCf7AD4e460CfD30791CCC4F9c8a4f820ec67\` (SafeProxyFactory 1.4.1), \`createProxyWithNonce\`
+- Setup: threshold 1 of 1, owners \`0x802cbafa6133c493A7c67f685f97AdA5918d1dF9\`
+- Setup call to \`0xBD89A1CE4DDe368FFAB0eC35506eEcE0b1fFdc54\` (SafeToL2Setup 1.4.1)
+- Fallback handler at setup: \`0xfd0732Dc9E303f09fCEf3a7388Ad10A83459Ec99\`
+- Payment: none
+
+## History
+
+- Events from Blockscout API eth.blockscout.com, blocks 25952825 to 26176126
+- 3 configuration events; executions: 3 succeeded, 0 failed, 0 by modules
+
+## Pending actions
+
+- None found.
+
+## Verification
+
+- Block 26176126, 2026-10-12 11:34:47 UTC, hash \`0xbca7f5c0cd31c75f3e3221c076713002cf9952022b18060c16f4eeedf35ea119\`, state root \`0x076e2e1a0629ea82b1069570b7426e70d1d2e9011c1674b882b4c02c10c40fe7\`
+- Pinned to a recent block (latest minus 3).
+- Primary RPC: eth.drpc.org (dRPC, default)
+- Cross-check RPC: eth-mainnet.public.blastapi.io (Blast, default)
+- Agreement: Two independent RPC operators returned the same block hash and state root.
+- Cross-check: header match, storage root match, slot values match, calls match
+- Proofs: 6 accounts and 10 slots, all verified
+- Reorg check: unchanged
+
+## What this does not check
+
+- The code of the singleton, modules, guard, fallback handler and owner contracts is identified by its hash, not reviewed.
+- Who holds the owner keys and how they are kept.
+- Signatures held offchain that were never shared with any service.
+- Offchain governance and the processes around this Safe.
+- Token balances.
+
+Generated by safe-state-check 0.0.0 at 2026-10-12 11:35:10 UTC.
+"
+`;
+
+exports[`reportToMarkdown > matches the snapshot for the red report 1`] = `
+"# Safe State Check: Unexplained storage
+
+This Safe's storage holds an owner entry its owner list does not show.
+
+- Safe: \`0x5afE5aFE5Afe5afe5aFe5afE5afE5aFE5afe0001\` on Ethereum Mainnet (chain 1)
+- Block: 26176126, 2026-10-12 11:34:47 UTC, hash \`0xbca7f5c0cd31c75f3e3221c076713002cf9952022b18060c16f4eeedf35ea119\`
+- Findings: 1 critical, 1 high, 1 medium, 1 info
+- Root matched with: slots found in transaction traces
+
+Reasons:
+- Hidden owner entry for 0x…02: it can sign for the Safe but getOwners does not list it.
+- The setup call ran code that is not a known setup helper.
+
+## Summary
+
+| Item | Value | Detail |
+|---|---|---|
+| Version | 1.4.1 | Canonical Safe 1.4.1 (not L2) |
+| Owners | 1 of 1 | 1 owner with an EIP-7702 delegation |
+| Modules | 2 | 1 known, 1 on the reviewed list |
+| Guard | None |  |
+| Module guard | Not in 1.4.1 |  |
+| Fallback handler | CompatibilityFallbackHandler 1.4.1 | Known |
+| Nonce | 3 |  |
+| Storage | Root mismatch | 1 slot outside the configuration: a hidden owner entry |
+
+## Findings
+
+- **Critical:** Hidden owner entry (\`0x0000000000000000000000000000000000000002\`). owners\\[0x…02\\] = 0x…01, written by the creation transaction
+- **High:** Setup ran unknown code (\`0x9999999999999999999999999999999999999999\`). setup to = 0x9999…9999, operation delegatecall
+- **Medium:** Owner is an EIP-7702 delegated account (\`0x802cbafa6133c493A7c67f685f97AdA5918d1dF9\`). code 0xef0100 + 0x5A7FC11397E9a8AD41BF10bf13F22B0a63f96f6d
+- **Info:** Newer Safe version available. Safe 1.5.0 is deployed on chain 1
+
+## Safe contract
+
+- Version 1.4.1 (not L2); VERSION() returns \`1.4.1\`; latest supported 1.5.0
+- Logic contract (singleton, slot 0): \`0x41675C099F32341bf84BFc5382aF534df5C7461a\` (Safe 1.4.1)
+- Proxy code hash: \`0xd7d408ebcd99b2b70be43e20253d6d92a8ea8fab29bd3be7f55b10032331fb4c\` (SafeProxy 1.4.1)
+
+## Owners
+
+Threshold 1 of 1.
+
+| Owner | Type | Flags |
+|---|---|---|
+| \`0x802cbafa6133c493A7c67f685f97AdA5918d1dF9\` | Plain account with EIP-7702 delegation, delegates to \`0x5A7FC11397E9a8AD41BF10bf13F22B0a63f96f6d\` | Owner is an EIP-7702 delegated account |
+
+## Modules
+
+| Module | Identified as | Flags |
+|---|---|---|
+| \`0x4210382652A5e3C9aF7e1D3c88085818A465449b\` | RealityVetoModule (reviewed list) |  |
+| \`0x8DFc5Db2C83200Cf0cC84d7e3C441d7721ef83dC\` | RealityModuleERC20 2.0.0 (minimal proxy) |  |
+
+Zodiac details:
+- \`0x8DFc5Db2C83200Cf0cC84d7e3C441d7721ef83dC\`: owner \`0xAd219b3c26fe42BF5FC66F67490745a4fa5dff59\` (this Safe); avatar \`0xAd219b3c26fe42BF5FC66F67490745a4fa5dff59\` (this Safe); target \`0xAd219b3c26fe42BF5FC66F67490745a4fa5dff59\` (this Safe); guard none; oracle \`0xdd34D37ABD603658b039BB46f25769E21e252A43\`, template 5, timeout 259200 s, cooldown 432000 s, expiration 604800 s, minimum bond 10000000000000000000000, arbitrator none; cross-check match
+
+## Guard and fallback handler
+
+| Role | Address | Identified as | Set by an event |
+|---|---|---|---|
+| Guard | not set |  |  |
+| Fallback handler | \`0xfd0732Dc9E303f09fCEf3a7388Ad10A83459Ec99\` | CompatibilityFallbackHandler 1.4.1 | unknown |
+
+## Storage
+
+Expected non-zero slots: 10 = 1 singleton + 1 owner count + 1 threshold + 1 nonce + 2 owner entries + 3 module entries + 1 fallback handler.
+
+- Pass with configuration slots: 10 slots, rebuilt root \`0x4321ab747900a628bc24642a1cff166280215c287be657997cff8468934b693e\`, mismatch
+- Pass with configuration and event slots: 10 slots, rebuilt root \`0x4321ab747900a628bc24642a1cff166280215c287be657997cff8468934b693e\`, mismatch
+- Pass with slots found in transaction traces: 11 slots, rebuilt root \`0x7fbd1922de71c80aabaac95fcf30df7cfdc3359e159b9c7ed6979920e18983f3\`, match
+- Actual root: \`0x7fbd1922de71c80aabaac95fcf30df7cfdc3359e159b9c7ed6979920e18983f3\`
+
+| Key | Meaning | Value | Source | Status |
+|---|---|---|---|---|
+| \`0x0000000000000000000000000000000000000000000000000000000000000000\` | Safe logic contract (singleton) (slot 0) | \`0x00000000000000000000000041675c099f32341bf84bfc5382af534df5c7461a\` | configuration | expected |
+| \`0x0000000000000000000000000000000000000000000000000000000000000003\` | Number of owners (slot 3, ownerCount) | \`0x0000000000000000000000000000000000000000000000000000000000000001\` | configuration | expected |
+| \`0x0000000000000000000000000000000000000000000000000000000000000004\` | Signatures required (slot 4, threshold) | \`0x0000000000000000000000000000000000000000000000000000000000000001\` | configuration | expected |
+| \`0x0000000000000000000000000000000000000000000000000000000000000005\` | Transactions executed (nonce) (slot 5, nonce) | \`0x0000000000000000000000000000000000000000000000000000000000000003\` | configuration | expected |
+| \`0x6c9a6c4a39284e37ed1cf53d337577d14212a4870fb976a4366c693b939918d5\` | Fallback handler (keccak256(fallback\\_manager.handler.address)) | \`0x000000000000000000000000fd0732dc9e303f09fcef3a7388ad10a83459ec99\` | configuration | expected |
+| \`0xe90b7bceb6e7df5418fb78d8ee546e97c83a08bbccc01a0644d599ccd2a7c2e0\` | Start of the owner list (owners\\[0x…01\\]) | \`0x000000000000000000000000802cbafa6133c493a7c67f685f97ada5918d1df9\` | configuration | expected |
+| \`0x987836d13f39f6cc07c34830a39d9f3a4645b530338199ebb6048d69d0146f2b\` | Owner list entry for 0x802c…1dF9 (owners\\[0x802c…1dF9\\]) | \`0x0000000000000000000000000000000000000000000000000000000000000001\` | configuration | expected |
+| \`0xcc69885fda6bcc1a4ace058b4a62bf5e179ea78fd58a1ccd71c22cc9b688792f\` | Start of the module list (modules\\[0x…01\\]) | \`0x0000000000000000000000004210382652a5e3c9af7e1d3c88085818a465449b\` | configuration | expected |
+| \`0xe3ebe3cb924116f2e42323265a69b434816a67760d5bb395a26b66f97c0cded5\` | Module list entry for 0x4210…449b (modules\\[0x4210…449b\\]) | \`0x0000000000000000000000008dfc5db2c83200cf0cc84d7e3c441d7721ef83dc\` | configuration | expected |
+| \`0x3c87853bd1943cff64926293357392dc9e0942fc33fa81a241c22b70a47343e2\` | Module list entry for 0x8DFc…83dC (modules\\[0x8DFc…83dC\\]) | \`0x0000000000000000000000000000000000000000000000000000000000000001\` | configuration | expected |
+| \`0x679795a0195a1b76cdebb7c51d74e058aee92919b8c3389af86ef24535e8a28c\` | Hidden owner entry for 0x…02 (owners\\[0x…02\\] = 0x…01, outside the owner list) | \`0x0000000000000000000000000000000000000000000000000000000000000001\` | trace | suspicious |
+
+## Creation
+
+- Transaction \`0xf422629777a4982cd7805e1d215cf3e481a1ff853d4f5303fd140971c2087cf0\` in block 25952825, found through Blockscout API eth.blockscout.com
+- Factory \`0x4e1DCf7AD4e460CfD30791CCC4F9c8a4f820ec67\` (SafeProxyFactory 1.4.1), \`createProxyWithNonce\`
+- Setup: threshold 1 of 1, owners \`0x802cbafa6133c493A7c67f685f97AdA5918d1dF9\`
+- Setup call to \`0x9999999999999999999999999999999999999999\` (unknown code)
+- Fallback handler at setup: \`0xfd0732Dc9E303f09fCEf3a7388Ad10A83459Ec99\`
+- Payment: none
+
+## History
+
+- Events from Blockscout API eth.blockscout.com, blocks 25952825 to 26176126
+- 3 configuration events; executions: 3 succeeded, 0 failed, 0 by modules
+
+## Pending actions
+
+- None found.
+
+## Diagnosis
+
+- events: nothing-found. No ApproveHash or SignMsg events.
+- enumeration: unavailable. No RPC serves debug\\_storageRangeAt.
+- traces: explained. The creation transaction wrote owners\\[0x…02\\]. With that slot the root matches.
+
+## Verification
+
+- Block 26176126, 2026-10-12 11:34:47 UTC, hash \`0xbca7f5c0cd31c75f3e3221c076713002cf9952022b18060c16f4eeedf35ea119\`, state root \`0x076e2e1a0629ea82b1069570b7426e70d1d2e9011c1674b882b4c02c10c40fe7\`
+- Pinned to a recent block (latest minus 3).
+- Primary RPC: eth.drpc.org (dRPC, default)
+- Cross-check RPC: eth-mainnet.public.blastapi.io (Blast, default)
+- Agreement: Two independent RPC operators returned the same block hash and state root.
+- Cross-check: header match, storage root match, slot values match, calls match
+- Proofs: 6 accounts and 10 slots, all verified
+- Reorg check: unchanged
+
+## What this does not check
+
+- The code of the singleton, modules, guard, fallback handler and owner contracts is identified by its hash, not reviewed.
+- Who holds the owner keys and how they are kept.
+- Signatures held offchain that were never shared with any service.
+- Offchain governance and the processes around this Safe.
+- Token balances.
+
+Generated by safe-state-check 0.0.0 at 2026-10-12 11:35:10 UTC.
+"
+`;
+
+exports[`reportToMarkdown > matches the snapshot for the selfTrusted report 1`] = `
+"# Safe State Check: Storage fully explained
+
+Every storage slot of this Safe is explained by its configuration.
+
+- Safe: \`0x5afE5AFe5afE5AfE5afe5Afe5AfE5aFe5afE0002\` on Ethereum Mainnet (chain 1)
+- Block: 26176126, 2026-10-12 11:34:47 UTC, hash \`0xbca7f5c0cd31c75f3e3221c076713002cf9952022b18060c16f4eeedf35ea119\`
+- Findings: 0 critical, 0 high, 2 medium, 1 info
+- Trust: Verified against your own RPC only (no independent cross-check).
+- RPCs: The primary RPC is one you entered (127.0.0.1).
+- Root matched with: configuration slots
+
+Reasons:
+- The storage root matches the root rebuilt from the owners, modules and settings, read from your own node at 127.0.0.1 without a second operator to confirm the block.
+- Owner 0x802cbafa6133c493A7c67f685f97AdA5918d1dF9 is an EIP-7702 delegated account; its security also depends on the delegate contract 0x5A7FC11397E9a8AD41BF10bf13F22B0a63f96f6d.
+- No event for the fallback handler 0xfd0732Dc9E303f09fCEf3a7388Ad10A83459Ec99; the history came from an indexer only, which can miss events.
+
+## Summary
+
+| Item | Value | Detail |
+|---|---|---|
+| Version | 1.4.1 | Canonical Safe 1.4.1 (not L2) |
+| Owners | 1 of 1 | 1 owner with an EIP-7702 delegation |
+| Modules | 2 | 1 known, 1 on the reviewed list |
+| Guard | None |  |
+| Module guard | Not in 1.4.1 |  |
+| Fallback handler | CompatibilityFallbackHandler 1.4.1 | Known |
+| Nonce | 3 |  |
+| Storage | Root matches | Expected non-zero slots: 10 = 1 singleton + 1 owner count + 1 threshold + 1 nonce + 2 owner entries + 3 module entries + 1 fallback handler. |
+
+## Findings
+
+- **Medium:** Owner is an EIP-7702 delegated account (\`0x802cbafa6133c493A7c67f685f97AdA5918d1dF9\`). code 0xef0100 + 0x5A7FC11397E9a8AD41BF10bf13F22B0a63f96f6d
+- **Info:** Newer Safe version available. Safe 1.5.0 is deployed on chain 1
+- **Medium:** Setting without its event (indexer only) (\`0xfd0732Dc9E303f09fCEf3a7388Ad10A83459Ec99\`). fallback handler 0xfd07…Ec99 set, no ChangedFallbackHandler or SafeSetup event from eth.blockscout.com
+
+## Safe contract
+
+- Version 1.4.1 (not L2); VERSION() returns \`1.4.1\`; latest supported 1.5.0
+- Logic contract (singleton, slot 0): \`0x41675C099F32341bf84BFc5382aF534df5C7461a\` (Safe 1.4.1)
+- Proxy code hash: \`0xd7d408ebcd99b2b70be43e20253d6d92a8ea8fab29bd3be7f55b10032331fb4c\` (SafeProxy 1.4.1)
+
+## Owners
+
+Threshold 1 of 1.
+
+| Owner | Type | Flags |
+|---|---|---|
+| \`0x802cbafa6133c493A7c67f685f97AdA5918d1dF9\` | Plain account with EIP-7702 delegation, delegates to \`0x5A7FC11397E9a8AD41BF10bf13F22B0a63f96f6d\` | Owner is an EIP-7702 delegated account |
+
+## Modules
+
+| Module | Identified as | Flags |
+|---|---|---|
+| \`0x4210382652A5e3C9aF7e1D3c88085818A465449b\` | RealityVetoModule (reviewed list) |  |
+| \`0x8DFc5Db2C83200Cf0cC84d7e3C441d7721ef83dC\` | RealityModuleERC20 2.0.0 (minimal proxy) |  |
+
+Zodiac details:
+- \`0x8DFc5Db2C83200Cf0cC84d7e3C441d7721ef83dC\`: owner \`0xAd219b3c26fe42BF5FC66F67490745a4fa5dff59\` (this Safe); avatar \`0xAd219b3c26fe42BF5FC66F67490745a4fa5dff59\` (this Safe); target \`0xAd219b3c26fe42BF5FC66F67490745a4fa5dff59\` (this Safe); guard none; oracle \`0xdd34D37ABD603658b039BB46f25769E21e252A43\`, template 5, timeout 259200 s, cooldown 432000 s, expiration 604800 s, minimum bond 10000000000000000000000, arbitrator none; cross-check match
+
+## Guard and fallback handler
+
+| Role | Address | Identified as | Set by an event |
+|---|---|---|---|
+| Guard | not set |  |  |
+| Fallback handler | \`0xfd0732Dc9E303f09fCEf3a7388Ad10A83459Ec99\` | CompatibilityFallbackHandler 1.4.1 | unknown |
+
+## Storage
+
+Expected non-zero slots: 10 = 1 singleton + 1 owner count + 1 threshold + 1 nonce + 2 owner entries + 3 module entries + 1 fallback handler.
+
+- Pass with configuration slots: 10 slots, rebuilt root \`0x4321ab747900a628bc24642a1cff166280215c287be657997cff8468934b693e\`, match
+- Actual root: \`0x4321ab747900a628bc24642a1cff166280215c287be657997cff8468934b693e\`
+
+| Key | Meaning | Value | Source | Status |
+|---|---|---|---|---|
+| \`0x0000000000000000000000000000000000000000000000000000000000000000\` | Safe logic contract (singleton) (slot 0) | \`0x00000000000000000000000041675c099f32341bf84bfc5382af534df5c7461a\` | configuration | expected |
+| \`0x0000000000000000000000000000000000000000000000000000000000000003\` | Number of owners (slot 3, ownerCount) | \`0x0000000000000000000000000000000000000000000000000000000000000001\` | configuration | expected |
+| \`0x0000000000000000000000000000000000000000000000000000000000000004\` | Signatures required (slot 4, threshold) | \`0x0000000000000000000000000000000000000000000000000000000000000001\` | configuration | expected |
+| \`0x0000000000000000000000000000000000000000000000000000000000000005\` | Transactions executed (nonce) (slot 5, nonce) | \`0x0000000000000000000000000000000000000000000000000000000000000003\` | configuration | expected |
+| \`0x6c9a6c4a39284e37ed1cf53d337577d14212a4870fb976a4366c693b939918d5\` | Fallback handler (keccak256(fallback\\_manager.handler.address)) | \`0x000000000000000000000000fd0732dc9e303f09fcef3a7388ad10a83459ec99\` | configuration | expected |
+| \`0xe90b7bceb6e7df5418fb78d8ee546e97c83a08bbccc01a0644d599ccd2a7c2e0\` | Start of the owner list (owners\\[0x…01\\]) | \`0x000000000000000000000000802cbafa6133c493a7c67f685f97ada5918d1df9\` | configuration | expected |
+| \`0x987836d13f39f6cc07c34830a39d9f3a4645b530338199ebb6048d69d0146f2b\` | Owner list entry for 0x802c…1dF9 (owners\\[0x802c…1dF9\\]) | \`0x0000000000000000000000000000000000000000000000000000000000000001\` | configuration | expected |
+| \`0xcc69885fda6bcc1a4ace058b4a62bf5e179ea78fd58a1ccd71c22cc9b688792f\` | Start of the module list (modules\\[0x…01\\]) | \`0x0000000000000000000000004210382652a5e3c9af7e1d3c88085818a465449b\` | configuration | expected |
+| \`0xe3ebe3cb924116f2e42323265a69b434816a67760d5bb395a26b66f97c0cded5\` | Module list entry for 0x4210…449b (modules\\[0x4210…449b\\]) | \`0x0000000000000000000000008dfc5db2c83200cf0cc84d7e3c441d7721ef83dc\` | configuration | expected |
+| \`0x3c87853bd1943cff64926293357392dc9e0942fc33fa81a241c22b70a47343e2\` | Module list entry for 0x8DFc…83dC (modules\\[0x8DFc…83dC\\]) | \`0x0000000000000000000000000000000000000000000000000000000000000001\` | configuration | expected |
+
+## Creation
+
+- Transaction \`0xf422629777a4982cd7805e1d215cf3e481a1ff853d4f5303fd140971c2087cf0\` in block 25952825, found through Blockscout API eth.blockscout.com
+- Factory \`0x4e1DCf7AD4e460CfD30791CCC4F9c8a4f820ec67\` (SafeProxyFactory 1.4.1), \`createProxyWithNonce\`
+- Setup: threshold 1 of 1, owners \`0x802cbafa6133c493A7c67f685f97AdA5918d1dF9\`
+- Setup call to \`0xBD89A1CE4DDe368FFAB0eC35506eEcE0b1fFdc54\` (SafeToL2Setup 1.4.1)
+- Fallback handler at setup: \`0xfd0732Dc9E303f09fCEf3a7388Ad10A83459Ec99\`
+- Payment: none
+
+## History
+
+- Events from Blockscout API eth.blockscout.com, blocks 25952825 to 26176126
+- 3 configuration events; executions: 3 succeeded, 0 failed, 0 by modules
+
+## Pending actions
+
+- None found.
+
+## Verification
+
+- Block 26176126, 2026-10-12 11:34:47 UTC, hash \`0xbca7f5c0cd31c75f3e3221c076713002cf9952022b18060c16f4eeedf35ea119\`, state root \`0x076e2e1a0629ea82b1069570b7426e70d1d2e9011c1674b882b4c02c10c40fe7\`
+- Pinned to a recent block (latest minus 3).
+- Primary RPC: 127.0.0.1 (your RPC, entered by you)
+- Cross-check RPC: none. You marked your own node as trusted, and no RPC of another operator answered for this block.
+- Agreement: Verified against your own RPC only (no independent cross-check).
+- Cross-check: header not compared, storage root not compared, slot values not compared, calls not compared
+- Proofs: 6 accounts and 10 slots, all verified
+- Reorg check: unchanged
+
+## What this does not check
+
+- The code of the singleton, modules, guard, fallback handler and owner contracts is identified by its hash, not reviewed.
+- Who holds the owner keys and how they are kept.
+- Signatures held offchain that were never shared with any service.
+- Offchain governance and the processes around this Safe.
+- Token balances.
+
+Generated by safe-state-check 0.0.0 at 2026-10-12 11:35:10 UTC.
+"
+`;
+
+exports[`reportToMarkdown over real pipeline runs > matches the snapshot for the pipeline's b3 report 1`] = `
+"# Safe State Check: Storage fully explained
+
+Every storage slot is accounted for by the Safe's visible configuration.
+
+- Safe: \`0xB6b571A5Ea224152c57A230bf47c97574f6F2FaE\` on Ethereum (chain 1)
+- Block: 26176126, 2026-10-12 00:00:00 UTC, hash \`0xbca7f5c0cd31c75f3e3221c076713002cf9952022b18060c16f4eeedf35ea119\`
+- Findings: 0 critical, 0 high, 0 medium, 0 info
+- Root matched with: configuration slots
+
+Reasons:
+- The storage root matches the root rebuilt from the owners, modules and settings.
+
+## Summary
+
+| Item | Value | Detail |
+|---|---|---|
+| Safe version | 1.5.0 | SafeProxy 1.5.0 with the Safe 1.5.0 singleton |
+| Owners | 2 of 3 | 3 plain accounts |
+| Modules | None |  |
+| Guard | None |  |
+| Module guard | None |  |
+| Fallback handler | CompatibilityFallbackHandler 1.5.0 | 0x3EfCBb83A4A7AfcB4F68D501E2c2203a38be77f4 |
+| Nonce | 0 | Transactions executed with owner signatures |
+| Storage | Root matches | Expected non-zero slots: 9 = 1 singleton + 1 owner count + 1 threshold + 4 owner entries + 1 module entry + 1 fallback handler. Rebuilt root 0xc05a109ce56dcc8bb79cc1d6e9185c384c13b4124f6febf195d9391b167340af, actual root 0xc05a109ce56dcc8bb79cc1d6e9185c384c13b4124f6febf195d9391b167340af. |
+
+## Safe contract
+
+- Version 1.5.0 (not L2); VERSION() returns \`1.5.0\`; latest supported 1.5.0
+- Logic contract (singleton, slot 0): \`0xFf51A5898e281Db6DfC7855790607438dF2ca44b\` (Safe 1.5.0)
+- Proxy code hash: \`0x4e381985ca68b3e5d27b4425fa581c19cf33146d3f887a3cfca96f55528ea46f\` (SafeProxy 1.5.0)
+
+## Owners
+
+Threshold 2 of 3.
+
+| Owner | Type | Flags |
+|---|---|---|
+| \`0xa3840d235dE294e55C5ba4a3C57942617c7E3C05\` | Plain account (EOA) |  |
+| \`0xb1Df01604095536CEA66a9D06E67Ed6F00684e58\` | Plain account (EOA) |  |
+| \`0x9F7dfAb2222A473284205cdDF08a677726d786A0\` | Plain account (EOA) |  |
+
+## Modules
+
+No modules.
+
+## Guard and fallback handler
+
+| Role | Address | Identified as | Set by an event |
+|---|---|---|---|
+| Guard | not set |  |  |
+| Module guard | not set |  |  |
+| Fallback handler | \`0x3EfCBb83A4A7AfcB4F68D501E2c2203a38be77f4\` | CompatibilityFallbackHandler 1.5.0 | yes |
+
+## Storage
+
+Expected non-zero slots: 9 = 1 singleton + 1 owner count + 1 threshold + 4 owner entries + 1 module entry + 1 fallback handler.
+
+- Pass with configuration slots: 9 slots, rebuilt root \`0xc05a109ce56dcc8bb79cc1d6e9185c384c13b4124f6febf195d9391b167340af\`, match
+- Actual root: \`0xc05a109ce56dcc8bb79cc1d6e9185c384c13b4124f6febf195d9391b167340af\`
+
+| Key | Meaning | Value | Source | Status |
+|---|---|---|---|---|
+| \`0x0000000000000000000000000000000000000000000000000000000000000000\` | Safe logic contract (singleton (slot 0)) | \`0x000000000000000000000000ff51a5898e281db6dfc7855790607438df2ca44b\` | configuration | expected |
+| \`0x0000000000000000000000000000000000000000000000000000000000000003\` | Number of owners (ownerCount (slot 3)) | \`0x0000000000000000000000000000000000000000000000000000000000000003\` | configuration | expected |
+| \`0x0000000000000000000000000000000000000000000000000000000000000004\` | Signatures required (threshold (slot 4)) | \`0x0000000000000000000000000000000000000000000000000000000000000002\` | configuration | expected |
+| \`0x6c9a6c4a39284e37ed1cf53d337577d14212a4870fb976a4366c693b939918d5\` | Fallback handler (keccak256("fallback\\_manager.handler.address")) | \`0x0000000000000000000000003efcbb83a4a7afcb4f68d501e2c2203a38be77f4\` | configuration | expected |
+| \`0xe90b7bceb6e7df5418fb78d8ee546e97c83a08bbccc01a0644d599ccd2a7c2e0\` | Owner list start (owners\\[0x1\\]) | \`0x000000000000000000000000a3840d235de294e55c5ba4a3c57942617c7e3c05\` | configuration | expected |
+| \`0x48fa797118bdd3e6ac0c9fdf6418f927818ec373f02f57d9c93b3df3ae64a9e4\` | Owner list entry (owners\\[0xa3840d235dE294e55C5ba4a3C57942617c7E3C05\\]) | \`0x000000000000000000000000b1df01604095536cea66a9d06e67ed6f00684e58\` | configuration | expected |
+| \`0xcfd02caec7f360f1678640b7f09cef89ca1fb939756131ea13b8d62ee424f763\` | Owner list entry (owners\\[0xb1Df01604095536CEA66a9D06E67Ed6F00684e58\\]) | \`0x0000000000000000000000009f7dfab2222a473284205cddf08a677726d786a0\` | configuration | expected |
+| \`0x14ad0a1eb194f635ea0ccdc49bbc643d10c4fafd2e1f7689cd35d93088021272\` | Owner list entry (owners\\[0x9F7dfAb2222A473284205cdDF08a677726d786A0\\]) | \`0x0000000000000000000000000000000000000000000000000000000000000001\` | configuration | expected |
+| \`0xcc69885fda6bcc1a4ace058b4a62bf5e179ea78fd58a1ccd71c22cc9b688792f\` | Module list start (modules\\[0x1\\]) | \`0x0000000000000000000000000000000000000000000000000000000000000001\` | configuration | expected |
+
+## Creation
+
+Not available: The creation transaction was not found (tried eth.blockscout.com).
+
+## History
+
+- Events from RPC eth.drpc.org, blocks 0 to 26176126
+- 2 configuration events; executions: 0 succeeded, 0 failed, 0 by modules
+
+## Pending actions
+
+- None found.
+
+## Verification
+
+- Block 26176126, 2026-10-12 00:00:00 UTC, hash \`0xbca7f5c0cd31c75f3e3221c076713002cf9952022b18060c16f4eeedf35ea119\`, state root \`0x076e2e1a0629ea82b1069570b7426e70d1d2e9011c1674b882b4c02c10c40fe7\`
+- Pinned to a recent block (latest minus 3). Three blocks below the newest block the primary RPC reported.
+- Primary RPC: eth.drpc.org (dRPC, default)
+- Cross-check RPC: ethereum-rpc.publicnode.com (PublicNode, default)
+- Agreement: Two independent RPC operators returned the same block hash and state root.
+- Cross-check: header match, storage root match, slot values match, calls match
+- Proofs: 6 accounts and 13 slots, all verified
+- Reorg check: unchanged
+
+## What this does not check
+
+- What the code does. The Safe's logic, modules, guard and fallback handler are named by their code hash, not audited.
+- Owner keys. How owners keep their keys, and whether one is compromised.
+- Signatures kept offchain. Signatures that were never shared with the Safe Transaction Service or any other service cannot be seen.
+- Storage of other contracts. A module's or guard's own settings sit in its own storage, outside this Safe's storage root.
+- Owners of owners. An owner that is a Safe is shown one level deep; its own setup is not checked.
+- Token balances and approvals.
+
+Generated by safe-state-check 0.0.0 at 2026-10-12 00:00:10 UTC.
+"
+`;
+
+exports[`reportToMarkdown over real pipeline runs > matches the snapshot for the pipeline's green report 1`] = `
+"# Safe State Check: Storage fully explained
+
+Every storage slot is accounted for by the Safe's visible configuration.
+
+- Safe: \`0xAd219b3c26fe42BF5FC66F67490745a4fa5dff59\` on Ethereum (chain 1)
+- Block: 26176126, 2026-10-12 00:00:00 UTC, hash \`0xbca7f5c0cd31c75f3e3221c076713002cf9952022b18060c16f4eeedf35ea119\`
+- Findings: 0 critical, 0 high, 1 medium, 1 info
+- Root matched with: configuration slots
+
+Reasons:
+- The storage root matches the root rebuilt from the owners, modules and settings.
+- Medium: Owner is an EIP-7702 delegated account.
+
+## Summary
+
+| Item | Value | Detail |
+|---|---|---|
+| Safe version | 1.4.1 | SafeProxy 1.4.1 with the Safe 1.4.1 singleton |
+| Owners | 1 of 1 | 1 delegated account |
+| Modules | 2 | 1 known, 1 on the reviewed list |
+| Guard | None |  |
+| Module guard | Not in this version | Module guards exist from Safe 1.5.0 on. |
+| Fallback handler | CompatibilityFallbackHandler 1.4.1 | 0xfd0732Dc9E303f09fCEf3a7388Ad10A83459Ec99 |
+| Nonce | 3 | Transactions executed with owner signatures |
+| Storage | Root matches | Expected non-zero slots: 10 = 1 singleton + 1 owner count + 1 threshold + 1 nonce + 2 owner entries + 3 module entries + 1 fallback handler. Rebuilt root 0x4321ab747900a628bc24642a1cff166280215c287be657997cff8468934b693e, actual root 0x4321ab747900a628bc24642a1cff166280215c287be657997cff8468934b693e. |
+
+## Findings
+
+- **Medium:** Owner is an EIP-7702 delegated account (\`0x802cbafa6133c493A7c67f685f97AdA5918d1dF9\`). 0x802cbafa6133c493A7c67f685f97AdA5918d1dF9 has code 0xef0100 + 0x5A7FC11397E9a8AD41BF10bf13F22B0a63f96f6d: an EIP-7702 delegation to 0x5A7FC11397E9a8AD41BF10bf13F22B0a63f96f6d
+- **Info:** Newer Safe version available (\`0x41675C099F32341bf84BFc5382aF534df5C7461a\`). The Safe runs 1.4.1; 1.5.0 is deployed on chain 1
+
+## Safe contract
+
+- Version 1.4.1 (not L2); VERSION() returns \`1.4.1\`; latest supported 1.5.0
+- Logic contract (singleton, slot 0): \`0x41675C099F32341bf84BFc5382aF534df5C7461a\` (Safe 1.4.1)
+- Proxy code hash: \`0xd7d408ebcd99b2b70be43e20253d6d92a8ea8fab29bd3be7f55b10032331fb4c\` (SafeProxy 1.4.1)
+
+## Owners
+
+Threshold 1 of 1.
+
+| Owner | Type | Flags |
+|---|---|---|
+| \`0x802cbafa6133c493A7c67f685f97AdA5918d1dF9\` | Plain account with EIP-7702 delegation, delegates to \`0x5A7FC11397E9a8AD41BF10bf13F22B0a63f96f6d\` | Owner is an EIP-7702 delegated account |
+
+## Modules
+
+| Module | Identified as | Flags |
+|---|---|---|
+| \`0x4210382652A5e3C9aF7e1D3c88085818A465449b\` | RealityVetoModule (reviewed list) |  |
+| \`0x8DFc5Db2C83200Cf0cC84d7e3C441d7721ef83dC\` | realityERC20 2.0.0 (minimal proxy) |  |
+
+Zodiac details:
+- \`0x8DFc5Db2C83200Cf0cC84d7e3C441d7721ef83dC\`: owner \`0xAd219b3c26fe42BF5FC66F67490745a4fa5dff59\` (this Safe); avatar \`0xAd219b3c26fe42BF5FC66F67490745a4fa5dff59\` (this Safe); target \`0xAd219b3c26fe42BF5FC66F67490745a4fa5dff59\` (this Safe); guard none; oracle \`0x5b7dD1E86623548AF054A4985F7fc8Ccbb554E2c\`, template 0, timeout 86400 s, cooldown 86400 s, expiration 604800 s, minimum bond 1000000000000000000, arbitrator none; cross-check match
+
+## Guard and fallback handler
+
+| Role | Address | Identified as | Set by an event |
+|---|---|---|---|
+| Guard | not set |  |  |
+| Fallback handler | \`0xfd0732Dc9E303f09fCEf3a7388Ad10A83459Ec99\` | CompatibilityFallbackHandler 1.4.1 | yes |
+
+## Storage
+
+Expected non-zero slots: 10 = 1 singleton + 1 owner count + 1 threshold + 1 nonce + 2 owner entries + 3 module entries + 1 fallback handler.
+
+- Pass with configuration slots: 10 slots, rebuilt root \`0x4321ab747900a628bc24642a1cff166280215c287be657997cff8468934b693e\`, match
+- Actual root: \`0x4321ab747900a628bc24642a1cff166280215c287be657997cff8468934b693e\`
+
+| Key | Meaning | Value | Source | Status |
+|---|---|---|---|---|
+| \`0x0000000000000000000000000000000000000000000000000000000000000000\` | Safe logic contract (singleton (slot 0)) | \`0x00000000000000000000000041675c099f32341bf84bfc5382af534df5c7461a\` | configuration | expected |
+| \`0x0000000000000000000000000000000000000000000000000000000000000003\` | Number of owners (ownerCount (slot 3)) | \`0x0000000000000000000000000000000000000000000000000000000000000001\` | configuration | expected |
+| \`0x0000000000000000000000000000000000000000000000000000000000000004\` | Signatures required (threshold (slot 4)) | \`0x0000000000000000000000000000000000000000000000000000000000000001\` | configuration | expected |
+| \`0x0000000000000000000000000000000000000000000000000000000000000005\` | Transaction counter (nonce (slot 5)) | \`0x0000000000000000000000000000000000000000000000000000000000000003\` | configuration | expected |
+| \`0x6c9a6c4a39284e37ed1cf53d337577d14212a4870fb976a4366c693b939918d5\` | Fallback handler (keccak256("fallback\\_manager.handler.address")) | \`0x000000000000000000000000fd0732dc9e303f09fcef3a7388ad10a83459ec99\` | configuration | expected |
+| \`0xe90b7bceb6e7df5418fb78d8ee546e97c83a08bbccc01a0644d599ccd2a7c2e0\` | Owner list start (owners\\[0x1\\]) | \`0x000000000000000000000000802cbafa6133c493a7c67f685f97ada5918d1df9\` | configuration | expected |
+| \`0x987836d13f39f6cc07c34830a39d9f3a4645b530338199ebb6048d69d0146f2b\` | Owner list entry (owners\\[0x802cbafa6133c493A7c67f685f97AdA5918d1dF9\\]) | \`0x0000000000000000000000000000000000000000000000000000000000000001\` | configuration | expected |
+| \`0xcc69885fda6bcc1a4ace058b4a62bf5e179ea78fd58a1ccd71c22cc9b688792f\` | Module list start (modules\\[0x1\\]) | \`0x0000000000000000000000004210382652a5e3c9af7e1d3c88085818a465449b\` | configuration | expected |
+| \`0xe3ebe3cb924116f2e42323265a69b434816a67760d5bb395a26b66f97c0cded5\` | Module list entry (modules\\[0x4210382652A5e3C9aF7e1D3c88085818A465449b\\]) | \`0x0000000000000000000000008dfc5db2c83200cf0cc84d7e3c441d7721ef83dc\` | configuration | expected |
+| \`0x3c87853bd1943cff64926293357392dc9e0942fc33fa81a241c22b70a47343e2\` | Module list entry (modules\\[0x8DFc5Db2C83200Cf0cC84d7e3C441d7721ef83dC\\]) | \`0x0000000000000000000000000000000000000000000000000000000000000001\` | configuration | expected |
+
+## Creation
+
+Not available: The creation transaction was not found (tried eth.blockscout.com).
+
+## History
+
+- Events from RPC eth.drpc.org, blocks 0 to 26176126
+- 4 configuration events; executions: 0 succeeded, 0 failed, 0 by modules
+
+## Pending actions
+
+- None found.
+
+## Verification
+
+- Block 26176126, 2026-10-12 00:00:00 UTC, hash \`0xbca7f5c0cd31c75f3e3221c076713002cf9952022b18060c16f4eeedf35ea119\`, state root \`0x076e2e1a0629ea82b1069570b7426e70d1d2e9011c1674b882b4c02c10c40fe7\`
+- Pinned to a recent block (latest minus 3). Three blocks below the newest block the primary RPC reported.
+- Primary RPC: eth.drpc.org (dRPC, default)
+- Cross-check RPC: ethereum-rpc.publicnode.com (PublicNode, default)
+- Agreement: Two independent RPC operators returned the same block hash and state root.
+- Cross-check: header match, storage root match, slot values match, calls match
+- Proofs: 7 accounts and 13 slots, all verified
+- Reorg check: unchanged
+
+## What this does not check
+
+- What the code does. The Safe's logic, modules, guard and fallback handler are named by their code hash, not audited.
+- Owner keys. How owners keep their keys, and whether one is compromised.
+- Signatures kept offchain. Signatures that were never shared with the Safe Transaction Service or any other service cannot be seen.
+- Storage of other contracts. A module's or guard's own settings sit in its own storage, outside this Safe's storage root.
+- Owners of owners. An owner that is a Safe is shown one level deep; its own setup is not checked.
+- Token balances and approvals.
+
+Generated by safe-state-check 0.0.0 at 2026-10-12 00:00:10 UTC.
+"
+`;
+
+exports[`reportToMarkdown over real pipeline runs > matches the snapshot for the pipeline's shadowOwner report 1`] = `
+"# Safe State Check: Unexplained storage
+
+The Safe holds storage its visible configuration does not account for.
+
+- Safe: \`0xAd219b3c26fe42BF5FC66F67490745a4fa5dff59\` on Ethereum (chain 1)
+- Block: 26176126, 2026-10-12 00:00:00 UTC, hash \`0xbca7f5c0cd31c75f3e3221c076713002cf9952022b18060c16f4eeedf35ea119\`
+- Findings: 0 critical, 1 high, 1 medium, 1 info
+
+Reasons:
+- The storage root does not match any root rebuilt from the configuration, the event history or the slots diagnosis found.
+- High: Storage the configuration does not explain.
+
+## Summary
+
+| Item | Value | Detail |
+|---|---|---|
+| Safe version | 1.4.1 | SafeProxy 1.4.1 with the Safe 1.4.1 singleton |
+| Owners | 1 of 1 | 1 delegated account |
+| Modules | 2 | 1 known, 1 on the reviewed list |
+| Guard | None |  |
+| Module guard | Not in this version | Module guards exist from Safe 1.5.0 on. |
+| Fallback handler | CompatibilityFallbackHandler 1.4.1 | 0xfd0732Dc9E303f09fCEf3a7388Ad10A83459Ec99 |
+| Nonce | 3 | Transactions executed with owner signatures |
+| Storage | Root does not match | Expected non-zero slots: 10 = 1 singleton + 1 owner count + 1 threshold + 1 nonce + 2 owner entries + 3 module entries + 1 fallback handler. Rebuilt root 0x4321ab747900a628bc24642a1cff166280215c287be657997cff8468934b693e, actual root 0x7fbd1922de71c80aabaac95fcf30df7cfdc3359e159b9c7ed6979920e18983f3. |
+
+## Findings
+
+- **High:** Storage the configuration does not explain. Root rebuilt from 10 slots (config pass): 0x4321ab747900a628bc24642a1cff166280215c287be657997cff8468934b693e. Proven storage root: 0x7fbd1922de71c80aabaac95fcf30df7cfdc3359e159b9c7ed6979920e18983f3.
+- **Medium:** Owner is an EIP-7702 delegated account (\`0x802cbafa6133c493A7c67f685f97AdA5918d1dF9\`). 0x802cbafa6133c493A7c67f685f97AdA5918d1dF9 has code 0xef0100 + 0x5A7FC11397E9a8AD41BF10bf13F22B0a63f96f6d: an EIP-7702 delegation to 0x5A7FC11397E9a8AD41BF10bf13F22B0a63f96f6d
+- **Info:** Newer Safe version available (\`0x41675C099F32341bf84BFc5382aF534df5C7461a\`). The Safe runs 1.4.1; 1.5.0 is deployed on chain 1
+
+## Safe contract
+
+- Version 1.4.1 (not L2); VERSION() returns \`1.4.1\`; latest supported 1.5.0
+- Logic contract (singleton, slot 0): \`0x41675C099F32341bf84BFc5382aF534df5C7461a\` (Safe 1.4.1)
+- Proxy code hash: \`0xd7d408ebcd99b2b70be43e20253d6d92a8ea8fab29bd3be7f55b10032331fb4c\` (SafeProxy 1.4.1)
+
+## Owners
+
+Threshold 1 of 1.
+
+| Owner | Type | Flags |
+|---|---|---|
+| \`0x802cbafa6133c493A7c67f685f97AdA5918d1dF9\` | Plain account with EIP-7702 delegation, delegates to \`0x5A7FC11397E9a8AD41BF10bf13F22B0a63f96f6d\` | Owner is an EIP-7702 delegated account |
+
+## Modules
+
+| Module | Identified as | Flags |
+|---|---|---|
+| \`0x4210382652A5e3C9aF7e1D3c88085818A465449b\` | RealityVetoModule (reviewed list) |  |
+| \`0x8DFc5Db2C83200Cf0cC84d7e3C441d7721ef83dC\` | realityERC20 2.0.0 (minimal proxy) |  |
+
+Zodiac details:
+- \`0x8DFc5Db2C83200Cf0cC84d7e3C441d7721ef83dC\`: owner \`0xAd219b3c26fe42BF5FC66F67490745a4fa5dff59\` (this Safe); avatar \`0xAd219b3c26fe42BF5FC66F67490745a4fa5dff59\` (this Safe); target \`0xAd219b3c26fe42BF5FC66F67490745a4fa5dff59\` (this Safe); guard none; oracle \`0x5b7dD1E86623548AF054A4985F7fc8Ccbb554E2c\`, template 0, timeout 86400 s, cooldown 86400 s, expiration 604800 s, minimum bond 1000000000000000000, arbitrator none; cross-check match
+
+## Guard and fallback handler
+
+| Role | Address | Identified as | Set by an event |
+|---|---|---|---|
+| Guard | not set |  |  |
+| Fallback handler | \`0xfd0732Dc9E303f09fCEf3a7388Ad10A83459Ec99\` | CompatibilityFallbackHandler 1.4.1 | yes |
+
+## Storage
+
+Expected non-zero slots: 10 = 1 singleton + 1 owner count + 1 threshold + 1 nonce + 2 owner entries + 3 module entries + 1 fallback handler.
+
+- Pass with configuration slots: 10 slots, rebuilt root \`0x4321ab747900a628bc24642a1cff166280215c287be657997cff8468934b693e\`, mismatch
+- Actual root: \`0x7fbd1922de71c80aabaac95fcf30df7cfdc3359e159b9c7ed6979920e18983f3\`
+
+| Key | Meaning | Value | Source | Status |
+|---|---|---|---|---|
+| \`0x0000000000000000000000000000000000000000000000000000000000000000\` | Safe logic contract (singleton (slot 0)) | \`0x00000000000000000000000041675c099f32341bf84bfc5382af534df5c7461a\` | configuration | expected |
+| \`0x0000000000000000000000000000000000000000000000000000000000000003\` | Number of owners (ownerCount (slot 3)) | \`0x0000000000000000000000000000000000000000000000000000000000000001\` | configuration | expected |
+| \`0x0000000000000000000000000000000000000000000000000000000000000004\` | Signatures required (threshold (slot 4)) | \`0x0000000000000000000000000000000000000000000000000000000000000001\` | configuration | expected |
+| \`0x0000000000000000000000000000000000000000000000000000000000000005\` | Transaction counter (nonce (slot 5)) | \`0x0000000000000000000000000000000000000000000000000000000000000003\` | configuration | expected |
+| \`0x6c9a6c4a39284e37ed1cf53d337577d14212a4870fb976a4366c693b939918d5\` | Fallback handler (keccak256("fallback\\_manager.handler.address")) | \`0x000000000000000000000000fd0732dc9e303f09fcef3a7388ad10a83459ec99\` | configuration | expected |
+| \`0xe90b7bceb6e7df5418fb78d8ee546e97c83a08bbccc01a0644d599ccd2a7c2e0\` | Owner list start (owners\\[0x1\\]) | \`0x000000000000000000000000802cbafa6133c493a7c67f685f97ada5918d1df9\` | configuration | expected |
+| \`0x987836d13f39f6cc07c34830a39d9f3a4645b530338199ebb6048d69d0146f2b\` | Owner list entry (owners\\[0x802cbafa6133c493A7c67f685f97AdA5918d1dF9\\]) | \`0x0000000000000000000000000000000000000000000000000000000000000001\` | configuration | expected |
+| \`0xcc69885fda6bcc1a4ace058b4a62bf5e179ea78fd58a1ccd71c22cc9b688792f\` | Module list start (modules\\[0x1\\]) | \`0x0000000000000000000000004210382652a5e3c9af7e1d3c88085818a465449b\` | configuration | expected |
+| \`0xe3ebe3cb924116f2e42323265a69b434816a67760d5bb395a26b66f97c0cded5\` | Module list entry (modules\\[0x4210382652A5e3C9aF7e1D3c88085818A465449b\\]) | \`0x0000000000000000000000008dfc5db2c83200cf0cc84d7e3c441d7721ef83dc\` | configuration | expected |
+| \`0x3c87853bd1943cff64926293357392dc9e0942fc33fa81a241c22b70a47343e2\` | Module list entry (modules\\[0x8DFc5Db2C83200Cf0cC84d7e3C441d7721ef83dC\\]) | \`0x0000000000000000000000000000000000000000000000000000000000000001\` | configuration | expected |
+
+## Creation
+
+Not available: The creation transaction was not found (tried eth.blockscout.com).
+
+## History
+
+- Events from RPC eth.drpc.org, blocks 0 to 26176126
+- 4 configuration events; executions: 0 succeeded, 0 failed, 0 by modules
+
+## Pending actions
+
+- None found.
+
+## Diagnosis
+
+- events: nothing-found. Added the approved hashes and signed messages from the history; the root still did not match.
+- enumeration: unavailable. This RPC does not serve debug\\_storageRangeAt.
+- traces: unavailable. This RPC does not serve prestateTracer in diff mode for every transaction.
+- candidates: nothing-found. Paste addresses or hashes to test them against this Safe.
+
+## Verification
+
+- Block 26176126, 2026-10-12 00:00:00 UTC, hash \`0xbca7f5c0cd31c75f3e3221c076713002cf9952022b18060c16f4eeedf35ea119\`, state root \`0x076e2e1a0629ea82b1069570b7426e70d1d2e9011c1674b882b4c02c10c40fe7\`
+- Pinned to a recent block (latest minus 3). Three blocks below the newest block the primary RPC reported.
+- Primary RPC: eth.drpc.org (dRPC, default)
+- Cross-check RPC: ethereum-rpc.publicnode.com (PublicNode, default)
+- Agreement: Two independent RPC operators returned the same block hash and state root.
+- Cross-check: header match, storage root match, slot values match, calls match
+- Proofs: 7 accounts and 13 slots, all verified
+- Reorg check: unchanged
+
+## Problems during the run
+
+- Primary RPC eth.drpc.org could not enumerate the Safe's storage: Fake method-unsupported. A fake method-unsupported issue.
+
+## What this does not check
+
+- What the code does. The Safe's logic, modules, guard and fallback handler are named by their code hash, not audited.
+- Owner keys. How owners keep their keys, and whether one is compromised.
+- Signatures kept offchain. Signatures that were never shared with the Safe Transaction Service or any other service cannot be seen.
+- Storage of other contracts. A module's or guard's own settings sit in its own storage, outside this Safe's storage root.
+- Owners of owners. An owner that is a Safe is shown one level deep; its own setup is not checked.
+- Token balances and approvals.
+
+Generated by safe-state-check 0.0.0 at 2026-10-12 00:00:10 UTC.
+"
+`;

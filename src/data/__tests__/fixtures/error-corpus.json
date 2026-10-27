@@ -1,0 +1,1188 @@
+[
+  {
+    "source": "RPC probe 2026-10-12, chain 1, endpoint 0, proof",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "rpc",
+      "code": -32602,
+      "message": "distance to target block exceeds maximum proof window",
+      "data": null
+    },
+    "expected": "proof-window"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 1, endpoint 1, proof",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "rpc",
+      "code": -32001,
+      "message": "You've reached the usage limit for your current plan. To continue with higher limits and uninterrupted access, please upgrade here: https://www.1rpc.io/#pricing",
+      "data": null
+    },
+    "expected": "rate-limited"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 1, endpoint 2, logs 100",
+    "service": "rpc",
+    "method": "eth_getLogs",
+    "failure": {
+      "kind": "http",
+      "status": 400,
+      "body": "{\"jsonrpc\":\"2.0\",\"id\":1,\"error\":{\"code\":-32600,\"message\":\"You can make eth_getLogs requests with up to a 10 block range.",
+      "retryAfterMs": null
+    },
+    "expected": "range-too-large"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 1, endpoint 3, logs 1000",
+    "service": "rpc",
+    "method": "eth_getLogs",
+    "failure": {
+      "kind": "http",
+      "status": 400,
+      "body": "{\"id\":1,\"jsonrpc\":\"2.0\",\"error\":{\"message\":\"ranges over 10000 blocks are not supported on free plan\",\"code\":35}}",
+      "retryAfterMs": null
+    },
+    "expected": "range-too-large"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 5, endpoint 0, chainIdError",
+    "service": "rpc",
+    "method": "eth_chainId",
+    "failure": {
+      "kind": "http",
+      "status": 403,
+      "body": "{ \"jsonrpc\": \"2.0\", \"id\": null, \"error\": { \"code\": -32000, \"message\": \"Blast API is no longer available. P",
+      "retryAfterMs": null
+    },
+    "expected": "access-denied"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 5, endpoint 1, chainIdError",
+    "service": "rpc",
+    "method": "eth_chainId",
+    "failure": {
+      "kind": "http",
+      "status": 404,
+      "body": "",
+      "retryAfterMs": null
+    },
+    "expected": "invalid-response"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 14, endpoint 0, proof",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "rpc",
+      "code": -32000,
+      "message": "historical proof query not allowed: block number 71939758 is before the oldest allowed block number 71939783 (window of 32 blocks)",
+      "data": null
+    },
+    "expected": "proof-window"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 14, endpoint 1, proof",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "timeout",
+      "afterMs": 8000
+    },
+    "expected": "timeout"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 16, endpoint 0, proof",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "rpc",
+      "code": -32000,
+      "message": "missing trie node 4d71ef642c328f6f930358d243670e2266bce5155cf37e37b4bfaf2b98d73c4d (path ) state 0x4d71ef642c328f6f930358d243670e2266bce5155cf37e37b4bfaf2b98d73c4d is not available, not found",
+      "data": null
+    },
+    "expected": "not-archive"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 16, endpoint 0, recheck",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "rpc",
+      "code": -32000,
+      "message": "historical proof query not allowed: block number 54857601 is before the oldest allowed block number 54857616 (win",
+      "data": null
+    },
+    "expected": "proof-window"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 18, endpoint 0, chainIdError",
+    "service": "rpc",
+    "method": "eth_chainId",
+    "failure": {
+      "kind": "fetch-failed",
+      "message": "fetch failed",
+      "answeredBefore": false
+    },
+    "expected": "unreachable"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 18, endpoint 1, chainIdError",
+    "service": "rpc",
+    "method": "eth_chainId",
+    "failure": {
+      "kind": "http",
+      "status": 400,
+      "body": "{\"id\":1,\"jsonrpc\":\"2.0\",\"error\":{\"message\":\"Unknown network\",\"code\":11}}",
+      "retryAfterMs": null
+    },
+    "expected": "wrong-chain"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 19, endpoint 0, recheck",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "rpc",
+      "code": -32000,
+      "message": "historical proof query not allowed: block number 135212449 is before the oldest allowed block number 135212468 (w",
+      "data": null
+    },
+    "expected": "proof-window"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 30, endpoint 0, proof",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "rpc",
+      "code": -32601,
+      "message": "method not found",
+      "data": null
+    },
+    "expected": "method-unsupported"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 39, endpoint 0, recheck",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "rpc",
+      "code": -32000,
+      "message": "missing trie node 6f528f214ba6204cb05a6b1fd3c635f0bad63294c8367b293ec265698f55e277 (path )",
+      "data": null
+    },
+    "expected": "not-archive"
+  },
+  {
+    "source": "Blockscout probe 2026-10-12, chain 40",
+    "service": "blockscout",
+    "method": "GET",
+    "failure": {
+      "kind": "fetch-failed",
+      "message": "fetch failed",
+      "answeredBefore": false
+    },
+    "expected": "unreachable"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 41, endpoint 0, chainIdError",
+    "service": "rpc",
+    "method": "eth_chainId",
+    "failure": {
+      "kind": "http",
+      "status": 404,
+      "body": "{\"code\":404,\"message\":\"Not Found\",\"error\":{\"code\":0,\"name\":\"exception\",\"what\":\"unspecified\",\"details\":[{\"message\":\"Unkno",
+      "retryAfterMs": null
+    },
+    "expected": "invalid-response"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 46, endpoint 0, proof",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "rpc",
+      "code": -32601,
+      "message": "Method not found",
+      "data": null
+    },
+    "expected": "method-unsupported"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 51, endpoint 0, proof",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "http",
+      "status": 500,
+      "body": "{\"id\":1,\"jsonrpc\":\"2.0\",\"error\":{\"message\":\"Temporary internal error. Please retry, trace-id: 95caee44ae5122bc400e075d56",
+      "retryAfterMs": null
+    },
+    "expected": "server-error"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 56, endpoint 0, proof",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "rpc",
+      "code": -32005,
+      "message": "limit exceeded",
+      "data": null
+    },
+    "expected": "rate-limited"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 56, endpoint 8, proof",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "http",
+      "status": 429,
+      "body": "{\"id\":1,\"jsonrpc\":\"2.0\",\"error\":{\"message\":\"You reached Public endpoint rate limit, please upgrade to paid plan\",\"code\":",
+      "retryAfterMs": null
+    },
+    "expected": "rate-limited"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 56, endpoint 8, recheck",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "http",
+      "status": 429,
+      "body": "{\"id\":1,\"jsonrpc\":\"2.0\",\"error\":{\"message\":\"You reached Public endpoint rate limit, please ",
+      "retryAfterMs": null
+    },
+    "expected": "rate-limited"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 83, endpoint 0, proof",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "rpc",
+      "code": -32601,
+      "message": "the method eth_getProof does not exist/is not available",
+      "data": null
+    },
+    "expected": "method-unsupported"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 88, endpoint 0, proof",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "http",
+      "status": 400,
+      "body": "{\"id\":1,\"jsonrpc\":\"2.0\",\"error\":{\"message\":\"method is not available on free plan, please upgrade to paid plan\",\"code\":35",
+      "retryAfterMs": null
+    },
+    "expected": "method-unsupported"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 88, endpoint 1, proof",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "rpc",
+      "code": -32601,
+      "message": "The method eth_getProof does not exist/is not available",
+      "data": null
+    },
+    "expected": "method-unsupported"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 100, endpoint 2, archiveBalanceAtBlock1M",
+    "service": "rpc",
+    "method": "eth_getBalance",
+    "failure": {
+      "kind": "http",
+      "status": 400,
+      "body": "{\"id\":1,\"jsonrpc\":\"2.0\",\"error\":{\"message\":\"Unknown state. First available state is 1\",\"code\":27}}",
+      "retryAfterMs": null
+    },
+    "expected": "not-archive"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 100, endpoint 3, proof window latest-1024",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "rpc",
+      "code": -32002,
+      "message": "No state available for block 48719067 (0x024f825bf3704dcb94d2dcad48e9215e8764845b7705b7a3179f8ea9dd7dc602)",
+      "data": null
+    },
+    "expected": "not-archive"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 100, endpoint 4, logs 100",
+    "service": "rpc",
+    "method": "eth_getLogs",
+    "failure": {
+      "kind": "rpc",
+      "code": -32602,
+      "message": "eth_getLogs is limited to 0 - 50 blocks range",
+      "data": null
+    },
+    "expected": "range-too-large"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 100, endpoint 4, recheck",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "rpc",
+      "code": -32001,
+      "message": "You've reached the usage limit for your current plan. To continue with higher limits and unint",
+      "data": null
+    },
+    "expected": "rate-limited"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 133, endpoint 0, chainIdError",
+    "service": "rpc",
+    "method": "eth_chainId",
+    "failure": {
+      "kind": "http",
+      "status": 400,
+      "body": "{\"id\":1,\"jsonrpc\":\"2.0\",\"error\":{\"message\":\"chain is not available on free plan, please upgrade to paid plan\",\"code\":35}",
+      "retryAfterMs": null
+    },
+    "expected": "plan-unsupported"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 133, endpoint 0, recheck",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "http",
+      "status": 400,
+      "body": "{\"id\":1,\"jsonrpc\":\"2.0\",\"error\":{\"message\":\"chain is not available on free plan, please upgrade to paid plan\",",
+      "retryAfterMs": null
+    },
+    "expected": "plan-unsupported"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 148, endpoint 0, recheck",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "http",
+      "status": 502,
+      "body": "<!DOCTYPE html> <!--[if lt IE 7]> <html class=\"no-js ie6 oldie\" lang=\"en-US\"> <![endif]--> <!--[if IE 7]> <htm",
+      "retryAfterMs": null
+    },
+    "expected": "server-error"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 173, endpoint 0, proof",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "rpc",
+      "code": -32000,
+      "message": "cannot find EVM IAVL store",
+      "data": null
+    },
+    "expected": "server-error"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 196, endpoint 0, proof",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "http",
+      "status": 403,
+      "body": "{\"jsonrpc\":\"2.0\",\"error\":{\"code\":-32601,\"message\":\"rpc method is not whitelisted\"},\"id\":1} ",
+      "retryAfterMs": null
+    },
+    "expected": "method-unsupported"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 228, endpoint 0, chainIdError",
+    "service": "rpc",
+    "method": "eth_chainId",
+    "failure": {
+      "kind": "http",
+      "status": 301,
+      "body": "<html> <head><title>301 Moved Permanently</title></head> <body> <center><h1>301 Moved Permanently</h1></center> <hr>",
+      "retryAfterMs": null
+    },
+    "expected": "invalid-response"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 232, endpoint 1, proof",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "http",
+      "status": 400,
+      "body": "{\"id\":1,\"jsonrpc\":\"2.0\",\"error\":{\"message\":\"the method eth_getProof does not exist/is not available\",\"code\":-32601}}",
+      "retryAfterMs": null
+    },
+    "expected": "method-unsupported"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 246, endpoint 0, proof",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "rpc",
+      "code": -32071,
+      "message": "This method is not part of the official RPC API yet (EIP-1186). Run with `--jsonrpc-experimental` to enable it.",
+      "data": null
+    },
+    "expected": "method-unsupported"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 250, endpoint 3, proof",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "rpc",
+      "code": -32000,
+      "message": "method handler crashed",
+      "data": null
+    },
+    "expected": "server-error"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 291, endpoint 0, proof",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "http",
+      "status": 400,
+      "body": "{\"id\":1,\"jsonrpc\":\"2.0\",\"error\":{\"message\":\"the method eth_blockNumber does not exist/is not available\",\"code\":-32601}}",
+      "retryAfterMs": null
+    },
+    "expected": "method-unsupported"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 291, endpoint 0, recheck",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "http",
+      "status": 400,
+      "body": "{\"id\":1,\"jsonrpc\":\"2.0\",\"error\":{\"message\":\"the method eth_blockNumber does not exist/is no",
+      "retryAfterMs": null
+    },
+    "expected": "method-unsupported"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 314, endpoint 0, proof",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "rpc",
+      "code": -32601,
+      "message": "method 'eth_getProof' not found",
+      "data": null
+    },
+    "expected": "method-unsupported"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 420, endpoint 3, chainIdError",
+    "service": "rpc",
+    "method": "eth_chainId",
+    "failure": {
+      "kind": "http",
+      "status": 404,
+      "body": "{\"message\":\"Not Found\"} ",
+      "retryAfterMs": null
+    },
+    "expected": "invalid-response"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 648, endpoint 0, chainIdError",
+    "service": "rpc",
+    "method": "eth_chainId",
+    "failure": {
+      "kind": "http",
+      "status": 403,
+      "body": "<!DOCTYPE html> <!--[if lt IE 7]> <html class=\"no-js ie6 oldie\" lang=\"en-US\"> <![endif]--> <!--[if IE 7]> <html class",
+      "retryAfterMs": null
+    },
+    "expected": "access-denied"
+  },
+  {
+    "source": "Blockscout probe 2026-10-12, chain 870",
+    "service": "blockscout",
+    "method": "GET",
+    "failure": {
+      "kind": "timeout",
+      "afterMs": 8000
+    },
+    "expected": "timeout"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 988, endpoint 0, proof",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "http",
+      "status": 400,
+      "body": "{\"id\":1,\"jsonrpc\":\"2.0\",\"error\":{\"message\":\"the method eth_getBlockByNumber does not exist/is not available\",\"code\":-326",
+      "retryAfterMs": null
+    },
+    "expected": "method-unsupported"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 988, endpoint 1, recheck",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "rpc",
+      "code": -32000,
+      "message": "rpc error: code = Unknown desc = historical version not found: 42784182: invalid height",
+      "data": null
+    },
+    "expected": "not-archive"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 1101, endpoint 2, proof",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "http",
+      "status": 408,
+      "body": "{\"id\":1,\"jsonrpc\":\"2.0\",\"error\":{\"message\":\"Request timeout on the free plan, please upgrade to paid plan\",\"code\":30}}",
+      "retryAfterMs": null
+    },
+    "expected": "timeout"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 1101, endpoint 2, recheck",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "http",
+      "status": 408,
+      "body": "{\"id\":1,\"jsonrpc\":\"2.0\",\"error\":{\"message\":\"Request timeout on the free plan, please upgrade to paid plan\",\"co",
+      "retryAfterMs": null
+    },
+    "expected": "timeout"
+  },
+  {
+    "source": "Blockscout probe 2026-10-12, chain 1995",
+    "service": "blockscout",
+    "method": "GET",
+    "failure": {
+      "kind": "json",
+      "body": "<!doctype html>"
+    },
+    "expected": "invalid-response"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 2020, endpoint 1, proof",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "http",
+      "status": 400,
+      "body": "{ \"message\":\"Method is not whitelist: eth_getProof\", \"request_id\":\"4e9b3a60a2064b64017d4d717fba117b\" }",
+      "retryAfterMs": null
+    },
+    "expected": "method-unsupported"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 2390, endpoint 0, chainIdError",
+    "service": "rpc",
+    "method": "eth_chainId",
+    "failure": {
+      "kind": "http",
+      "status": 403,
+      "body": "{\"error\":\"message: API key is not allowed to access blockchain, json-rpc code: -32052, rest code: 403\"}",
+      "retryAfterMs": null
+    },
+    "expected": "access-denied"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 2424, endpoint 0, chainIdError",
+    "service": "rpc",
+    "method": "eth_chainId",
+    "failure": {
+      "kind": "http",
+      "status": 404,
+      "body": "<html> <head><title>404 Not Found</title></head> <body> <center><h1>404 Not Found</h1></center> <hr><center>nginx</c",
+      "retryAfterMs": null
+    },
+    "expected": "invalid-response"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 4326, endpoint 0, proof",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "rpc",
+      "code": -32004,
+      "message": "eth_getProof is not currently supported by mega-reth",
+      "data": null
+    },
+    "expected": "method-unsupported"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 4326, endpoint 1, proof",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "rpc",
+      "code": -32601,
+      "message": "eth_getProof is not supported",
+      "data": null
+    },
+    "expected": "method-unsupported"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 4663, endpoint 0, proof",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "rpc",
+      "code": -32000,
+      "message": "historical state 2c8798a6a590ef32febcae50a9073f6f2c3591d726d4f6174e3942d62cb3cfcb is not available",
+      "data": null
+    },
+    "expected": "not-archive"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 4663, endpoint 1, proof",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "http",
+      "status": 403,
+      "body": "{\"jsonrpc\":\"2.0\",\"error\":{\"code\":-32602,\"message\":\"Archive requests require a personal token. Get one at: https://www.al",
+      "retryAfterMs": null
+    },
+    "expected": "key-required"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 4689, endpoint 0, proof",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "rpc",
+      "code": -32603,
+      "message": "method: eth_getProof\n: web3 method not found",
+      "data": null
+    },
+    "expected": "method-unsupported"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 5001, endpoint 0, chainIdError",
+    "service": "rpc",
+    "method": "eth_chainId",
+    "failure": {
+      "kind": "http",
+      "status": 301,
+      "body": "<html> <head><title>301 Moved Permanently</title></head> <body> <center><h1>301 Moved Permanently</h1></center> </bo",
+      "retryAfterMs": null
+    },
+    "expected": "invalid-response"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 5042, endpoint 1, proof",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "rpc",
+      "code": -32601,
+      "message": "method not supported: eth_getProof",
+      "data": null
+    },
+    "expected": "method-unsupported"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 6497, endpoint 0, proof",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "http",
+      "status": 403,
+      "body": "{\"jsonrpc\":\"2.0\",\"error\":{\"code\":-32601,\"message\":\"Method not allowed. Contact the network operator for access.\"},\"id\":1",
+      "retryAfterMs": null
+    },
+    "expected": "method-unsupported"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 7200, endpoint 0, proof",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "http",
+      "status": 403,
+      "body": "<html> <head><title>403 Forbidden</title></head> <body> <center><h1>403 Forbidden</h1></center> <hr><center>openrest",
+      "retryAfterMs": null
+    },
+    "expected": "access-denied"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 9700, endpoint 0, chainIdError",
+    "service": "rpc",
+    "method": "eth_chainId",
+    "failure": {
+      "kind": "http",
+      "status": 504,
+      "body": "<html> <head><title>504 Gateway Time-out</title></head> <body> <center><h1>504 Gateway Time-out</h1></center> <hr><c",
+      "retryAfterMs": null
+    },
+    "expected": "server-error"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 9700, endpoint 0, recheck",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "http",
+      "status": 504,
+      "body": "<html> <head><title>504 Gateway Time-out</title></head> <body> <center><h1>504 Gateway Time-out</h1></center> ",
+      "retryAfterMs": null
+    },
+    "expected": "server-error"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 12553, endpoint 0, chainIdError",
+    "service": "rpc",
+    "method": "eth_chainId",
+    "failure": {
+      "kind": "http",
+      "status": 530,
+      "body": "<!doctype html> <!--[if lt IE 7]> <html class=\"no-js ie6 oldie\" lang=\"en-US\"> <![endif]--> <!--[if IE 7]> <html class",
+      "retryAfterMs": null
+    },
+    "expected": "server-error"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 12553, endpoint 0, recheck",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "http",
+      "status": 530,
+      "body": "<!doctype html> <!--[if lt IE 7]> <html class=\"no-js ie6 oldie\" lang=\"en-US\"> <![endif]--> <!--[if IE 7]> <htm",
+      "retryAfterMs": null
+    },
+    "expected": "server-error"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 17000, endpoint 0, chainIdError",
+    "service": "rpc",
+    "method": "eth_chainId",
+    "failure": {
+      "kind": "http",
+      "status": 400,
+      "body": "unknown network",
+      "retryAfterMs": null
+    },
+    "expected": "wrong-chain"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 26888, endpoint 0, proof",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "shape",
+      "message": "block header has no stateRoot"
+    },
+    "expected": "invalid-response"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 32769, endpoint 0, proof",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "rpc",
+      "code": -32603,
+      "message": "API method eth_getProof is not implemented yet",
+      "data": null
+    },
+    "expected": "method-unsupported"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 36900, endpoint 0, proof",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "rpc",
+      "code": -32603,
+      "message": "unsupported as ZKsync OS has a different storage layout than Ethereum",
+      "data": null
+    },
+    "expected": "method-unsupported"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 42161, endpoint 3, recheck",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "http",
+      "status": 403,
+      "body": "{\"jsonrpc\":\"2.0\",\"error\":{\"code\":-32602,\"message\":\"Archive requests require a personal token. Get one at: http",
+      "retryAfterMs": null
+    },
+    "expected": "key-required"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 42220, endpoint 1, recheck",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "http",
+      "status": 400,
+      "body": "{\"id\":1,\"jsonrpc\":\"2.0\",\"error\":{\"message\":\"the method eth_getBlockByNumber does not exist/",
+      "retryAfterMs": null
+    },
+    "expected": "method-unsupported"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 42793, endpoint 0, proof",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "rpc",
+      "code": -32004,
+      "message": "Method not supported",
+      "data": null
+    },
+    "expected": "method-unsupported"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 43113, endpoint 0, proof",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "rpc",
+      "code": -32601,
+      "message": "the method eth_getProof is not available",
+      "data": null
+    },
+    "expected": "method-unsupported"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 43113, endpoint 2, recheck",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "rpc",
+      "code": -32000,
+      "message": "missing trie node 3346117a672971c2312ba54e9c125cd379b4d09ccea774999a3ecd1166dc78b4 (path ) state 0x3346117a672971",
+      "data": null
+    },
+    "expected": "not-archive"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 47805, endpoint 0, proof",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "rpc",
+      "code": -32601,
+      "message": "Method not found - getProof",
+      "data": null
+    },
+    "expected": "method-unsupported"
+  },
+  {
+    "source": "Blockscout probe 2026-10-12, chain 84532",
+    "service": "blockscout",
+    "method": "GET",
+    "failure": {
+      "kind": "http",
+      "status": 429,
+      "body": "{\"message\":\"Too many requests. Increase limits now at https://dev.blockscout.com\",\"result\":null,\"status\":\"0\"}",
+      "retryAfterMs": null
+    },
+    "expected": "rate-limited"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 127001, endpoint 0, proof",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "rpc",
+      "code": -32601,
+      "message": "method not allowed",
+      "data": null
+    },
+    "expected": "method-unsupported"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 534351, endpoint 2, chainIdError",
+    "service": "rpc",
+    "method": "eth_chainId",
+    "failure": {
+      "kind": "http",
+      "status": 403,
+      "body": "unsupported platform ",
+      "retryAfterMs": null
+    },
+    "expected": "access-denied"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 11155111, endpoint 4, proof",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "http",
+      "status": 400,
+      "body": "{\"id\":1,\"jsonrpc\":\"2.0\",\"error\":{\"message\":\"Can't route your request to suitable provider, if you specified certain prov",
+      "retryAfterMs": null
+    },
+    "expected": "server-error"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 11155111, endpoint 4, recheck",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "http",
+      "status": 400,
+      "body": "{\"id\":1,\"jsonrpc\":\"2.0\",\"error\":{\"message\":\"Can't route your request to suitable provider, if you specified ce",
+      "retryAfterMs": null
+    },
+    "expected": "server-error"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 1313161554, endpoint 0, proof",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "rpc",
+      "code": -32601,
+      "message": "method not supported",
+      "data": null
+    },
+    "expected": "method-unsupported"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 1, endpoint 1, proof (2)",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "http",
+      "status": 429,
+      "body": "{\"jsonrpc\":\"2.0\",\"id\":null,\"error\":{\"code\":-32005,\"message\":\"You have reached the maximum API usage limit of public. If ",
+      "retryAfterMs": null
+    },
+    "expected": "rate-limited"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 41, endpoint 0, chainIdError (2)",
+    "service": "rpc",
+    "method": "eth_chainId",
+    "failure": {
+      "kind": "http",
+      "status": 503,
+      "body": "<html><body><h1>503 Service Unavailable</h1> No server is available to handle this request. </body></html> ",
+      "retryAfterMs": null
+    },
+    "expected": "server-error"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 56, endpoint 5, proof",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "rpc",
+      "code": -32000,
+      "message": "missing trie node 87b27444f2df8bfbe82e56f320a0ab92aeff9b8473c93b56ffbf5e65cbc704de (owner 17f5d6d8bf2d3306f94594a0c2e2113737738557965dce9f15df1a72e5dc83b9) (path ) state 0x87b27444f2df8bfbe82e5",
+      "data": null
+    },
+    "expected": "not-archive"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 143, endpoint 3, proof",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "rpc",
+      "code": -32600,
+      "message": "eth_getProof is not available on the MONAD_MAINNET. For more information see our docs: https://docs.alchemy.com/alchemy/documentation/apis/ethereum",
+      "data": null
+    },
+    "expected": "method-unsupported"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 143, endpoint 5, proof",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "http",
+      "status": 400,
+      "body": "{\"jsonrpc\":\"2.0\",\"id\":1,\"error\":{\"code\":-32600,\"message\":\"eth_getProof is not available on the MONAD_MAINNET. For more i",
+      "retryAfterMs": null
+    },
+    "expected": "method-unsupported"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 250, endpoint 1, proof",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "rpc",
+      "code": -32000,
+      "message": "not available",
+      "data": null
+    },
+    "expected": "method-unsupported"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 1101, endpoint 0, proof",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "http",
+      "status": 404,
+      "body": "Network not active",
+      "retryAfterMs": null
+    },
+    "expected": "wrong-chain"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 1284, endpoint 0, proof",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "rpc",
+      "code": -32603,
+      "message": "Remote Error",
+      "data": null
+    },
+    "expected": "server-error"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 5000, endpoint 4, proof",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "http",
+      "status": 403,
+      "body": "The network of this endpoint requires a paid subscription plan. Subscribe at https://nodies.app to get access.",
+      "retryAfterMs": null
+    },
+    "expected": "plan-unsupported"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 8217, endpoint 1, proof",
+    "service": "rpc",
+    "method": "eth_getProof",
+    "failure": {
+      "kind": "rpc",
+      "code": -32000,
+      "message": "from upstream rpc endpoint: the header does not exist (block number: 229613404)",
+      "data": null
+    },
+    "expected": "block-unavailable"
+  },
+  {
+    "source": "RPC probe 2026-10-12, chain 54, endpoint 0, chainIdError",
+    "service": "rpc",
+    "method": "eth_chainId",
+    "failure": {
+      "kind": "http",
+      "status": 403,
+      "body": "{\"error\":\"Blocked - Origin not allowed\"}",
+      "retryAfterMs": null
+    },
+    "expected": "access-denied"
+  },
+  {
+    "source": "API answer recorded 2026-10-12, etherscan/gnosis_nokey",
+    "service": "etherscan",
+    "method": "GET",
+    "failure": {
+      "kind": "api",
+      "message": "Free API access is not supported for this chain. Please upgrade your api plan for full chain coverage. https://etherscan.io/apis",
+      "status": 200
+    },
+    "expected": "plan-unsupported"
+  },
+  {
+    "source": "API answer recorded 2026-10-12, etherscan/logs_nokey",
+    "service": "etherscan",
+    "method": "GET",
+    "failure": {
+      "kind": "api",
+      "message": "Missing/Invalid API Key",
+      "status": 200
+    },
+    "expected": "key-rejected"
+  },
+  {
+    "source": "API answer recorded 2026-10-12, blockscout/pro_nokey",
+    "service": "blockscout",
+    "method": "GET",
+    "failure": {
+      "kind": "http",
+      "status": 402,
+      "body": "{\"error\":\"Proceed with API key or make a X402 payment to continue\"}",
+      "retryAfterMs": null
+    },
+    "expected": "key-required"
+  },
+  {
+    "source": "API answer recorded 2026-10-12, blockscout/pro_badkey",
+    "service": "blockscout",
+    "method": "GET",
+    "failure": {
+      "kind": "http",
+      "status": 401,
+      "body": "{\"error\":\"Unauthorized\"}",
+      "retryAfterMs": null
+    },
+    "expected": "access-denied"
+  },
+  {
+    "source": "API answer recorded 2026-10-12, blockscout/eth_internal-transactions",
+    "service": "blockscout",
+    "method": "GET",
+    "failure": {
+      "kind": "http",
+      "status": 524,
+      "body": "error code: 524",
+      "retryAfterMs": null
+    },
+    "expected": "server-error"
+  },
+  {
+    "source": "API answer recorded 2026-10-12, sourcify/badaddr",
+    "service": "sourcify",
+    "method": "GET",
+    "failure": {
+      "kind": "http",
+      "status": 400,
+      "body": "{\"customCode\":\"invalid_parameter\",\"message\":\"request/params/address must NOT have fewer than 42 characters\",\"errorId\":\"211ecf0f-328d-4f03-96a9-27f2acbf1d52\"}",
+      "retryAfterMs": null
+    },
+    "expected": "invalid-response"
+  },
+  {
+    "source": "API answer recorded 2026-10-12, blockscout-gnosis-old-host-redirect",
+    "service": "blockscout",
+    "method": "GET",
+    "failure": {
+      "kind": "fetch-failed",
+      "message": "Failed to fetch",
+      "answeredBefore": false
+    },
+    "expected": "unreachable"
+  },
+  {
+    "source": "API answer recorded 2026-10-12, blockscout-gnosis-old-host-redirect (2)",
+    "service": "blockscout",
+    "method": "GET",
+    "failure": {
+      "kind": "fetch-failed",
+      "message": "NetworkError when attempting to fetch resource.",
+      "answeredBefore": false
+    },
+    "expected": "unreachable"
+  }
+]

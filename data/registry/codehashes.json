@@ -1,0 +1,319 @@
+{
+  "schema": 1,
+  "addresses": {
+    "0x000000000000addb49795b0f9ba5bc298cdda236": {
+      "codeHash": "0x01623cbcf010a1c326230f1b2d5f48a66b440232ee49096102bc84967dc5f21e",
+      "chainId": 1,
+      "block": 26177592,
+      "checked": []
+    },
+    "0x00000000000dc7f163742eb4abef650037b1f588": {
+      "codeHash": "0xb82f247e7d0ae9f9ecf033299a7887d6b1458a757e04314bb3d7b713ce355898",
+      "chainId": 1,
+      "block": 26177592,
+      "checked": []
+    },
+    "0x00000000062c52e29e8029dc2413172f6d619d85": {
+      "codeHash": "0x12bb39068f9c5a6ec90d1a2d0034a6c79a17456a7bd0d9533602d1bfbc29809d",
+      "chainId": 1,
+      "block": 26177592,
+      "checked": []
+    },
+    "0x01f8cabb808d7de0df4202d4b60c8310d2f1339b": {
+      "codeHash": "0xacfe2969dd5516ec08ca2347669ac722df65a7826aa4faa6aed07e97be02c0fd",
+      "chainId": 1,
+      "block": 26177592,
+      "checked": []
+    },
+    "0x03b5ebd2cb2e3339e93774a1eb7c8634b8c393a9": {
+      "codeHash": "0x3fd5c4497a0bdd8106ecb1792b065c13e31f1c9424f69e2ed4c4efc3273f62a7",
+      "chainId": 1,
+      "block": 26177592,
+      "checked": []
+    },
+    "0x1d31f259ee307358a26dfb23eb365939e8641195": {
+      "codeHash": "0x655b1f71eedf5aa223c8a7f5fc70f140a6475259a030829bc731642e181e4853",
+      "chainId": 1,
+      "block": 26177592,
+      "checked": []
+    },
+    "0x1fb403834c911eb98d56e74f5182b0d64c3b3b4d": {
+      "codeHash": "0xb66887f080a098554ecf8fd82e4c318403944ef4335ebab904debc51062f4888",
+      "chainId": 137,
+      "block": 95411533,
+      "checked": []
+    },
+    "0x28cebfe94a03dbca9d17143e9d2bd1155dc26d5d": {
+      "codeHash": "0xbf0591f2d44453defaeaaeb27458a89df7c5fd7f1b42f8ed9c6f4f588d6ffa69",
+      "chainId": 1,
+      "block": 26177592,
+      "checked": []
+    },
+    "0x2dd68b007b46fbe91b9a7c3eda5a7a1063cb5b47": {
+      "codeHash": "0xaf2d170bb766d2773c3fa88717f5b3599827478074d3767d1dee55e5c2f3fbcb",
+      "chainId": 1,
+      "block": 26177592,
+      "checked": []
+    },
+    "0x33bca41bda8a3983afbad8fc8936ce2fb29121da": {
+      "codeHash": "0xcb201f18561539a06ef34e20842f19b01a40b77972b1afc4dafb09fb99cbff26",
+      "chainId": 1,
+      "block": 26177592,
+      "checked": []
+    },
+    "0x35e35dcdc7cd112b93c7c55987c86e5d6d419c69": {
+      "codeHash": "0xe26b7fedf31c18a9f8249861f331b86b125918b3f60e470d70a7cdfc104ec83d",
+      "chainId": 1,
+      "block": 26177592,
+      "checked": []
+    },
+    "0x3ed380a282adfa3460da28560ebeb2f6d967c9f5": {
+      "codeHash": "0xb3fdb8c4ba396f22e42b1134b3b476440cc353238434b42db670f669133ed7a6",
+      "chainId": 1,
+      "block": 26177592,
+      "checked": []
+    },
+    "0x4210382652a5e3c9af7e1d3c88085818a465449b": {
+      "codeHash": "0xc1ea22a6e60824589438b7e058bc8e6129ef5cd2105282d29249f3e3a77bd789",
+      "chainId": 1,
+      "block": 26177592,
+      "checked": []
+    },
+    "0x4aa5bf7d840ac607cb5bd3249e6af6fc86c04897": {
+      "codeHash": "0xf80b3e2f6c8149da85c8c40738b9d736f538bbf8f7d386c4318d13bd8f61b02e",
+      "chainId": 1,
+      "block": 26177592,
+      "checked": []
+    },
+    "0x4e35da39fa5893a70a40ce964f993d891e607cc0": {
+      "codeHash": "0xe5883a69c42f4a864e1f7202b5a5e09ddb43e9996c94b192f75a2f6823fcd4be",
+      "chainId": 1,
+      "block": 26177592,
+      "checked": []
+    },
+    "0x5ed57c291a184cc244f5c9b5e9f11a8dd08bbd12": {
+      "codeHash": "0x47332270ee5c0405b51d6662fb0c3f0fb15f4bc0af736817049ddaa599024998",
+      "chainId": 1,
+      "block": 26177592,
+      "checked": []
+    },
+    "0x71530ec830cbe363bab28f4ec52964a550c0ab1e": {
+      "codeHash": "0xde004dc1cfb4011ddf817c1827eea5ba8cd2a20bd6d931366cf65d8a0fe677da",
+      "chainId": 1,
+      "block": 26177592,
+      "checked": []
+    },
+    "0x7276813b21623d89ba8984b225d5792943dd7dbf": {
+      "codeHash": "0xbd65d06b1aca18cf7736f4cd6d73cd9bc8d9ba12cd8e11120ec7b35c18f6ae3f",
+      "chainId": 1,
+      "block": 26177592,
+      "checked": []
+    },
+    "0x752c61de75ada0f8a33e048d2f773f51172f033e": {
+      "codeHash": "0x9ad5f00407c1a90a0e424b70363886b815ba09190030af0c7d700908c950e64d",
+      "chainId": 1,
+      "block": 26177592,
+      "checked": []
+    },
+    "0x75cf11467937ce3f2f357ce24ffc3dbf8fd5c226": {
+      "codeHash": "0x2aea997c4e3cf0e2f333025372e219abcfde81c21fc2f8fb066414a5685dd3e0",
+      "chainId": 1,
+      "block": 26177592,
+      "checked": []
+    },
+    "0x7de07b9de0bf0fabf31a188de1527034b2af36db": {
+      "codeHash": "0xfcb2388e8985aaa806e6f93b742ecc5a08049e4f3daeca65a668ccce262c83d8",
+      "chainId": 1,
+      "block": 26177592,
+      "checked": []
+    },
+    "0x824175b945838d127c1ca83cbce11d8e44f6df01": {
+      "codeHash": "0xdd928eddfff7b68bd8fff28178c29e3388c1d098051d9262f151c4b534c577b8",
+      "chainId": 1,
+      "block": 26177592,
+      "checked": []
+    },
+    "0x85388a8cd772b19a468f982dc264c238856939c9": {
+      "codeHash": "0xccd8ad5609bd6b5dffb5aa4be6ac4b0c4fd12f0d5ab908f69c9342e63e186db1",
+      "chainId": 1,
+      "block": 26177592,
+      "checked": []
+    },
+    "0x8ecd4ec46d4d2a6b64fe960b3d64e8b94b2234eb": {
+      "codeHash": "0x1a9e40189281d32301a216d43f33904b7380a36dd1727442afba068984e9da55",
+      "chainId": 1,
+      "block": 26177592,
+      "checked": []
+    },
+    "0x94a4f6affbd8975951142c3999aeab7ecee555c2": {
+      "codeHash": "0xeaa32d0280053e2feea48a7c3fa15a535cd07c23ff60c9469cfa1999533e9332",
+      "chainId": 1,
+      "block": 26177592,
+      "checked": []
+    },
+    "0x9646fdad06d3e24444381f44362a3b0eb343d337": {
+      "codeHash": "0x87911cbc6aa0496e6bcb07dab2462b9c76daea130dede6dcc57d0adf307fa7ec",
+      "chainId": 1,
+      "block": 26177592,
+      "checked": []
+    },
+    "0xa581c4a4db7175302464ff3c06380bc3270b4037": {
+      "codeHash": "0x1cc7d3ede9aaaaa4196c947e4852efb6d984ecfb3a9254d08855c61746a40c44",
+      "chainId": 1,
+      "block": 26177592,
+      "checked": []
+    },
+    "0xa89ec2c1e218cfbb0f82829e95352ceabdee9a69": {
+      "codeHash": "0x60823f793987ae64ec446a59870837855c0ed343c5c8fda8a60953abce2cf333",
+      "chainId": 100,
+      "block": 48721222,
+      "checked": []
+    },
+    "0xaa46724893dedd72658219405185fb0fc91e091c": {
+      "codeHash": "0x7aa63affdca06fe94576f00077ad61a02ccf203a5da31e1b4ed595df7b65cf3e",
+      "chainId": 100,
+      "block": 48721222,
+      "checked": []
+    },
+    "0xb50fab2e2892e3323a5300870c042b428b564fe3": {
+      "codeHash": "0x47332270ee5c0405b51d6662fb0c3f0fb15f4bc0af736817049ddaa599024998",
+      "chainId": 1,
+      "block": 26177592,
+      "checked": []
+    },
+    "0xb67ede523171325345780fa3016b7f5221293df0": {
+      "codeHash": "0x8fd8b177a810ddb67a6cc6d15855a82e26b996bcd71e992e038e85e20f7165e6",
+      "chainId": 1,
+      "block": 26177592,
+      "checked": []
+    },
+    "0xbd34d00dc0ae37c687f784a11fa6a0f2c5726ba3": {
+      "codeHash": "0xde004dc1cfb4011ddf817c1827eea5ba8cd2a20bd6d931366cf65d8a0fe677da",
+      "chainId": 1,
+      "block": 26177592,
+      "checked": []
+    },
+    "0xc2b78104907f722dabac4c69f826a522b2754de4": {
+      "codeHash": "0x3cd725b6ba67b40b7979190c41a015e82cf21e098eb61832ba623f8538bab7fc",
+      "chainId": 1,
+      "block": 26177592,
+      "checked": []
+    },
+    "0xcfbfac74c26f8647cbdb8c5caf80bb5b32e43134": {
+      "codeHash": "0x8b61c9d1efc9e1fa072a98a8be3d144b284a28590d7d30558ce48ac0ad014f06",
+      "chainId": 1,
+      "block": 26177592,
+      "checked": []
+    },
+    "0xd3579c14a4181efc3df35c3103d20823a8c8d718": {
+      "codeHash": "0xfd3f56728f6b508943e4f9a4f4f4c6926f6463622d46e6c4c8d132be7a167a72",
+      "chainId": 1,
+      "block": 26177592,
+      "checked": []
+    },
+    "0xd54895b1121a2ee3f37b502f507631fa1331bed6": {
+      "codeHash": "0xc3bdb559318386f67ed2b090e13ff65e04e1b0fa967baa21bdb5f17222681bce",
+      "chainId": 1,
+      "block": 26177592,
+      "checked": []
+    },
+    "0xd62129bf40cd1694b3d9d9847367783a1a4d5cb4": {
+      "codeHash": "0x7967a56259946057a84885ca4c3e427007d37fff3abe632a10ac764987c0297c",
+      "chainId": 1,
+      "block": 26177592,
+      "checked": []
+    },
+    "0xd7a85e7d0813f8440602e243acb67df3cceb5a60": {
+      "codeHash": "0x1aefc577463a5409d4b55192f56d8cdc7e0b5aa4623d870f67546ba57d853422",
+      "chainId": 1,
+      "block": 26177592,
+      "checked": []
+    },
+    "0xd8dfc1d938d7d163c5231688341e9635e9011889": {
+      "codeHash": "0x2e480702d19fa0bc0c169605f516eededeadf148c765c7011912666cc41ef9cc",
+      "chainId": 1,
+      "block": 26177592,
+      "checked": []
+    },
+    "0xe0ece32eb4be4e9224dcec6a4fcb335c1fe05cde": {
+      "codeHash": "0xfd3f56728f6b508943e4f9a4f4f4c6926f6463622d46e6c4c8d132be7a167a72",
+      "chainId": 1,
+      "block": 26177592,
+      "checked": []
+    },
+    "0xe2847462a574bfd43014d1c7bb6de5769c294691": {
+      "codeHash": "0x62873bf2d9f022f9db9260455419878f2bef1395276f92a525ac504747434322",
+      "chainId": 1,
+      "block": 26177592,
+      "checked": []
+    },
+    "0xe28c39fac73cce2b33c4c003049e2f3ae43f77d5": {
+      "codeHash": "0x1be3d1c983b9cc3330666bd8a254e79cd06fc58915f09ae9e617e30a148595ce",
+      "chainId": 1,
+      "block": 26177592,
+      "checked": []
+    },
+    "0xe62320c8f29cea47587b2239476841430e17af75": {
+      "codeHash": "0xc87c3783f2fc95e4fecbbbbfaee5bf2518396797cd076f83897dd242981342e8",
+      "chainId": 100,
+      "block": 48721222,
+      "checked": []
+    },
+    "0xef27fcd3965a866b22fb2d7c689de9ab7e611f1f": {
+      "codeHash": "0x7f0bc060b24a8f97f89c9abef9b8f40f8018e777aae271bed7fe21b759373a55",
+      "chainId": 1,
+      "block": 26177592,
+      "checked": []
+    },
+    "0xeff38b2ebb95acba09761246045743f40e762568": {
+      "codeHash": "0x3ad295311d4419f9883bde72781b4267ff45f2c4fb972bb3d18720afad81e814",
+      "chainId": 1,
+      "block": 26177592,
+      "checked": []
+    },
+    "0xf2964ce6161ce0e75964fe7927ce114cb0b283d5": {
+      "codeHash": "0x471d8b3b419f1eb955230c0326c8812176df49bf3c7b414a563fda5a3c6c10b6",
+      "chainId": 1,
+      "block": 26177592,
+      "checked": []
+    },
+    "0xf7488ffbe67327ac9f37d5f722d83fc900852fbf": {
+      "codeHash": "0xbe9db61b4ee533cb4b1136ef244141db4ca3b7867b44d154db9faeb22f39d7bb",
+      "chainId": 1,
+      "block": 26177592,
+      "checked": []
+    }
+  },
+  "proxies": {
+    "1.0.0": {
+      "codeHash": "0xf8fffcb9b9c73fbc4ffb6dc52f0001fa998951e0d4177894b1b899f7732b6eaf",
+      "factory": "0x12302fE9c02ff50939BaAaaf415fc226C078613C",
+      "chainId": 1,
+      "block": 26177592
+    },
+    "1.1.1": {
+      "codeHash": "0xaea7d4252f6245f301e540cfbee27d3a88de543af8e49c5c62405d5499fab7e5",
+      "factory": "0x76E2cFc1F5Fa8F6a5b3fC4c8F4788F0116861F9B",
+      "chainId": 1,
+      "block": 26177592
+    },
+    "1.3.0": {
+      "codeHash": "0xb89c1b3bdf2cf8827818646bce9a8f6e372885f8c55e5c07acbd307cb133b000",
+      "factory": "0xa6B71E26C5e0845f74c812102Ca7114b6a896AB2",
+      "chainId": 1,
+      "block": 26177592
+    },
+    "1.4.1": {
+      "codeHash": "0xd7d408ebcd99b2b70be43e20253d6d92a8ea8fab29bd3be7f55b10032331fb4c",
+      "factory": "0x4e1DCf7AD4e460CfD30791CCC4F9c8a4f820ec67",
+      "chainId": 1,
+      "block": 26177592
+    },
+    "1.5.0": {
+      "codeHash": "0x4e381985ca68b3e5d27b4425fa581c19cf33146d3f887a3cfca96f55528ea46f",
+      "factory": "0x14F2982D601c9458F93bd70B218933A6f8165e7b",
+      "chainId": 1,
+      "block": 26177592
+    }
+  }
+}

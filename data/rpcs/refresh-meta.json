@@ -1,0 +1,694 @@
+{
+  "schema": 1,
+  "generatedAt": "2026-10-12T18:21:23.688Z",
+  "probedAt": [
+    "2026-10-12T16:24:50.209Z",
+    "2026-10-12T16:26:02.802Z (chains 252,57073,763373,1874)",
+    "2026-10-12T16:26:59.647Z (chains 11011,252,30303,360,43111,5330,57073,747474,763373,808813,853211)",
+    "2026-10-12T18:05:31.059Z (chains 137,648,5042,8453,42161,49088,421614)",
+    "2026-10-12T18:08:25.768Z (chains 8453)",
+    "2026-10-12T18:10:11.903Z (chains 8453,137,42161)"
+  ],
+  "probeSeconds": 0,
+  "sources": {
+    "chainlist": {
+      "url": "https://chainlist.org/rpcs.json",
+      "fetchedAt": "2026-10-12T16:15:13.368Z",
+      "etag": "\"39d3b2e8a6b63ab074683d7a158ada532a7e0358\"",
+      "sha256": "9a65fe433447762699dacb448db02587597ad8340eb3be7cd5257a05d1fbadef",
+      "bytes": 2361034
+    },
+    "ethereumLists": {
+      "url": "https://chainid.network/chains.json",
+      "fetchedAt": "2026-10-12T16:15:15.003Z",
+      "etag": "W/\"6accd396-12376d\"",
+      "sha256": "7939c724fbc5b2cf0194b8a12cf09e5704a97d9a8d99696fadfccb2c1614ce73",
+      "bytes": 1193837
+    },
+    "blockscout": {
+      "url": "https://chains.blockscout.com/api/chains",
+      "fetchedAt": "2026-10-12T16:15:16.241Z",
+      "etag": null,
+      "sha256": "642ae575929be105dd018d452f80bca646a5919238262bb8a07a9509576dcdb2",
+      "bytes": 280723
+    },
+    "safeConfig": {
+      "url": "https://safe-config.safe.global/api/v1/chains/?limit=100",
+      "fetchedAt": "2026-10-12T16:15:17.954Z",
+      "etag": null,
+      "sha256": "54458cbc95a2a6da1f719e7bf3bd0e810b59522e233bcc0340f7abe5186feb95",
+      "bytes": 114658
+    }
+  },
+  "safeDeployments": {
+    "package": "@safe-global/safe-deployments",
+    "version": "1.37.63",
+    "chains": 566
+  },
+  "policy": {
+    "providers": [
+      {
+        "id": "publicnode",
+        "name": "PublicNode (Allnodes)",
+        "hostSuffixes": ["publicnode.com"],
+        "aggregator": false,
+        "defaultTracking": "none",
+        "rank": 1
+      },
+      {
+        "id": "ethpandaops",
+        "name": "ethPandaOps (Ethereum Foundation)",
+        "hostSuffixes": ["ethpandaops.io"],
+        "aggregator": false,
+        "defaultTracking": "unlabelled",
+        "rank": 1
+      },
+      {
+        "id": "drpc",
+        "name": "dRPC",
+        "hostSuffixes": ["drpc.org"],
+        "aggregator": true,
+        "defaultTracking": "none",
+        "rank": 2
+      },
+      {
+        "id": "1rpc",
+        "name": "1RPC (Automata)",
+        "hostSuffixes": ["1rpc.io"],
+        "aggregator": true,
+        "defaultTracking": "none",
+        "rank": 3
+      },
+      {
+        "id": "blast",
+        "name": "Blast API (Bware Labs, now Alchemy)",
+        "hostSuffixes": ["blastapi.io"],
+        "aggregator": false,
+        "defaultTracking": "limited",
+        "rank": 4
+      }
+    ],
+    "teamDomainAliases": {
+      "999": ["hyperliquid.xyz"]
+    },
+    "team": "host has the registrable domain of the chain's chainlist infoURL, and that domain is not a hosting or infrastructure domain",
+    "tracking": {
+      "none": "kept",
+      "unlabelled": "kept (chain-team URLs come from ethereum-lists, which has no tracking field)",
+      "limited": "kept only for allowlisted providers, ranked last",
+      "yes": "removed"
+    },
+    "relayHostSuffixes": [
+      "flashbots.net",
+      "mevblocker.io",
+      "merkle.io",
+      "securerpc.com",
+      "blxrbdn.com",
+      "bloxroute.com",
+      "blocknative.com",
+      "blockrazor.xyz",
+      "0xblockswap.com",
+      "mev-x.com",
+      "mev-commit.xyz",
+      "payload.de",
+      "builder0x69.io",
+      "lokibuilder.xyz",
+      "edennetwork.io"
+    ],
+    "curatedPrimary": {
+      "1": "https://eth.drpc.org",
+      "100": "https://rpc.gnosischain.com",
+      "11155111": "https://rpc.sepolia.ethpandaops.io"
+    },
+    "detectFirst": [1, 8453, 42161, 10, 137, 100, 56, 11155111, 59144, 534352, 43114, 42220, 5000, 146, 130, 480, 324],
+    "probe": {
+      "origin": "https://example.pages.dev",
+      "timeoutMs": 8000,
+      "blockOffset": 3,
+      "proofSlot": "0x0000000000000000000000000000000000000000000000000000000000000004",
+      "concurrency": 24,
+      "perOperator": 4,
+      "primary": "chainId, CORS preflight and POST, header at latest - 3, eth_getProof there verified with src/core/proof.ts",
+      "crossCheckOnly": "chainId, CORS preflight and POST, header at latest - 3 (proofs: false)"
+    }
+  },
+  "filterStats": {
+    "allChains": {
+      "endpoints": 7602,
+      "kept": 2475,
+      "removedByFirstFailingRule": {
+        "operator": 1895,
+        "tracking": 2181,
+        "key": 113,
+        "https": 909,
+        "relay": 22,
+        "duplicate": 7
+      },
+      "failingEachRule": {
+        "https": 909,
+        "key": 113,
+        "tracking": 2288,
+        "relay": 35,
+        "operator": 4527,
+        "duplicate": 0
+      }
+    },
+    "safeDeploymentChains": {
+      "endpoints": 2953,
+      "kept": 704,
+      "removedByFirstFailingRule": {
+        "operator": 707,
+        "tracking": 942,
+        "key": 101,
+        "https": 474,
+        "relay": 19,
+        "duplicate": 6
+      }
+    }
+  },
+  "coverage": {
+    "chains": 566,
+    "rootCheck": {
+      "supported": 154,
+      "no-rpc": 310,
+      "unsupported": 55,
+      "no-proof-rpc": 47
+    },
+    "operators": {
+      "zero": 428,
+      "one": 73,
+      "twoPlus": 65,
+      "twoPlusProofsOnly": 52
+    },
+    "tipModeOnly": [
+      97, 177, 1924, 5042, 9745, 9746, 16661, 17000, 25363, 38833, 52924, 80069, 936485, 1000101, 5042002, 11142220
+    ],
+    "tipProbe": [
+      {
+        "chainId": 41,
+        "name": "Telos EVM Testnet",
+        "rpcs": [
+          {
+            "url": "https://rpc.testnet.telos.net",
+            "tip": "failed",
+            "block": null,
+            "detail": "the proof root matched no header from 449837375 to 449837380"
+          }
+        ]
+      },
+      {
+        "chainId": 97,
+        "name": "BNB Smart Chain Testnet",
+        "rpcs": [
+          {
+            "url": "https://bsc-testnet-rpc.publicnode.com",
+            "tip": "verified",
+            "block": "136388700",
+            "detail": null
+          },
+          {
+            "url": "https://bsc-testnet.drpc.org",
+            "tip": "failed",
+            "block": null,
+            "detail": "the proof root matched no header from 136388716 to 136388721"
+          }
+        ]
+      },
+      {
+        "chainId": 177,
+        "name": "HSKChain",
+        "rpcs": [
+          {
+            "url": "https://hashkey.drpc.org",
+            "tip": "verified",
+            "block": "28737390",
+            "detail": null
+          }
+        ]
+      },
+      {
+        "chainId": 1924,
+        "name": "Swellchain Testnet",
+        "rpcs": [
+          {
+            "url": "https://swell-testnet.drpc.org",
+            "tip": "verified",
+            "block": "30662663",
+            "detail": null
+          }
+        ]
+      },
+      {
+        "chainId": 5042,
+        "name": "Arc",
+        "rpcs": [
+          {
+            "url": "https://arc-rpc.publicnode.com",
+            "tip": "verified",
+            "block": "25621567",
+            "detail": null
+          },
+          {
+            "url": "https://rpc.blockdaemon.mainnet.arc.io",
+            "tip": "verified",
+            "block": "25621569",
+            "detail": null
+          },
+          {
+            "url": "https://rpc.drpc.mainnet.arc.io",
+            "tip": "verified",
+            "block": "25621569",
+            "detail": null
+          }
+        ]
+      },
+      {
+        "chainId": 9745,
+        "name": "Plasma Mainnet",
+        "rpcs": [
+          {
+            "url": "https://rpc.plasma.to",
+            "tip": "verified",
+            "block": "34880508",
+            "detail": null
+          }
+        ]
+      },
+      {
+        "chainId": 9746,
+        "name": "Plasma Testnet",
+        "rpcs": [
+          {
+            "url": "https://testnet-rpc.plasma.to",
+            "tip": "verified",
+            "block": "35992580",
+            "detail": null
+          }
+        ]
+      },
+      {
+        "chainId": 16661,
+        "name": "0G Mainnet",
+        "rpcs": [
+          {
+            "url": "https://evmrpc.0g.ai",
+            "tip": "verified",
+            "block": "46938100",
+            "detail": null
+          }
+        ]
+      },
+      {
+        "chainId": 17000,
+        "name": "Holesky",
+        "rpcs": [
+          {
+            "url": "https://holesky.drpc.org",
+            "tip": "verified",
+            "block": "5765077",
+            "detail": null
+          }
+        ]
+      },
+      {
+        "chainId": 25363,
+        "name": "Fluent",
+        "rpcs": [
+          {
+            "url": "https://rpc.fluent.xyz",
+            "tip": "verified",
+            "block": "18052011",
+            "detail": null
+          }
+        ]
+      },
+      {
+        "chainId": 38833,
+        "name": "Igra Mainnet",
+        "rpcs": [
+          {
+            "url": "https://rpc.igralabs.com:8545",
+            "tip": "verified",
+            "block": "19078090",
+            "detail": null
+          }
+        ]
+      },
+      {
+        "chainId": 43113,
+        "name": "Avalanche Fuji Testnet",
+        "rpcs": [
+          {
+            "url": "https://avalanche-fuji.drpc.org",
+            "tip": "failed",
+            "block": null,
+            "detail": "the proof root matched no header from 59343765 to 59343770"
+          }
+        ]
+      },
+      {
+        "chainId": 52924,
+        "name": "LazAI Mainnet",
+        "rpcs": [
+          {
+            "url": "https://mainnet.lazai.network",
+            "tip": "verified",
+            "block": "28181805",
+            "detail": null
+          }
+        ]
+      },
+      {
+        "chainId": 80069,
+        "name": "Berachain Bepolia",
+        "rpcs": [
+          {
+            "url": "https://bepolia.rpc.berachain.com",
+            "tip": "verified",
+            "block": "26475412",
+            "detail": null
+          }
+        ]
+      },
+      {
+        "chainId": 936485,
+        "name": "Zenith EVM Testnet",
+        "rpcs": [
+          {
+            "url": "https://rpc.testnet.zenith.network",
+            "tip": "verified",
+            "block": "259815",
+            "detail": null
+          }
+        ]
+      },
+      {
+        "chainId": 1000101,
+        "name": "XO Chain Testnet",
+        "rpcs": [
+          {
+            "url": "https://testnet-rpc-1.xo.market",
+            "tip": "verified",
+            "block": "6909076",
+            "detail": null
+          }
+        ]
+      },
+      {
+        "chainId": 5042002,
+        "name": "Arc Testnet",
+        "rpcs": [
+          {
+            "url": "https://arc-testnet.drpc.org",
+            "tip": "verified",
+            "block": "66845923",
+            "detail": null
+          },
+          {
+            "url": "https://arc-testnet-rpc.publicnode.com",
+            "tip": "verified",
+            "block": "66845766",
+            "detail": null
+          }
+        ]
+      },
+      {
+        "chainId": 11142220,
+        "name": "Celo Sepolia Testnet",
+        "rpcs": [
+          {
+            "url": "https://celo-sepolia.drpc.org",
+            "tip": "verified",
+            "block": "38538037",
+            "detail": null
+          }
+        ]
+      }
+    ],
+    "oneOperatorIds": [
+      11, 12, 39, 42, 81, 109, 151, 153, 181, 291, 360, 466, 570, 677, 698, 1480, 1625, 1729, 1874, 1890, 3501, 4153,
+      4162, 4202, 4337, 5424, 5700, 7208, 7341, 7560, 7979, 9069, 9070, 10001, 10081, 11011, 13337, 13371, 13473, 20994,
+      24101, 28882, 30303, 36888, 41923, 42421, 42431, 43111, 48900, 53302, 59902, 72080, 81224, 88882, 91342, 97476,
+      98866, 98867, 105105, 167013, 181228, 190415, 200901, 205205, 560048, 743111, 853211, 984122, 1501869, 2632500,
+      3441006, 5064014, 11155931
+    ],
+    "rootCheckDetail": {
+      "1": "verified at latest - 3 by blast, drpc",
+      "10": "verified at latest - 3 by team:optimism.io, drpc",
+      "11": "verified at latest - 3 by team:metadium.com",
+      "12": "verified at latest - 3 by team:metadium.com",
+      "14": "drpc: The account leaf for 0x3E5c63644E683549055b9Be8653de26E0B4CD36E is not [nonce, balance, storageHash, codeHash]; team:flare.network: The account leaf for 0x3E5c63644E683549055b9Be8653de26E0B4CD36E is not [nonce, balance, storageHash, codeHash]",
+      "16": "team:flare.network: The account leaf for 0xfb1bffC9d739B8D520DaF37dF666da4C687191EA is not [nonce, balance, storageHash, codeHash]",
+      "19": "team:flare.network: The account leaf for 0xfb1bffC9d739B8D520DaF37dF666da4C687191EA is not [nonce, balance, storageHash, codeHash]",
+      "25": "team:cronos.org: proof nodes are not RLP lists (first byte 0x0a); publicnode: proof nodes are not RLP lists (first byte 0x0a); drpc: proof nodes are not RLP lists (first byte 0x0a)",
+      "30": "drpc: method not found",
+      "31": "drpc: method not found",
+      "39": "verified at latest - 3 by team:u2u.xyz",
+      "41": "team:telos.net: distance to target block exceeds maximum proof window",
+      "42": "verified at latest - 3 by team:lukso.network",
+      "46": "team:darwinia.network: Method not found",
+      "56": "verified at latest - 3 by blast",
+      "57": "verified at latest - 3 by team:syscoin.org, publicnode",
+      "81": "verified at latest - 3 by team:japanopenchain.org",
+      "82": "team:meter.io: Method not found",
+      "83": "team:meter.io: the method eth_getProof does not exist/is not available",
+      "88": "drpc: method is not available on free plan, please upgrade to paid plan; team:viction.xyz: The method eth_getProof does not exist/is not available",
+      "97": "verified at the newest block by publicnode",
+      "100": "verified at latest - 3 by team:gnosischain.com, drpc, publicnode",
+      "106": "team:velas.com: Method not found",
+      "109": "verified at latest - 3 by drpc",
+      "114": "drpc: The account leaf for 0x3E5c63644E683549055b9Be8653de26E0B4CD36E is not [nonce, balance, storageHash, codeHash]; team:flare.network: The account leaf for 0x3E5c63644E683549055b9Be8653de26E0B4CD36E is not [nonce, balance, storageHash, codeHash]",
+      "122": "verified at latest - 3 by team:fuse.io, drpc",
+      "130": "verified at latest - 3 by drpc",
+      "137": "verified at latest - 3 by publicnode, drpc",
+      "143": "drpc: Method not found; team:monad.xyz: Method not found; team:monad.xyz: eth_getProof is not available on the MONAD_MAINNET. For more information see our docs: https://docs.alchemy.com/alchemy/documentation/apis/ethereum",
+      "146": "verified at latest - 3 by team:soniclabs.com, drpc, publicnode",
+      "151": "verified at latest - 3 by team:redbelly.network",
+      "153": "verified at latest - 3 by team:redbelly.network",
+      "169": "verified at latest - 3 by team:manta.network, drpc",
+      "173": "team:eniac.network: cannot find EVM IAVL store",
+      "177": "verified at the newest block by drpc",
+      "181": "verified at latest - 3 by team:waterfall.network",
+      "196": "team:okx.com: rpc method is not whitelisted; drpc: Temporary internal error. Please retry, trace-id: 267c15cd2bff2d10a4f95666280ece7c",
+      "204": "verified at latest - 3 by team:bnbchain.org, publicnode",
+      "232": "ZK Stack (EraVM): eth_getProof is not served; state is a Blake2s binary Merkle tree read with zks_getProof (docs.zksync.io).",
+      "239": "drpc: proof nodes are not RLP lists (first byte 0x0a); team:tac.build: proof nodes are not RLP lists (first byte 0x0a)",
+      "240": "ZK Stack (EraVM): eth_getProof is not served; state is a Blake2s binary Merkle tree read with zks_getProof (docs.zksync.io).",
+      "246": "team:energyweb.org: This method is not part of the official RPC API yet (EIP-1186). Run with `--jsonrpc-experimental` to enable it.",
+      "250": "drpc: method handler crashed",
+      "252": "verified at latest - 3 by team:frax.com",
+      "280": "ZK Stack (EraVM): eth_getProof is not served; state is a Blake2s binary Merkle tree read with zks_getProof (docs.zksync.io).",
+      "282": "ZK Stack (EraVM): eth_getProof is not served; state is a Blake2s binary Merkle tree read with zks_getProof (docs.zksync.io).",
+      "288": "verified at latest - 3 by team:boba.network, drpc",
+      "291": "verified at latest - 3 by team:orderly.network",
+      "300": "ZK Stack (EraVM): eth_getProof is not served; state is a Blake2s binary Merkle tree read with zks_getProof (docs.zksync.io).",
+      "314": "drpc: Request timeout on the free plan, please upgrade to paid plan",
+      "324": "ZK Stack (EraVM): eth_getProof is not served; state is a Blake2s binary Merkle tree read with zks_getProof (docs.zksync.io).",
+      "338": "team:cronos.org: proof nodes are not RLP lists (first byte 0x0a); drpc: proof nodes are not RLP lists (first byte 0x0a)",
+      "360": "verified at latest - 3 by team:shape.network",
+      "369": "verified at latest - 3 by team:pulsechain.com, publicnode",
+      "388": "ZK Stack (EraVM): eth_getProof is not served; state is a Blake2s binary Merkle tree read with zks_getProof (docs.zksync.io).",
+      "466": "verified at latest - 3 by team:appchain.xyz",
+      "570": "verified at latest - 3 by team:rollux.com",
+      "677": "verified at latest - 3 by team:botchain.ai",
+      "698": "verified at latest - 3 by team:matchain.io",
+      "919": "verified at latest - 3 by drpc, team:mode.network",
+      "943": "verified at latest - 3 by team:pulsechain.com, publicnode",
+      "999": "drpc: method is not available on free plan, please upgrade to paid plan",
+      "1001": "drpc: Temporary internal error. Please retry, trace-id: affb0222e904982f5da97d6989372bd1",
+      "1088": "verified at latest - 3 by team:metis.io, drpc, publicnode",
+      "1101": "Polygon zkEVM: state is a Poseidon sparse Merkle tree (0xPolygon/zkevm-commonjs src/smt.js).",
+      "1111": "verified at latest - 3 by team:wemix.com, drpc",
+      "1112": "verified at latest - 3 by team:wemix.com, drpc",
+      "1116": "verified at latest - 3 by team:coredao.org, drpc",
+      "1135": "verified at latest - 3 by team:lisk.com, drpc",
+      "1284": "drpc: Method not found",
+      "1285": "drpc: Method not found",
+      "1287": "drpc: Method not found",
+      "1301": "verified at latest - 3 by drpc",
+      "1480": "verified at latest - 3 by team:vana.org",
+      "1625": "verified at latest - 3 by team:gravity.xyz",
+      "1729": "verified at latest - 3 by team:reya.network",
+      "1740": "verified at latest - 3 by team:metall2.com, drpc",
+      "1750": "drpc: Unknown block",
+      "1868": "verified at latest - 3 by team:soneium.org",
+      "1874": "verified at latest - 3 by team:whitechain.io",
+      "1890": "verified at latest - 3 by team:lightlink.io",
+      "1924": "verified at the newest block by drpc",
+      "1946": "verified at latest - 3 by team:soneium.org, drpc",
+      "2221": "drpc: proof nodes are not RLP lists (first byte 0x0a)",
+      "2222": "publicnode: proof nodes are not RLP lists (first byte 0x0a); drpc: proof nodes are not RLP lists (first byte 0x0a)",
+      "2345": "verified at latest - 3 by team:goat.network, drpc",
+      "2391": "team:tac.build: proof nodes are not RLP lists (first byte 0x0a)",
+      "2442": "Polygon zkEVM Cardona testnet: same state tree as Polygon zkEVM.",
+      "2741": "ZK Stack (EraVM): eth_getProof is not served; state is a Blake2s binary Merkle tree read with zks_getProof (docs.zksync.io).",
+      "2818": "verified at latest - 3 by team:morphl2.io",
+      "2910": "verified at latest - 3 by drpc, team:morphl2.io",
+      "3501": "verified at latest - 3 by team:jfinchain.com",
+      "4153": "verified at latest - 3 by team:risechain.com",
+      "4162": "verified at latest - 3 by team:sx.technology",
+      "4202": "verified at latest - 3 by drpc",
+      "4217": "verified at latest - 3 by drpc, team:tempo.xyz",
+      "4326": "drpc: eth_getProof is not currently supported by mega-reth",
+      "4337": "verified at latest - 3 by team:onbeam.com",
+      "4663": "verified at latest - 3 by team:robinhood.com, publicnode",
+      "4689": "team:iotex.io: method: eth_getProof\n: web3 method not found",
+      "5000": "verified at latest - 3 by team:mantle.xyz, publicnode",
+      "5003": "verified at latest - 3 by team:mantle.xyz, drpc",
+      "5031": "publicnode: method not found; team:somnia.network: method not found",
+      "5042": "verified at the newest block by publicnode, team:arc.io",
+      "5115": "team:citrea.xyz: proof nodes are not RLP lists (first byte 0x01)",
+      "5330": "verified at latest - 3 by drpc, team:superseed.xyz",
+      "5424": "verified at latest - 3 by team:edexa.network",
+      "5611": "verified at latest - 3 by drpc, team:bnbchain.org, publicnode",
+      "5700": "verified at latest - 3 by publicnode",
+      "5851": "team:ont.io: eth_getProof is not supported",
+      "5887": "team:mantrachain.io: proof nodes are not RLP lists (first byte 0x0a)",
+      "5888": "team:mantrachain.io: proof nodes are not RLP lists (first byte 0x0a)",
+      "6322": "team:aura.network: proof nodes are not RLP lists (first byte 0x0a)",
+      "6497": "team:mizuhiki.io: Method not allowed. Contact the network operator for access.",
+      "6498": "team:mizuhiki.io: Method not allowed. Contact the network operator for access.",
+      "6880": "team:mtt.network: proof nodes are not RLP lists (first byte 0x0a)",
+      "6900": "team:nibiru.fi: proof nodes are not RLP lists (first byte 0x0a)",
+      "6911": "team:nibiru.fi: proof nodes are not RLP lists (first byte 0x0a)",
+      "7000": "drpc: proof nodes are not RLP lists (first byte 0x0a)",
+      "7001": "drpc: proof nodes are not RLP lists (first byte 0x0a)",
+      "7200": "team:exsat.network: <html>\r\n<head><title>403 Forbidden</title></head>\r\n<body>\r\n<center><h1>403 Forbidden</h1></center>\r\n<hr><center>openresty/1.27.1.2</center>\r\n</body>\r\n</html>\r\n",
+      "7208": "verified at latest - 3 by team:nexera.network",
+      "7341": "verified at latest - 3 by team:shyft.network",
+      "7560": "verified at latest - 3 by team:cyber.co",
+      "7979": "verified at latest - 3 by team:doschain.com",
+      "8217": "team:kaia.io: RLP payload encodes a single item, but `75` trailing bytes remain.\n\nVersion: viem@2.57.4; drpc: RLP payload encodes a single item, but `75` trailing bytes remain.\n\nVersion: viem@2.57.4",
+      "8453": "verified at latest - 3 by team:base.org, blast, drpc",
+      "8700": "team:autonomys.xyz: Method not found",
+      "8765": "team:wardenprotocol.org: proof nodes are not RLP lists (first byte 0x0a)",
+      "8844": "team:hydrachain.org: the method eth_getProof does not exist/is not available",
+      "9069": "verified at latest - 3 by team:apexfusion.org",
+      "9070": "verified at latest - 3 by team:apexfusion.org",
+      "9745": "verified at the newest block by team:plasma.to",
+      "9746": "verified at the newest block by team:plasma.to",
+      "10001": "verified at latest - 3 by team:ethereumpow.org",
+      "10081": "verified at latest - 3 by team:japanopenchain.org",
+      "10143": "drpc: Method not found; team:monad.xyz: Method not found",
+      "10200": "verified at latest - 3 by publicnode, drpc",
+      "11011": "verified at latest - 3 by team:shape.network",
+      "11124": "ZK Stack (EraVM): eth_getProof is not served; state is a Blake2s binary Merkle tree read with zks_getProof (docs.zksync.io).",
+      "11235": "publicnode: proof nodes are not RLP lists (first byte 0x0a); drpc: proof nodes are not RLP lists (first byte 0x0a)",
+      "11501": "team:geb.network: Method not found",
+      "13337": "verified at latest - 3 by team:onbeam.com",
+      "13371": "verified at latest - 3 by team:immutable.com",
+      "13441": "team:bridgeless.com: proof nodes are not RLP lists (first byte 0x0a)",
+      "13473": "verified at latest - 3 by team:immutable.com",
+      "13505": "verified at latest - 3 by team:gravity.xyz, drpc",
+      "14601": "verified at latest - 3 by drpc, team:soniclabs.com",
+      "16661": "verified at the newest block by team:0g.ai",
+      "17000": "verified at the newest block by drpc",
+      "20994": "verified at latest - 3 by team:fluent.xyz",
+      "23294": "team:oasis.io: the method eth_getProof does not exist/is not available",
+      "23295": "team:oasis.io: the method eth_getProof does not exist/is not available",
+      "24101": "verified at latest - 3 by team:incentiv.io",
+      "25363": "verified at the newest block by team:fluent.xyz",
+      "28882": "verified at latest - 3 by team:boba.network",
+      "30303": "verified at latest - 3 by team:ethiq.network",
+      "31611": "team:mezo.org: proof nodes are not RLP lists (first byte 0x0a); drpc: proof nodes are not RLP lists (first byte 0x0a)",
+      "31612": "drpc: proof nodes are not RLP lists (first byte 0x0a); team:mezo.org: proof nodes are not RLP lists (first byte 0x0a)",
+      "33101": "team:zilliqa.com: API method eth_getProof is not implemented yet",
+      "33111": "drpc: The account leaf for 0x29fcB43b46531BcA003ddC8FCB67FFE91900C762 is not [nonce, balance, storageHash, codeHash]",
+      "33139": "team:apechain.com: The account leaf for 0xfb1bffC9d739B8D520DaF37dF666da4C687191EA is not [nonce, balance, storageHash, codeHash]; drpc: The account leaf for 0xfb1bffC9d739B8D520DaF37dF666da4C687191EA is not [nonce, balance, storageHash, codeHash]",
+      "34443": "verified at latest - 3 by team:mode.network, drpc",
+      "36888": "verified at latest - 3 by team:ab.org",
+      "36900": "drpc: unsupported as ZKsync OS has a different storage layout than Ethereum; team:adifoundation.ai: unsupported as ZKsync OS has a different storage layout than Ethereum",
+      "37111": "ZK Stack (EraVM): eth_getProof is not served; state is a Blake2s binary Merkle tree read with zks_getProof (docs.zksync.io).",
+      "38833": "verified at the newest block by team:igralabs.com",
+      "41923": "verified at latest - 3 by team:educhain.xyz",
+      "42161": "verified at latest - 3 by team:arbitrum.io, blast, publicnode, drpc",
+      "42170": "verified at latest - 3 by team:arbitrum.io, publicnode, drpc",
+      "42220": "verified at latest - 3 by team:celo.org",
+      "42421": "verified at latest - 3 by team:assetchain.org",
+      "42431": "verified at latest - 3 by team:tempo.xyz",
+      "42793": "team:etherlink.com: Method not supported",
+      "43111": "verified at latest - 3 by drpc",
+      "43113": "publicnode: The account proof does not match the root 0xabf64a8a6c1b6f4c4ba10ffabb164335b55f8cec0dfb88e52c4109211fe4e356",
+      "43114": "publicnode: The account proof does not match the root 0x5871816ea482bb6eab248ef531c9f8147c3f857faeb27e2b764a548935b429bf; drpc: The account proof does not match the root 0x351a8be40ee46e07d641807f4ffefb19457de07eb0093b0d4adec23672dae3fd",
+      "46630": "verified at latest - 3 by team:robinhood.com, drpc, publicnode",
+      "47805": "team:rei.network: Method not found - getProof",
+      "48900": "verified at latest - 3 by team:zircuit.com",
+      "49088": "team:bifrostnetwork.com: Method not found",
+      "50104": "ZK Stack (EraVM): eth_getProof is not served; state is a Blake2s binary Merkle tree read with zks_getProof (docs.zksync.io).",
+      "50312": "team:somnia.network: method not found",
+      "52924": "verified at the newest block by team:lazai.network",
+      "53302": "verified at latest - 3 by team:superseed.xyz",
+      "57073": "verified at latest - 3 by team:inkonchain.com, drpc",
+      "59141": "verified at latest - 3 by team:linea.build, drpc, publicnode",
+      "59144": "verified at latest - 3 by team:linea.build, publicnode",
+      "59902": "verified at latest - 3 by publicnode",
+      "60808": "verified at latest - 3 by team:gobob.xyz",
+      "61166": "ZK Stack (EraVM): eth_getProof is not served; state is a Blake2s binary Merkle tree read with zks_getProof (docs.zksync.io).",
+      "72080": "verified at latest - 3 by team:nexera.network",
+      "73799": "team:energyweb.org: This method is not part of the official RPC API yet (EIP-1186). Run with `--jsonrpc-experimental` to enable it.",
+      "80002": "verified at latest - 3 by drpc, publicnode",
+      "80069": "verified at the newest block by team:berachain.com",
+      "80094": "verified at latest - 3 by drpc",
+      "81224": "verified at latest - 3 by team:codex.xyz",
+      "81457": "team:blast.io: eth_getProof returned fields that are not hex quantities; publicnode: eth_getProof returned fields that are not hex quantities; drpc: eth_getProof returned fields that are not hex quantities",
+      "84532": "verified at latest - 3 by team:base.org",
+      "88882": "verified at latest - 3 by team:chiliz.com",
+      "88888": "verified at latest - 3 by team:chiliz.com, publicnode",
+      "91342": "verified at latest - 3 by team:giwa.io",
+      "97476": "verified at latest - 3 by team:doma.xyz",
+      "97477": "verified at latest - 3 by drpc, team:doma.xyz",
+      "98866": "verified at latest - 3 by team:plume.org",
+      "98867": "verified at latest - 3 by team:plume.org",
+      "102030": "drpc: Method not found",
+      "105105": "verified at latest - 3 by team:xertra.com",
+      "127823": "team:etherlink.com: Method not supported",
+      "167000": "verified at latest - 3 by team:taiko.xyz, drpc, publicnode",
+      "167013": "verified at latest - 3 by team:taiko.xyz",
+      "181228": "verified at latest - 3 by team:hpp.io",
+      "190415": "verified at latest - 3 by team:hpp.io",
+      "200901": "verified at latest - 3 by team:bitlayer.org",
+      "205205": "verified at latest - 3 by team:xertra.com",
+      "210425": "team:platon.network: The account leaf for 0x29fcB43b46531BcA003ddC8FCB67FFE91900C762 is not [nonce, balance, storageHash, codeHash]",
+      "222888": "team:mocachain.org: proof nodes are not RLP lists (first byte 0x0a)",
+      "314159": "drpc: Request timeout on the free plan, please upgrade to paid plan",
+      "369369": "team:d.energy: proof nodes are not RLP lists (first byte 0x0a)",
+      "381931": "team:metalblockchain.org: The account leaf for 0x29fcB43b46531BcA003ddC8FCB67FFE91900C762 is not [nonce, balance, storageHash, codeHash]",
+      "421614": "verified at latest - 3 by drpc, team:arbitrum.io, publicnode",
+      "534352": "verified at latest - 3 by team:scroll.io",
+      "543210": "ZK Stack (EraVM): eth_getProof is not served; state is a Blake2s binary Merkle tree read with zks_getProof (docs.zksync.io).",
+      "560048": "verified at latest - 3 by ethpandaops",
+      "656476": "verified at latest - 3 by drpc, team:educhain.xyz",
+      "743111": "verified at latest - 3 by drpc",
+      "747474": "verified at latest - 3 by drpc, team:katana.network",
+      "763373": "verified at latest - 3 by team:inkonchain.com, drpc",
+      "808813": "verified at latest - 3 by team:gobob.xyz, drpc",
+      "810180": "ZK Stack (EraVM): eth_getProof is not served; state is a Blake2s binary Merkle tree read with zks_getProof (docs.zksync.io).",
+      "853211": "verified at latest - 3 by team:ethiq.network",
+      "936485": "verified at the newest block by team:zenith.network",
+      "984122": "verified at latest - 3 by team:forma.art",
+      "1000101": "verified at the newest block by team:xo.market",
+      "1440000": "drpc: proof nodes are not RLP lists (first byte 0x0a); team:xrplevm.org: proof nodes are not RLP lists (first byte 0x0a)",
+      "1449000": "team:xrplevm.org: proof nodes are not RLP lists (first byte 0x0a)",
+      "1501869": "verified at latest - 3 by team:waterfall.network",
+      "2632500": "verified at latest - 3 by team:coti.io",
+      "3441006": "verified at latest - 3 by drpc",
+      "4457845": "ZK Stack (EraVM): eth_getProof is not served; state is a Blake2s binary Merkle tree read with zks_getProof (docs.zksync.io).",
+      "5042002": "verified at the newest block by drpc, publicnode",
+      "5064014": "verified at latest - 3 by team:ethereal.trade",
+      "6281971": "verified at latest - 3 by team:dogeos.com",
+      "7777777": "verified at latest - 3 by team:zora.energy, drpc",
+      "11142220": "verified at the newest block by drpc",
+      "11155111": "verified at latest - 3 by ethpandaops",
+      "11155420": "verified at latest - 3 by team:optimism.io, drpc",
+      "11155931": "verified at latest - 3 by team:riselabs.xyz",
+      "20250407": "team:platon.network: The account leaf for 0x29fcB43b46531BcA003ddC8FCB67FFE91900C762 is not [nonce, balance, storageHash, codeHash]",
+      "168587773": "drpc: eth_getProof returned fields that are not hex quantities",
+      "531050104": "ZK Stack (EraVM): eth_getProof is not served; state is a Blake2s binary Merkle tree read with zks_getProof (docs.zksync.io).",
+      "999999999": "verified at latest - 3 by team:zora.energy, drpc",
+      "1313161554": "team:aurora.dev: method not supported; drpc: Temporary internal error. Please retry, trace-id: a9cda0eff664b31993c33c1733600a2f",
+      "1313161555": "team:aurora.dev: method not supported; drpc: the method eth_getProof does not exist/is not available",
+      "1666600000": "verified at latest - 3 by team:harmony.one, drpc",
+      "2030232745": "team:lumia.org: The method eth_getProof does not exist/is not available"
+    }
+  }
+}
