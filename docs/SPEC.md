@@ -240,8 +240,9 @@ Verdict first, detail below. Read top to bottom:
 Other requirements:
 - Plain-language labels first, technical names in a tooltip or second line (for example "Hidden owner entry" over `owners[x]`).
 - Works at 400 px width; tables scroll inside their own container.
-- Light and dark themes; keyboard accessible; no layout shift while results stream in.
-- Show progress: each step appears as it completes, with a spinner per pending step.
+- A dark theme, the same under either color-scheme preference; keyboard accessible; no layout shift while results
+  stream in.
+- Show progress: each step appears as it completes, with a marker that shows which step is running.
 - Never block the UI on one slow RPC; time out and say which call failed.
 
 ## 8. Architecture and stack
@@ -330,7 +331,7 @@ Prove every test bites: break the behaviour it covers, confirm it fails, restore
 | M1 | `core/` slots and trie | All appendix B roots reproduce, including negatives; tests bite |
 | M2 | `data/` RPC layer | Probe, pinned reads, two-RPC cross-check, local proof verification; live regression passes on dRPC and Blast |
 | M3 | Identity and config checks | 5.2, 5.3, 5.6 to 5.9 with safe-deployments, safe-modules and Zodiac data |
-| M4 | UI | Verdict, cards and tables; mobile and both themes |
+| M4 | UI | Verdict, cards and tables; mobile and the dark theme |
 | M5 | History and diagnosis | 5.10 and 5.11, with degradation by RPC capability |
 | M6 | Fork suite | Every case in section 11.3 passes on 1.3.0, 1.4.1 and 1.5.0 |
 | M7 | Docs | README: what it checks and what it does not, the trust model, how to reproduce a result with `cast` (appendix C), and how to add an RPC or chain |

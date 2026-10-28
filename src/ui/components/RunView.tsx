@@ -2,7 +2,7 @@ import { type ReactNode, useEffect, useMemo, useState } from "react"
 import { VERDICT_LABEL, visibleIssues } from "@/core/markdown"
 import type { ChainRef, Finding, Report, SectionKey } from "@/core/report"
 import type { ChainRpcSettings } from "@/data/types"
-import { Mono, SeverityBadge } from "@/ui/components/common"
+import { Mono, SectionTitle, SeverityBadge } from "@/ui/components/common"
 import { IssueList } from "@/ui/components/IssueCard"
 import { ReportActions } from "@/ui/components/ReportActions"
 import { SummaryCards } from "@/ui/components/SummaryCards"
@@ -15,16 +15,19 @@ import { CrossChain, NotChecked, StepsTable, Verification } from "@/ui/sections/
 
 function FindingsList({ findings }: { findings: readonly Finding[] }) {
   return (
-    <section id="all-findings" aria-label="All findings" className="flex flex-col gap-2">
-      <ul className="flex flex-col gap-2">
+    <section id="all-findings" aria-label="All findings" className="mt-3 border border-border-subtle bg-surface">
+      <ul>
         {findings.map((f, index) => (
-          <li key={`${f.code}-${f.subject}-${index}`} className="rounded border border-border-subtle p-3 text-sm">
-            <p className="flex flex-wrap items-center gap-2">
+          <li
+            key={`${f.code}-${f.subject}-${index}`}
+            className="border-b border-border-subtle px-4 py-3.5 text-sm last:border-b-0 sm:px-5"
+          >
+            <p className="flex flex-wrap items-center gap-2.5">
               <SeverityBadge severity={f.severity} />
-              <span className="font-medium">{f.title}</span>
+              <span className="font-semibold">{f.title}</span>
             </p>
-            <p className="mt-1">{f.explanation}</p>
-            <p className="mt-1 text-xs text-muted-foreground">
+            <p className="mt-1.5">{f.explanation}</p>
+            <p className="mt-1.5 text-xs text-muted-foreground">
               <Mono>{f.technical}</Mono>
               {f.subject && (
                 <>
@@ -106,7 +109,7 @@ export function RunView({
   }
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="mt-6 flex flex-col gap-5 sm:mt-8">
       <p role="status" className="sr-only">
         {announcement(run)}
       </p>
@@ -117,13 +120,13 @@ export function RunView({
         actions={{ ...actions, findingsOpen, onToggleFindings: () => setFindingsOpen(!findingsOpen) }}
       />
       {findingsOpen && report && <FindingsList findings={report.findings} />}
-      <SummaryCards cards={report?.cards ?? null} />
-      <ReportActions report={report} partial={partial !== null} notes={notes} />
+      <div className="mt-3 flex flex-col gap-3">
+        <ReportActions report={report} partial={partial !== null} notes={notes} />
+        <SummaryCards cards={report?.cards ?? null} />
+      </div>
       {run.status === "stopped" && !partial && (
-        <section aria-labelledby="stopped-problems" className="flex flex-col gap-2">
-          <h2 id="stopped-problems" className="text-lg font-semibold">
-            Problems during the run
-          </h2>
+        <section aria-labelledby="stopped-problems" className="mt-12 flex flex-col gap-4">
+          <SectionTitle id="stopped-problems" title="Problems during the run" />
           {visibleIssues(run.issues).length > 0 ? (
             <IssueList issues={visibleIssues(run.issues)} onOpenSettings={actions.onOpenSettings} />
           ) : (
@@ -134,9 +137,17 @@ export function RunView({
       )}
       {(partial ? SECTION_ORDER : shownSections(run)).map((key) => {
         const node = sections[key]()
-        return node ? <div key={key}>{node}</div> : null
+        return node ? (
+          <div key={key} className="mt-10 sm:mt-12">
+            {node}
+          </div>
+        ) : null
       })}
-      {report && <NotChecked lines={report.notChecked} />}
+      {report && (
+        <div className="mt-10 sm:mt-12">
+          <NotChecked lines={report.notChecked} />
+        </div>
+      )}
     </div>
   )
 }

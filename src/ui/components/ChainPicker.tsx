@@ -1,5 +1,6 @@
 import { type KeyboardEvent, useEffect, useId, useMemo, useState } from "react"
 import type { ChainInfo } from "@/data/types"
+import { INPUT } from "@/ui/components/common"
 
 const SHOWN = 50
 
@@ -79,44 +80,53 @@ export function ChainPicker({
   }
 
   return (
-    <div className="relative flex flex-col gap-1">
-      <label htmlFor={id} className="text-sm font-medium">
+    <div className="relative flex flex-col gap-2">
+      <label htmlFor={id} className="text-sm font-semibold">
         Chain <span className="font-normal text-muted-foreground">(optional, found automatically)</span>
       </label>
-      <input
-        id={id}
-        role="combobox"
-        aria-expanded={open}
-        aria-controls={listId}
-        aria-autocomplete="list"
-        aria-activedescendant={open && current >= 0 ? optionId(current) : undefined}
-        autoComplete="off"
-        spellCheck={false}
-        disabled={disabled}
-        placeholder="Search by name or chain id"
-        value={open ? query : selected ? `${selected.name} (${selected.chainId})` : "Find automatically"}
-        onClick={() => {
-          setOpen(true)
-          setActive(0)
-        }}
-        onChange={(event) => {
-          setQuery(event.target.value)
-          setOpen(true)
-          setActive(event.target.value.trim() === "" ? 0 : 1)
-        }}
-        onKeyDown={onKeyDown}
-        onBlur={() => {
-          setOpen(false)
-          setQuery("")
-        }}
-        className="w-full rounded border border-border bg-surface px-2 py-1.5 text-sm focus-visible:outline-2 focus-visible:outline-focus disabled:opacity-50"
-      />
+      <div className="relative">
+        <input
+          id={id}
+          role="combobox"
+          aria-expanded={open}
+          aria-controls={listId}
+          aria-autocomplete="list"
+          aria-activedescendant={open && current >= 0 ? optionId(current) : undefined}
+          autoComplete="off"
+          spellCheck={false}
+          disabled={disabled}
+          placeholder="Search by name or chain id"
+          value={open ? query : selected ? `${selected.name} (${selected.chainId})` : "Find automatically"}
+          onClick={() => {
+            setOpen(true)
+            setActive(0)
+          }}
+          onChange={(event) => {
+            setQuery(event.target.value)
+            setOpen(true)
+            setActive(event.target.value.trim() === "" ? 0 : 1)
+          }}
+          onKeyDown={onKeyDown}
+          onBlur={() => {
+            setOpen(false)
+            setQuery("")
+          }}
+          className={`${INPUT} h-11 pr-10 text-[15px] sm:pl-4`}
+        />
+        <svg
+          viewBox="0 0 12 8"
+          aria-hidden="true"
+          className="pointer-events-none absolute top-1/2 right-4 h-2 w-3 -translate-y-1/2 fill-none stroke-muted-foreground"
+        >
+          <path d="M1 1.5L6 6.5L11 1.5" strokeWidth="1.5" />
+        </svg>
+      </div>
       {open && (
         <ul
           id={listId}
           role="listbox"
           aria-label="Chains"
-          className="absolute top-full right-0 left-0 z-20 mt-1 max-h-72 overflow-auto rounded border border-border bg-surface text-sm shadow-lg"
+          className="absolute top-full right-0 left-0 z-20 mt-1 max-h-72 overflow-auto rounded-md border border-border bg-surface py-1 text-sm"
         >
           {options.map((chain, index) => {
             const note = chain && rootCheckNote(chain)
@@ -129,7 +139,7 @@ export function ChainPicker({
                 // Keep focus in the input so the list does not close before the click lands.
                 onMouseDown={(event) => event.preventDefault()}
                 onClick={() => choose(chain)}
-                className={`flex cursor-pointer justify-between gap-2 px-2 py-1.5 ${index === current ? "bg-subtle" : ""}`}
+                className={`flex cursor-pointer justify-between gap-2 px-3 py-2 ${index === current ? "bg-subtle" : ""}`}
               >
                 {chain ? (
                   <>
@@ -145,12 +155,12 @@ export function ChainPicker({
             )
           })}
           {found.length > SHOWN && (
-            <li role="presentation" className="px-2 py-1.5 text-xs text-muted-foreground">
+            <li role="presentation" className="px-3 py-2 text-xs text-muted-foreground">
               {found.length - SHOWN} more; keep typing to narrow the list.
             </li>
           )}
           {found.length === 0 && (
-            <li role="presentation" className="px-2 py-1.5 text-xs text-muted-foreground">
+            <li role="presentation" className="px-3 py-2 text-xs text-muted-foreground">
               No chain matches “{query}”.
             </li>
           )}

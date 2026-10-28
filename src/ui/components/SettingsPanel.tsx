@@ -1,6 +1,7 @@
 import { type FormEvent, useEffect, useId, useRef, useState } from "react"
 import { chainSettings, checkApiKey, checkRpcUrl, publicIndexersOn } from "@/data/settings"
 import type { ChainInfo, ChainRpcSettings, DefaultRpc, Settings } from "@/data/types"
+import { BUTTON, INPUT } from "@/ui/components/common"
 
 // Empty is fine: every RPC field is optional.
 function urlProblem(text: string): string | null {
@@ -8,11 +9,6 @@ function urlProblem(text: string): string | null {
   const check = checkRpcUrl(text)
   return check.ok ? null : check.message
 }
-
-const INPUT =
-  "w-full rounded border border-border bg-surface px-2 py-1.5 font-mono text-sm focus-visible:outline-2 focus-visible:outline-focus"
-const BUTTON =
-  "rounded border border-border px-3 py-1.5 text-sm hover:bg-subtle focus-visible:outline-2 focus-visible:outline-focus"
 
 function Field({
   label,
@@ -33,8 +29,8 @@ function Field({
 }) {
   const id = useId()
   return (
-    <div className="flex flex-col gap-1">
-      <label htmlFor={id} className="text-sm font-medium">
+    <div className="flex flex-col gap-1.5">
+      <label htmlFor={id} className="text-sm font-semibold">
         {label}
       </label>
       <input
@@ -47,7 +43,7 @@ function Field({
         aria-invalid={problem ? true : undefined}
         aria-describedby={`${id}-help ${id}-problem`}
         onChange={(event) => onChange(event.target.value)}
-        className={INPUT}
+        className={`${INPUT} h-10 font-mono`}
       />
       {help && (
         <p id={`${id}-help`} className="text-xs text-muted-foreground">
@@ -66,7 +62,7 @@ function Field({
 function DefaultRpcs({ chain, operatorName }: { chain: ChainInfo; operatorName: (rpc: DefaultRpc) => string }) {
   if (chain.rpcs.length === 0) {
     return (
-      <p className="rounded border border-warn-border bg-warn-surface p-2 text-sm text-warn">
+      <p className="rounded-sm border border-warn-border bg-warn-surface px-3 py-2 text-sm text-warn">
         {chain.name} has no working default RPC: none passed our checks (chain id, browser access, recent blocks). Add
         your own RPC below to check a Safe on it.
       </p>
@@ -206,7 +202,7 @@ export function SettingsPanel({
       ref={form}
       onSubmit={save}
       aria-label="Settings"
-      className="flex scroll-mt-4 flex-col gap-4 rounded-lg border border-border-subtle bg-surface p-3"
+      className="flex scroll-mt-4 flex-col gap-6 border border-border-subtle bg-surface p-4 sm:p-6"
     >
       <Field
         label="Block (optional)"
@@ -217,8 +213,8 @@ export function SettingsPanel({
         placeholder="latest - 3"
       />
 
-      <fieldset className="flex flex-col gap-3">
-        <legend className="mb-1 font-semibold">RPCs{chain ? ` for ${chain.name}` : ""}</legend>
+      <fieldset className="flex flex-col gap-4 border-t border-border-subtle pt-5">
+        <legend className="float-left mb-1 text-lg font-semibold">RPCs{chain ? ` for ${chain.name}` : ""}</legend>
         {chain && draft && problems ? (
           <>
             <DefaultRpcs chain={chain} operatorName={(rpc) => operatorName(rpc, chain)} />
@@ -276,8 +272,8 @@ export function SettingsPanel({
         )}
       </fieldset>
 
-      <fieldset className="flex flex-col gap-3">
-        <legend className="mb-1 font-semibold">Other services</legend>
+      <fieldset className="flex flex-col gap-4 border-t border-border-subtle pt-5">
+        <legend className="float-left mb-1 text-lg font-semibold">Other services</legend>
         <label className="flex items-start gap-2 text-sm">
           <input
             type="checkbox"

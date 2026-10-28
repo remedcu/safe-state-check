@@ -728,7 +728,7 @@ export const amberSingleOperatorReport: Report = {
   ...greenReport,
   verdict: {
     kind: "unverified",
-    headline: "Could not verify: only one RPC operator confirmed the block.",
+    headline: "Something this result rests on could not be read, proven or confirmed; the reasons say what.",
     reasons: [UNVERIFIED_REASONS["single-operator"], "The storage root matches the configuration on that one RPC."],
     unverified: [{ reason: "single-operator", detail: UNVERIFIED_REASONS["single-operator"] }],
     matchedBy: "config",
@@ -776,7 +776,7 @@ export const amberUnsupportedChainReport: Report = {
   },
   verdict: {
     kind: "unverified",
-    headline: "Could not verify: this chain does not serve standard storage proofs.",
+    headline: "Something this result rests on could not be read, proven or confirmed; the reasons say what.",
     reasons: [UNVERIFIED_REASONS["root-check-unsupported"]],
     unverified: [{ reason: "root-check-unsupported", detail: UNVERIFIED_REASONS["root-check-unsupported"] }],
     matchedBy: null,

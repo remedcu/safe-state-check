@@ -42,7 +42,7 @@ export function PrivacyNote({
   if (settings.etherscan.apiKey) parties.push("Etherscan, with your key")
 
   return (
-    <p className="text-xs text-muted-foreground">
+    <p className="max-w-[60rem] text-xs leading-[18px] text-muted-foreground">
       Privacy: with these settings the Safe address goes to {parties.join("; ")}. “Search all chains” and “Check other
       chains” send it to every chain's default RPC, only when you click them. Nothing goes to this site's host: the link
       keeps the address after the #.

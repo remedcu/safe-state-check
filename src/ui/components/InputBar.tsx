@@ -1,9 +1,7 @@
 import { type FormEvent, type ReactNode, useId } from "react"
 import type { ChainInfo } from "@/data/types"
 import { ChainPicker } from "@/ui/components/ChainPicker"
-
-const BUTTON =
-  "rounded border px-4 py-1.5 text-sm font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus disabled:opacity-50"
+import { BUTTON, BUTTON_PRIMARY, INPUT } from "@/ui/components/common"
 
 // The address is the only required input; the chain is found when it is not given.
 export function InputBar({
@@ -40,10 +38,10 @@ export function InputBar({
     <form
       onSubmit={submit}
       aria-label="Check a Safe"
-      className="flex flex-col gap-3 rounded-lg border border-border-subtle bg-surface p-3"
+      className="flex flex-col gap-4 border border-border-subtle bg-surface p-4 sm:gap-5 sm:p-6"
     >
-      <div className="flex flex-col gap-1">
-        <label htmlFor={id} className="text-sm font-medium">
+      <div className="flex flex-col gap-2">
+        <label htmlFor={id} className="text-sm font-semibold">
           Safe address
         </label>
         <input
@@ -56,9 +54,10 @@ export function InputBar({
           placeholder="0x…"
           aria-invalid={error ? true : undefined}
           aria-describedby={`${id}-help ${id}-error`}
-          className="w-full rounded border border-border bg-background px-2 py-2 font-mono text-sm focus-visible:outline-2 focus-visible:outline-focus disabled:opacity-50"
+          // Small enough on a 390 px phone that a whole address fits.
+          className={`${INPUT} h-12 font-mono text-[11.5px] sm:px-4 sm:text-[15px]`}
         />
-        <p id={`${id}-help`} className="text-xs text-muted-foreground">
+        <p id={`${id}-help`} className="text-[13px] leading-[18px] text-muted-foreground">
           A bare address, eth:0x…, a Safe{"{"}Wallet{"}"} link, or a link from this site.
         </p>
         {error && (
@@ -67,29 +66,31 @@ export function InputBar({
           </p>
         )}
       </div>
-      <div className="flex flex-wrap items-end gap-2">
-        <div className="min-w-0 flex-1 basis-56">
+      <div className="flex flex-wrap items-end gap-3">
+        <div className="min-w-0 flex-1 basis-64">
           <ChainPicker chains={chains} value={chainId} onChange={onChainChange} disabled={disabled} />
         </div>
-        <button
-          type="submit"
-          // When the run ends, focus moves from here to the result.
-          data-run-control=""
-          disabled={disabled}
-          className={`${BUTTON} border-primary bg-primary text-primary-foreground hover:bg-primary-hover`}
-        >
-          Check
-        </button>
-        <button
-          type="button"
-          aria-expanded={settingsOpen}
-          aria-controls="settings-panel"
-          onClick={onToggleSettings}
-          disabled={disabled}
-          className={`${BUTTON} border-border hover:bg-subtle`}
-        >
-          Settings
-        </button>
+        <div className="flex gap-3 max-sm:w-full">
+          <button
+            type="submit"
+            // When the run ends, focus moves from here to the result.
+            data-run-control=""
+            disabled={disabled}
+            className={`${BUTTON_PRIMARY} max-sm:flex-1`}
+          >
+            Check
+          </button>
+          <button
+            type="button"
+            aria-expanded={settingsOpen}
+            aria-controls="settings-panel"
+            onClick={onToggleSettings}
+            disabled={disabled}
+            className={`${BUTTON} h-11`}
+          >
+            Settings
+          </button>
+        </div>
       </div>
       {chainNote}
     </form>

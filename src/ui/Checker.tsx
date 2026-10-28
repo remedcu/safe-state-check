@@ -4,11 +4,14 @@ import type { CheckRequest, Report } from "@/core/report"
 import { chainSettings } from "@/data/settings"
 import type { ChainInfo, Settings } from "@/data/types"
 import { chainRef } from "@/core/steps"
+import { BUTTON } from "@/ui/components/common"
 import { DetectPanel } from "@/ui/components/DetectPanel"
 import { InputBar } from "@/ui/components/InputBar"
+import { About, Hero } from "@/ui/components/Intro"
 import { PrivacyNote } from "@/ui/components/PrivacyNote"
 import { RunView } from "@/ui/components/RunView"
 import { SettingsPanel } from "@/ui/components/SettingsPanel"
+import { PAGE, SiteFooter } from "@/ui/components/Site"
 import { type UiDeps, useDeps } from "@/ui/deps"
 import { failureText } from "@/ui/format"
 import { type Flow, reduceFlow, startRun } from "@/ui/run"
@@ -50,9 +53,9 @@ function ChainNote({
   }
   if (!text) return null
   return (
-    <div className="flex flex-wrap items-center gap-2 rounded border border-warn-border bg-warn-surface p-2 text-sm text-warn">
+    <div className="flex flex-wrap items-center gap-3 rounded-sm border border-warn-border bg-warn-surface px-3 py-2.5 text-sm text-warn">
       <p className="min-w-0 flex-1">{text}</p>
-      <button type="button" onClick={onOpenSettings} className="rounded border border-current px-2 py-1">
+      <button type="button" onClick={onOpenSettings} className={`${BUTTON} border-warn text-foreground`}>
         Open settings
       </button>
     </div>
@@ -258,68 +261,78 @@ export function Checker() {
   const focusChainId = chainId ?? parsedChain ?? (flow.kind === "run" ? flow.run.request.chainId : null)
   const focusChain = focusChainId === null ? null : deps.getChain(focusChainId)
   const blockValue = block.trim() === "" ? null : block.trim()
+  // Nothing streams in: content below the page cannot be pushed down, so the footer can show.
+  const settled =
+    flow.kind === "idle" ||
+    (flow.kind === "detecting" && flow.detection.done) ||
+    (flow.kind === "run" && (flow.run.status === "finished" || flow.run.status === "stopped"))
 
   return (
-    <div className="flex flex-col gap-4">
-      <InputBar
-        text={text}
-        onTextChange={setText}
-        chains={chains}
-        chainId={chainId}
-        onChainChange={setChainId}
-        error={inputError}
-        chainNote={focusChain && <ChainNote chain={focusChain} settings={settings} onOpenSettings={openSettings} />}
-        settingsOpen={settingsOpen}
-        onToggleSettings={() => setSettingsOpen(!settingsOpen)}
-        onSubmit={submit}
-      />
-      {settingsOpen && (
-        <SettingsPanel
-          id="settings-panel"
-          chain={focusChain}
-          block={block}
-          onBlockChange={setBlock}
-          settings={settings}
-          focusRequest={settingsFocus}
-          operatorName={deps.operatorName}
-          onSave={(next) => {
-            const saved = deps.saveSettings(next)
-            settingsRef.current = saved
-            setSettings(saved)
-          }}
+    <>
+      <main className={`${PAGE} flex flex-1 flex-col gap-4 pt-6 sm:pt-8`}>
+        {flow.kind === "idle" && <Hero />}
+        <InputBar
+          text={text}
+          onTextChange={setText}
+          chains={chains}
+          chainId={chainId}
+          onChainChange={setChainId}
+          error={inputError}
+          chainNote={focusChain && <ChainNote chain={focusChain} settings={settings} onOpenSettings={openSettings} />}
+          settingsOpen={settingsOpen}
+          onToggleSettings={() => setSettingsOpen(!settingsOpen)}
+          onSubmit={submit}
         />
-      )}
-      <PrivacyNote chain={focusChain} settings={settings} detectionCount={deps.detectionChains("popular").length} />
-      {flow.kind === "detecting" && (
-        <DetectPanel
-          detection={flow.detection}
-          chainName={(id) => deps.getChain(id)?.name ?? `Chain ${id}`}
-          allCount={deps.detectionChains("all").length}
-          onPick={(id) => begin({ address: flow.detection.address, chainId: id, block: blockValue })}
-          onSearchAll={() => detect(flow.detection.address, "all", blockValue)}
-          onStop={stopDetection}
-        />
-      )}
-      {flow.kind === "run" && (
-        <RunView
-          key={flow.id}
-          run={flow.run}
-          tool={deps.tool}
-          userRpcs={runRpcs}
-          actions={{
-            onStop: stop,
-            onRetry: () => begin(flow.run.request),
-            onOpenSettings: openSettings,
-            onLatestBlock: () => latestBlock(flow.run.request),
-            onTestCandidates: flow.run.report
-              ? (candidates) => testCandidates(flow.run.report as Report, candidates, flow.id)
-              : undefined,
-            onCheckOtherChains: flow.run.report
-              ? () => checkOtherChains(flow.run.report as Report, flow.id)
-              : undefined,
-          }}
-        />
-      )}
-    </div>
+        {settingsOpen && (
+          <SettingsPanel
+            id="settings-panel"
+            chain={focusChain}
+            block={block}
+            onBlockChange={setBlock}
+            settings={settings}
+            focusRequest={settingsFocus}
+            operatorName={deps.operatorName}
+            onSave={(next) => {
+              const saved = deps.saveSettings(next)
+              settingsRef.current = saved
+              setSettings(saved)
+            }}
+          />
+        )}
+        <PrivacyNote chain={focusChain} settings={settings} detectionCount={deps.detectionChains("popular").length} />
+        {flow.kind === "detecting" && (
+          <DetectPanel
+            detection={flow.detection}
+            chainName={(id) => deps.getChain(id)?.name ?? `Chain ${id}`}
+            allCount={deps.detectionChains("all").length}
+            onPick={(id) => begin({ address: flow.detection.address, chainId: id, block: blockValue })}
+            onSearchAll={() => detect(flow.detection.address, "all", blockValue)}
+            onStop={stopDetection}
+          />
+        )}
+        {flow.kind === "run" && (
+          <RunView
+            key={flow.id}
+            run={flow.run}
+            tool={deps.tool}
+            userRpcs={runRpcs}
+            actions={{
+              onStop: stop,
+              onRetry: () => begin(flow.run.request),
+              onOpenSettings: openSettings,
+              onLatestBlock: () => latestBlock(flow.run.request),
+              onTestCandidates: flow.run.report
+                ? (candidates) => testCandidates(flow.run.report as Report, candidates, flow.id)
+                : undefined,
+              onCheckOtherChains: flow.run.report
+                ? () => checkOtherChains(flow.run.report as Report, flow.id)
+                : undefined,
+            }}
+          />
+        )}
+        {flow.kind === "idle" && <About />}
+      </main>
+      {settled && <SiteFooter />}
+    </>
   )
 }

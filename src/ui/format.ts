@@ -4,11 +4,11 @@ import type { ChainRef, ReportIssue, Severity, StepStatus, Tone } from "@/core/r
 import { SOURCIFY_API } from "@/data/constants"
 
 export const TONE_CLASSES: Record<Tone, string> = {
-  ok: "border-ok-border bg-ok-surface text-ok",
-  warn: "border-warn-border bg-warn-surface text-warn",
-  bad: "border-bad-border bg-bad-surface text-bad",
-  neutral: "border-border-subtle bg-surface text-foreground",
-  unknown: "border-dashed border-border bg-surface text-muted-foreground",
+  ok: "bg-ok-surface text-ok",
+  warn: "bg-warn-surface text-warn",
+  bad: "bg-bad-surface text-bad",
+  neutral: "bg-subtle text-muted-foreground",
+  unknown: "border border-dashed border-border text-muted-foreground",
 }
 
 export const SEVERITY_TONE: Record<Severity, Tone> = { critical: "bad", high: "bad", medium: "warn", info: "neutral" }

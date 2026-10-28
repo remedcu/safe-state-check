@@ -238,14 +238,19 @@ npm test           # unit tests (vitest)
 npm run build      # type check and production build into dist/
 ```
 
+The look follows the Safe Design System's dark theme: the color tokens are in `src/index.css`, and DM Sans and Geist
+Mono (SIL Open Font License) are served from `src/assets/fonts/`. The mark, favicons, app icons and social preview
+are in `brand/`: the SVGs are the sources, and `npm run brand:export` renders the PNG and ICO files from them and
+copies the served ones into `public/`.
+
 More tests:
 
 - `npm run test:anvil` creates Safes 1.3.0, 1.4.1 and 1.5.0 on a fresh local anvil, one per case (clean, hidden owner,
   hidden module, silent guard, approved hash, signed message, plain-account module, unknown fallback handler, 7702
   owner, non-canonical singleton, L2 setup, and more), and checks each through the real pipeline. It needs Foundry
   (`anvil` and `forge`).
-- `npm run test:e2e` runs the Playwright smoke test on the built fixture page at 400 px, light and dark, under the CSP
-  from `public/_headers`. Install the browser once with `npx playwright install chromium` (on Linux,
+- `npm run test:e2e` runs the Playwright smoke test on the built fixture page at 400 px, under both color-scheme
+  preferences (the site is dark in both) and the CSP from `public/_headers`. Install the browser once with `npx playwright install chromium` (on Linux,
   `npx playwright install --with-deps chromium` also installs the system libraries it needs).
 - `ANVIL_E2E=1 npx playwright test e2e/anvil.spec.ts --project light` runs the real app against the anvil suite's
   clean and hidden-owner Safes.

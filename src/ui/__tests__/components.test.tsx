@@ -133,6 +133,15 @@ describe("sections", () => {
     within(row).getByText("trace")
   })
 
+  it("puts whether each rebuilt root matches next to its label", () => {
+    render(<Storage part={redShadowOwnerReport.storage} />)
+
+    // e2e/anvil.spec.ts reads the result from the label's element.
+    expect(screen.getByText("Rebuilt from configuration slots", { exact: false }).textContent).toContain(
+      "does not match",
+    )
+  })
+
   it("says when the root check could not run", () => {
     render(<Storage part={amberUnsupportedChainReport.storage} />)
 
@@ -159,7 +168,8 @@ describe("RunView", () => {
       "Verification",
       "What",
     ])
-    screen.getByText("Findings: 0 critical · 0 high · 1 medium · 1 info")
+    const counts = within(screen.getByRole("list", { name: "Findings by severity" })).getAllByRole("listitem")
+    expect(counts.map((item) => item.textContent)).toEqual(["Critical 0", "High 0", "Medium 1", "Info 1"])
     expect(screen.getByRole("list", { name: "Summary" }).children.length).toBe(8)
   })
 
@@ -220,7 +230,7 @@ describe("RunView", () => {
       expect(screen.getByRole("list", { name: "Steps" }).children.length).toBe(14)
       expect(screen.getByRole("list", { name: "Summary" }).children.length).toBe(8)
     }
-    expect(frame.split(" ")).toContain("h-[28rem]")
+    expect(frame.split(" ")).toContain("h-[32rem]")
     rerender(<RunView tool={TOOL} userRpcs={null} run={reduceRun(run, events.at(-1)!)} actions={ACTIONS} />)
     expect(container.querySelector("section")!.className.replace(TONE, "")).toBe(frame.replace(TONE, ""))
   })

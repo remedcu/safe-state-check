@@ -1,7 +1,7 @@
 import { type FormEvent, useState } from "react"
 import { COMPARISON_LABEL, ROOT_MATCH_LABEL, SLOT_SOURCE_LABEL, SLOT_STATUS_LABEL } from "@/core/markdown"
 import type { DiagnosisSection, Part, SlotStatus, StorageSection, Tone } from "@/core/report"
-import { Badge, HexText, Mono, Section, TableScroll, TD, TH } from "@/ui/components/common"
+import { Badge, BUTTON, HexText, INPUT, Mono, Section, SectionTitle, TableScroll, TD, TH } from "@/ui/components/common"
 import { compactWord, failureText } from "@/ui/format"
 
 const STATUS_TONE: Record<SlotStatus, Tone> = {
@@ -11,13 +11,18 @@ const STATUS_TONE: Record<SlotStatus, Tone> = {
   unexplained: "bad",
 }
 
+const ROOT_ROW =
+  "grid grid-cols-1 gap-x-5 gap-y-1.5 border-b border-border-subtle px-4 py-3 last:border-b-0 sm:grid-cols-[14rem_minmax(0,1fr)] sm:items-center"
+
+const ROOT = "font-mono text-[13px] break-all"
+
 export function Storage({ part }: { part: Part<StorageSection> | undefined }) {
   return (
     <Section id="storage" title="Storage" technical="storage root from eth_getProof" part={part}>
       {(storage) => (
         <>
           {storage.support !== "supported" && (
-            <p className="rounded border border-warn-border bg-warn-surface p-2 text-sm text-warn">
+            <p className="rounded-sm border border-warn-border bg-warn-surface px-3 py-2 text-sm text-warn">
               The storage root check did not run: {storage.supportReason}
             </p>
           )}
@@ -27,27 +32,22 @@ export function Storage({ part }: { part: Part<StorageSection> | undefined }) {
               This count is for reading only; the root comparison below is the check.
             </span>
           </p>
-          {storage.passes.length > 0 && (
-            <ul className="flex flex-col gap-1 text-sm">
-              {storage.passes.map((pass, index) => (
-                <li
-                  key={`${pass.by}-${index}`}
-                  className="flex flex-col gap-0.5 rounded border border-border-subtle p-2"
-                >
-                  <span className="flex flex-wrap items-center gap-2">
-                    Rebuilt from {ROOT_MATCH_LABEL[pass.by]} ({pass.slotCount} slots):
-                    {pass.match ? <Badge tone="ok">matches</Badge> : <Badge tone="bad">does not match</Badge>}
-                  </span>
-                  <span className="text-xs text-muted-foreground">
-                    expected root <HexText value={pass.expectedRoot} />
-                  </span>
-                </li>
-              ))}
-            </ul>
-          )}
-          <p className="text-xs text-muted-foreground">
-            Actual root (storageHash): {storage.actualRoot ? <HexText value={storage.actualRoot} /> : "not read"}
-          </p>
+          {/* Each rebuilt root above the proven one, so the two hashes can be read against each other. */}
+          <dl className="border border-border-subtle bg-surface text-sm">
+            {storage.passes.map((pass, index) => (
+              <div key={`${pass.by}-${index}`} className={ROOT_ROW}>
+                <dt className="flex flex-col items-start gap-1.5 text-muted-foreground">
+                  Rebuilt from {ROOT_MATCH_LABEL[pass.by]} ({pass.slotCount} slots)
+                  {pass.match ? <Badge tone="ok">matches</Badge> : <Badge tone="bad">does not match</Badge>}
+                </dt>
+                <dd className={ROOT}>{pass.expectedRoot}</dd>
+              </div>
+            ))}
+            <div className={ROOT_ROW}>
+              <dt className="text-muted-foreground">Actual root (storageHash)</dt>
+              <dd className={storage.actualRoot ? ROOT : undefined}>{storage.actualRoot ?? "not read"}</dd>
+            </div>
+          </dl>
           <TableScroll label="Storage slots">
             <thead>
               <tr>
@@ -125,15 +125,12 @@ export function Diagnosis({
   }
 
   return (
-    <section aria-labelledby="diagnosis-title" className="flex flex-col gap-2">
-      <h2 id="diagnosis-title" className="text-lg font-semibold">
-        Diagnosis
-        <span className="text-sm font-normal text-muted-foreground"> why the root does not match</span>
-      </h2>
-      <ol className="flex flex-col gap-1 text-sm">
+    <section aria-labelledby="diagnosis-title" className="flex flex-col gap-4">
+      <SectionTitle id="diagnosis-title" title="Diagnosis" technical="why the root does not match" />
+      <ol className="border border-border-subtle bg-surface text-sm">
         {diagnosis.steps.map((step) => (
-          <li key={step.id} className="rounded border border-border-subtle p-2">
-            <span className="font-medium">{DIAGNOSIS_STEP_LABEL[step.id]}</span>: {step.status.replace("-", " ")}.{" "}
+          <li key={step.id} className="border-b border-border-subtle px-4 py-3 last:border-b-0">
+            <span className="font-semibold">{DIAGNOSIS_STEP_LABEL[step.id]}</span>: {step.status.replace("-", " ")}.{" "}
             {step.detail}
             {step.missing.length > 0 && (
               <span className="block text-xs text-muted-foreground">
@@ -166,7 +163,7 @@ export function Diagnosis({
         </TableScroll>
       )}
       {onTestCandidates && (
-        <form onSubmit={submit} className="flex flex-col gap-1 text-sm">
+        <form onSubmit={submit} className="flex flex-col gap-2 text-sm">
           <label htmlFor="candidates">
             Test your own guesses: paste addresses or 32-byte hashes. The tool computes their owner, module, approved
             hash and signed message slots and reads them.
@@ -176,13 +173,9 @@ export function Diagnosis({
             value={text}
             onChange={(event) => setText(event.target.value)}
             rows={3}
-            className="rounded border border-border bg-surface p-2 font-mono text-xs focus-visible:outline-2 focus-visible:outline-focus"
+            className={`${INPUT} p-3 font-mono text-xs`}
           />
-          <button
-            type="submit"
-            disabled={busy}
-            className="self-start rounded border border-border px-3 py-1.5 hover:bg-subtle disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-focus"
-          >
+          <button type="submit" disabled={busy} className={`${BUTTON} self-start`}>
             {busy ? "Testing…" : "Test candidates"}
           </button>
           {error && (

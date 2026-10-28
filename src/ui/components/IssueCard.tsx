@@ -1,6 +1,6 @@
 import { issueHeadline } from "@/core/markdown"
 import type { ReportIssue } from "@/core/report"
-import { Badge, Disclosure } from "@/ui/components/common"
+import { Badge, BUTTON, Disclosure } from "@/ui/components/common"
 
 // One I/O problem in plain words: who failed at what, why, and what to do. The raw answer sits behind a toggle.
 export function IssueCard({ issue, onOpenSettings }: { issue: ReportIssue; onOpenSettings?: () => void }) {
@@ -19,10 +19,10 @@ export function IssueCard({ issue, onOpenSettings }: { issue: ReportIssue; onOpe
   ]
   return (
     <article
-      className={`rounded border p-3 text-sm ${issue.recovered ? "border-border-subtle" : "border-warn-border"}`}
+      className={`border bg-surface p-4 text-sm ${issue.recovered ? "border-border-subtle" : "border-warn-border"}`}
     >
       <div className="flex flex-wrap items-start justify-between gap-2">
-        <p className="font-medium">{issueHeadline(issue)}</p>
+        <p className="font-semibold">{issueHeadline(issue)}</p>
         {issue.recovered && <Badge tone="ok">worked around</Badge>}
       </div>
       <p className="mt-1">{issue.explanation}</p>
@@ -37,15 +37,11 @@ export function IssueCard({ issue, onOpenSettings }: { issue: ReportIssue; onOpe
         </div>
       )}
       {onOpenSettings && issue.service === "rpc" && !issue.recovered && (
-        <button
-          type="button"
-          onClick={onOpenSettings}
-          className="mt-2 rounded border border-border px-2 py-1 hover:bg-subtle focus-visible:outline-2 focus-visible:outline-focus"
-        >
+        <button type="button" onClick={onOpenSettings} className={`${BUTTON} mt-3`}>
           Open RPC settings
         </button>
       )}
-      <Disclosure className="mt-2" label={(open) => (open ? "Hide technical details" : "Technical details")}>
+      <Disclosure className="mt-3" label={(open) => (open ? "Hide technical details" : "Technical details")}>
         <dl className="grid grid-cols-[auto_1fr] gap-x-3 gap-y-0.5 text-xs">
           {rows
             .filter(([, value]) => value !== null && value !== "")
