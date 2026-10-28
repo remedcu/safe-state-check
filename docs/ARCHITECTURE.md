@@ -672,7 +672,8 @@ Each is written to be checked by a test.
 
 ## 14. Security headers and privacy
 
-`public/_headers` for `/*`:
+`public/_headers` for `/*` (and, for `/assets/*`, whose file names carry a content hash,
+`Cache-Control: public, max-age=31536000, immutable`):
 
 - `Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src https: http://localhost:* http://127.0.0.1:*; frame-ancestors 'none'; base-uri 'none'; form-action 'none'`.
   Loopback lets a user's own node or anvil work on the deployed site: browsers treat it as a secure origin, so it is
@@ -747,6 +748,5 @@ Not in this design, kept for later PRs:
 - A third Ethereum provider for the cross-check after Blast shuts down (header-only PublicNode covers it for now).
 - Reading ExtensibleFallbackHandler's per-Safe configuration instead of only naming it.
 - A known-guards source beyond Zodiac (the Safe{Wallet} guard list, if one is published).
-- `vite preview` serving `public/_headers`, a favicon, `.npmrc` with `save-exact=true`, immutable caching for
-  `/assets/*`, `.claude/` in `.gitignore`.
+- `vite preview` serving `public/_headers`, `.npmrc` with `save-exact=true`, `.claude/` in `.gitignore`.
 - Whether the CLI becomes a published package (default no).

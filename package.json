@@ -19,6 +19,7 @@
     "test:anvil": "vitest run --config vitest.anvil.config.ts",
     "rpcs:refresh": "tsx --tsconfig tsconfig.node.json scripts/refresh-rpcs.ts",
     "registry:build": "tsx --tsconfig tsconfig.node.json scripts/build-registry.ts",
+    "brand:export": "tsx --tsconfig tsconfig.node.json scripts/brand-export.ts",
     "cli": "tsx --tsconfig tsconfig.node.json scripts/check.ts"
   },
   "dependencies": {

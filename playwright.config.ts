@@ -3,7 +3,7 @@ import { E2E_PORT } from "./e2e/port"
 
 const viewport = { width: 400, height: 800 }
 
-// The smoke test runs the built fixture page at 400 px in both color schemes.
+// The smoke test runs the built fixture page at 400 px under both color-scheme preferences; the site is dark in both.
 export default defineConfig({
   testDir: "e2e",
   timeout: 60_000,

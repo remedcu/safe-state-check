@@ -1,9 +1,6 @@
-import { Spinner } from "@/ui/components/common"
+import { BUTTON, Spinner } from "@/ui/components/common"
 import { IssueList } from "@/ui/components/IssueCard"
 import type { Detection } from "@/ui/run"
-
-const BUTTON =
-  "rounded border border-border px-3 py-1.5 text-sm hover:bg-subtle focus-visible:outline-2 focus-visible:outline-focus"
 
 // Finding the chain when the input names none: progress, then a pick when several chains match, or the next step when
 // none does.
@@ -30,9 +27,12 @@ export function DetectPanel({
   const where = scope === "popular" ? "the most used chains" : "every chain with a default RPC"
 
   return (
-    <section aria-labelledby="detect-title" className="flex flex-col gap-2 rounded-lg border border-border-subtle p-3">
-      <div className="flex items-start justify-between gap-2">
-        <h2 id="detect-title" className="flex items-center gap-2 font-semibold">
+    <section
+      aria-labelledby="detect-title"
+      className="mt-6 flex flex-col gap-3 border border-border-subtle bg-surface p-4 sm:mt-8 sm:p-6"
+    >
+      <div className="flex items-start justify-between gap-3">
+        <h2 id="detect-title" className="flex items-center gap-2.5 text-xl font-semibold">
           {!done && <Spinner />}
           {done ? "Chain search finished" : `Looking for this Safe on ${where}`}
         </h2>
@@ -89,7 +89,9 @@ export function DetectPanel({
       )}
       {failed.length > 0 && (
         <details className="text-sm">
-          <summary className="cursor-pointer">{failed.length} chains could not be checked</summary>
+          <summary className="mb-2 cursor-pointer text-muted-foreground hover:text-foreground">
+            {failed.length} chains could not be checked
+          </summary>
           <IssueList issues={failed.flatMap((r) => (r.issue ? [r.issue] : []))} />
         </details>
       )}

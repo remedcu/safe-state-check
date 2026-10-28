@@ -72,7 +72,7 @@ for (const stream of STREAMS) {
   })
 }
 
-test("works at 400 px in the current color scheme", async ({ page }, info) => {
+test("works at 400 px in either color scheme", async ({ page }) => {
   const watched = await watch(page)
   await page.goto(`/e2e/fixture.html?speed=4#/1/${RED}`)
   await expect(verdict(page, "Unexplained storage")).toBeVisible({ timeout: 20_000 })
@@ -82,9 +82,9 @@ test("works at 400 px in the current color scheme", async ({ page }, info) => {
   const storage = page.getByRole("region", { name: "Storage slots" })
   expect(await storage.evaluate((el) => el.scrollWidth > el.clientWidth)).toBe(true)
 
+  // The site is dark in both color schemes.
   const background = await page.evaluate(() => getComputedStyle(document.body).backgroundColor)
-  if (info.project.name === "dark") expect(background).not.toBe("rgb(255, 255, 255)")
-  else expect(background).toBe("rgb(255, 255, 255)")
+  expect(background).toBe("rgb(0, 0, 0)")
 
   const { shifts, csp } = await watched.read()
   expect(shifts).toEqual([])
@@ -92,7 +92,8 @@ test("works at 400 px in the current color scheme", async ({ page }, info) => {
   expect(watched.errors).toEqual([])
 })
 
-// The banner keeps one height; nothing in it may be cut off without a way to see it.
+// The banner keeps one height; nothing in it may be cut off without a way to see it, from a small phone up. The
+// reasons list is what gives way, but it always shows its first entry in full.
 for (const hash of [
   `#/1/${GREEN}`,
   `#/1/${RED}`,
@@ -101,28 +102,54 @@ for (const hash of [
   `#/324/${ZK}`,
   `#/1/${GREEN}@26000000`,
 ]) {
-  test(`the banner hides nothing at 400 px for ${hash}`, async ({ page }) => {
+  test(`the banner hides nothing from 320 to 1280 px for ${hash}`, async ({ page }) => {
     await page.goto(`/e2e/fixture.html?speed=8${hash}`)
     await expect(page.getByRole("heading", { level: 2, name: VERDICTS })).toBeVisible({ timeout: 20_000 })
-    const r = await page.evaluate(() => {
-      const banner = document.getElementById("verdict-title")!.closest("section")!
-      const box = banner.getBoundingClientRect()
-      const clipped = Array.from(banner.querySelectorAll("*"))
-        .filter((e) => e.scrollHeight > e.clientHeight + 1 && getComputedStyle(e).overflowY === "hidden")
-        .map((e) => e.tagName)
-      const outside = Array.from(banner.querySelectorAll("h2, p, button"))
-        .filter((e) => e.getBoundingClientRect().bottom > box.bottom + 1)
-        .map((e) => e.textContent)
-      const list = banner.querySelector('ul[aria-label="Reasons"]')
-      const overflows = list ? list.scrollHeight > list.clientHeight + 1 : false
-      const hint = Array.from(banner.querySelectorAll("p")).some((p) => p.textContent?.startsWith("More below"))
-      return { clipped, outside, overflows, hint, listFocusable: list?.getAttribute("tabindex") === "0" }
-    })
-    expect(r.clipped).toEqual([])
-    expect(r.outside).toEqual([])
-    if (r.overflows) expect(r).toMatchObject({ hint: true, listFocusable: true })
+    for (const width of [320, 400, 640, 768, 1024, 1280]) {
+      await page.setViewportSize({ width, height: 800 })
+      const measure = () =>
+        page.evaluate(() => {
+          const banner = document.getElementById("verdict-title")!.closest("section")!
+          const box = banner.getBoundingClientRect()
+          const clipped = Array.from(banner.querySelectorAll("*"))
+            .filter((e) => e.scrollHeight > e.clientHeight + 1 && getComputedStyle(e).overflowY === "hidden")
+            .map((e) => e.tagName)
+          const outside = Array.from(banner.querySelectorAll("h2, p, button"))
+            .filter((e) => {
+              const r = e.getBoundingClientRect()
+              return r.bottom > box.bottom + 1 || r.right > box.right + 1
+            })
+            .map((e) => e.textContent)
+          const list = banner.querySelector('ul[aria-label="Reasons"]')
+          const first = list?.firstElementChild
+          const firstShown =
+            !list || !first || first.getBoundingClientRect().bottom <= list.getBoundingClientRect().bottom + 1
+          const overflows = list ? list.scrollHeight > list.clientHeight + 1 : false
+          const hint = Array.from(banner.querySelectorAll("p")).some((p) => p.textContent?.startsWith("More below"))
+          const reachable = !overflows || (hint && list?.getAttribute("tabindex") === "0")
+          return { clipped, outside, firstShown, reachable }
+        })
+      await expect
+        .poll(measure, { message: `at ${width} px` })
+        .toEqual({ clipped: [], outside: [], firstShown: true, reachable: true })
+    }
   })
 }
+
+// A full address wraps instead of widening the page.
+test("a result fits 320 px without scrolling sideways", async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 800 })
+  for (const hash of [`#/1/${GREEN}`, `#/1/${SELF}`]) {
+    await page.goto(`/e2e/fixture.html?speed=8${hash}`)
+    await expect(page.getByRole("heading", { level: 2, name: VERDICTS })).toBeVisible({ timeout: 20_000 })
+    // scrollWidth misses up to 15 px of overflow under the stable scrollbar gutter; the scroll position does not.
+    const extra = await page.evaluate(() => {
+      window.scrollTo(10_000, window.scrollY)
+      return window.scrollX
+    })
+    expect(extra, hash).toBe(0)
+  }
+})
 
 test("reasons that do not fit the banner scroll, with a hint and keyboard access", async ({ page }) => {
   await page.goto(`/e2e/fixture.html?speed=8#/1/${SELF}`)
@@ -215,6 +242,12 @@ test("the chain picker keeps the active option in view", async ({ page }) => {
 test("the whole check works from the keyboard", async ({ page }) => {
   await page.goto("/e2e/fixture.html?speed=4")
 
+  // The header's two links come first, then the form.
+  await page.keyboard.press("Tab")
+  const header = page.getByRole("banner")
+  await expect(header.getByRole("link", { name: "Safe State Check" })).toBeFocused()
+  await page.keyboard.press("Tab")
+  await expect(header.getByRole("link", { name: "Source on GitHub" })).toBeFocused()
   await page.keyboard.press("Tab")
   await expect(page.getByLabel("Safe address")).toBeFocused()
   await page.keyboard.type(RED)

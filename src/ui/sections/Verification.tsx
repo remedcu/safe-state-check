@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { AGREEMENT_LABEL, COMPARISON_LABEL, PINNED_BY_LABEL, utcTime, visibleIssues } from "@/core/markdown"
 import type { CrossChainSection, EndpointRef, Part, Report, StepRecord } from "@/core/report"
-import { Badge, HexText, Section, TableScroll, TD, TH } from "@/ui/components/common"
+import { Badge, BUTTON, HexText, Section, SectionTitle, TableScroll, TD, TH } from "@/ui/components/common"
 import { IssueList } from "@/ui/components/IssueCard"
 import { failureText, STEP_STATUS_LABEL } from "@/ui/format"
 
@@ -29,14 +29,11 @@ export function Verification({
   const v = report.verification
   const issues = visibleIssues(report.issues)
   return (
-    <section aria-labelledby="verification-title" className="flex flex-col gap-3">
-      <h2 id="verification-title" className="text-lg font-semibold">
-        Verification
-        <span className="text-sm font-normal text-muted-foreground"> block, RPCs and proofs</span>
-      </h2>
+    <section aria-labelledby="verification-title" className="flex flex-col gap-4">
+      <SectionTitle id="verification-title" title="Verification" technical="block, RPCs and proofs" />
       {report.verdict.unverified.length > 0 && (
-        <div className="rounded border border-warn-border bg-warn-surface p-2 text-sm text-warn">
-          <p className="font-medium">Why this could not be verified:</p>
+        <div className="rounded-sm border border-warn-border bg-warn-surface px-3 py-2 text-sm text-warn">
+          <p className="font-semibold">Why this could not be verified:</p>
           <ul className="list-disc pl-5">
             {report.verdict.unverified.map((u) => (
               <li key={u.reason}>{u.detail}</li>
@@ -44,7 +41,7 @@ export function Verification({
           </ul>
         </div>
       )}
-      <dl className="grid grid-cols-1 gap-x-4 gap-y-1 text-sm sm:grid-cols-[auto_1fr]">
+      <dl className="grid grid-cols-1 gap-x-6 gap-y-1 text-sm sm:grid-cols-[auto_1fr] sm:gap-y-2.5">
         <dt className="text-muted-foreground">Block</dt>
         <dd>
           {v.anchor.number}, {utcTime(v.anchor.timestamp)}, pinned to {PINNED_BY_LABEL[v.anchor.pinnedBy]}.
@@ -129,7 +126,7 @@ export function Verification({
         </TableScroll>
       )}
       <StepsTable steps={steps} />
-      <h3 className="font-semibold">Problems during the run</h3>
+      <h3 className="mt-2 text-lg font-semibold">Problems during the run</h3>
       {issues.length === 0 ? (
         <p className="text-sm">None.</p>
       ) : (
@@ -212,20 +209,13 @@ export function CrossChain({ part, onCheck }: { part: Part<CrossChainSection> | 
     }
   }
   return (
-    <section aria-labelledby="cross-chain-title" className="flex flex-col gap-2">
-      <h2 id="cross-chain-title" className="text-lg font-semibold">
-        Same address on other chains
-      </h2>
+    <section aria-labelledby="cross-chain-title" className="flex flex-col gap-4">
+      <SectionTitle id="cross-chain-title" title="Same address on other chains" />
       <p className="text-sm">
         Someone can deploy a Safe at this address on another chain with other owners. Checking sends the address to the
         default RPC of every chain that has one.
       </p>
-      <button
-        type="button"
-        disabled={state.busy}
-        onClick={check}
-        className="self-start rounded border border-border px-3 py-1.5 text-sm hover:bg-subtle disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-focus"
-      >
+      <button type="button" disabled={state.busy} onClick={check} className={`${BUTTON} self-start`}>
         {state.busy ? "Checking other chains…" : "Check other chains"}
       </button>
       {state.error && (
@@ -239,13 +229,21 @@ export function CrossChain({ part, onCheck }: { part: Part<CrossChainSection> | 
 
 export function NotChecked({ lines }: { lines: readonly string[] }) {
   return (
-    <section aria-labelledby="not-checked-title" className="rounded border border-info-border bg-info-surface p-3">
-      <h2 id="not-checked-title" className="font-semibold text-info">
+    <section
+      aria-labelledby="not-checked-title"
+      className="flex flex-col gap-3 border border-border-subtle bg-surface p-5 sm:p-6"
+    >
+      <h2 id="not-checked-title" className="text-xl font-semibold">
         What this does not check
       </h2>
-      <ul className="mt-1 list-disc pl-5 text-sm">
+      <ul className="text-sm leading-[21px]">
         {lines.map((line) => (
-          <li key={line}>{line}</li>
+          <li
+            key={line}
+            className="relative border-t border-border-subtle py-2.5 pl-5 before:absolute before:left-0 before:text-border before:content-['-'] last:pb-0"
+          >
+            {line}
+          </li>
         ))}
       </ul>
     </section>

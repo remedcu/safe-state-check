@@ -105,7 +105,3 @@ export function checkPending(input: PendingInput): { section: PendingSection; fi
     findings,
   }
 }
-
-// The one wording of this caveat, for "what this does not check" and the pending section alike.
-export const SIGNATURE_CAVEAT =
-  "Signatures kept offchain. Signatures that were never shared with the Safe Transaction Service or any other service cannot be seen."

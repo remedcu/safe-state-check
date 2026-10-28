@@ -1,7 +1,6 @@
 import { SLOTS } from "@/core/constants"
 import { SEVERITIES, severityRank, sortFindings, UNVERIFIED_REASONS } from "@/core/findings"
 import { SEVERITY_LABEL } from "@/core/markdown"
-import { SIGNATURE_CAVEAT } from "@/core/pending"
 import { historyReadRange, type ReadRange, readRangeText } from "@/core/history"
 import { displayName, SUPPORTED_VERSIONS } from "@/core/registry"
 import { slotKey } from "@/core/slots"
@@ -415,13 +414,3 @@ export function summaryCards(input: VerdictInput): SummaryCard[] {
   }
   return cards
 }
-
-// "What this does not check", the fixed part. Steps add run-specific lines.
-export const NOT_CHECKED: readonly string[] = [
-  "What the code does. The Safe's logic, modules, guard and fallback handler are named by their code hash, not audited.",
-  "Owner keys. How owners keep their keys, and whether one is compromised.",
-  SIGNATURE_CAVEAT,
-  "Storage of other contracts. A module's or guard's own settings sit in its own storage, outside this Safe's storage root.",
-  "Owners of owners. An owner that is a Safe is shown one level deep; its own setup is not checked.",
-  "Token balances and approvals.",
-]

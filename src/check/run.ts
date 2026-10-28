@@ -9,7 +9,8 @@ import {
   type StorageSection,
   type VerificationSection,
 } from "@/core/report"
-import { decideVerdict, NOT_CHECKED, summaryCards, verificationNotChecked } from "@/core/verdict"
+import { NOT_CHECKED } from "@/core/scope"
+import { decideVerdict, summaryCards, verificationNotChecked } from "@/core/verdict"
 import { canPair } from "@/data/endpoints"
 import { cleanUntrusted } from "@/core/text"
 import type { CapabilityReport, CheckDeps, Endpoint } from "@/data/types"

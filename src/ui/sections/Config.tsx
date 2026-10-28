@@ -28,7 +28,7 @@ export function Identity({ part, chain }: { part: Part<IdentitySection> | undefi
   return (
     <Section id="identity" title="Safe contract" technical="proxy and singleton" part={part}>
       {(identity) => (
-        <dl className="grid grid-cols-1 gap-x-4 gap-y-2 text-sm sm:grid-cols-[auto_1fr]">
+        <dl className="grid grid-cols-1 gap-x-6 gap-y-1 border-t border-border-subtle pt-4 text-sm sm:grid-cols-[16rem_minmax(0,1fr)] sm:gap-y-4">
           <dt className="text-muted-foreground">Version</dt>
           <dd>
             {identity.version ?? "unknown"}
@@ -102,7 +102,7 @@ export function Owners({ part, chain }: { part: Part<OwnersSection> | undefined;
             {owners.threshold} of {owners.ownerCount} owners must sign a transaction.
           </p>
           {owners.inertOnly && (
-            <p className="rounded border border-info-border bg-info-surface p-2 text-sm text-info">
+            <p className="rounded-sm border border-info-border bg-info-surface px-3 py-2 text-sm text-info">
               Every owner is a placeholder address that cannot sign. Only the modules can act for this Safe.
             </p>
           )}

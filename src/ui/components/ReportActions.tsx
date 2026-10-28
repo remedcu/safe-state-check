@@ -1,9 +1,7 @@
 import { useState } from "react"
 import { reportToMarkdown } from "@/core/markdown"
 import type { Report } from "@/core/report"
-
-const BUTTON =
-  "rounded border border-border px-3 py-1.5 text-sm hover:bg-subtle disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-focus"
+import { BUTTON, INPUT } from "@/ui/components/common"
 
 function download(report: Report, partial: boolean) {
   const blob = new Blob([JSON.stringify(report, null, 2)], { type: "application/json" })
@@ -58,7 +56,7 @@ export function ReportActions({
             readOnly
             value={current.text}
             rows={8}
-            className="rounded border border-border bg-surface p-2 font-mono text-xs"
+            className={`${INPUT} p-3 font-mono text-xs`}
             onFocus={(event) => event.currentTarget.select()}
           />
         </label>
